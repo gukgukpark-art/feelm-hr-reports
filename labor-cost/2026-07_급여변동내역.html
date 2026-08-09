@@ -46,6 +46,8 @@ section.card, details.card { background:var(--card); border:1px solid var(--bord
 .chart-box { background:var(--card); border:1px solid var(--border); border-radius:16px; padding:18px 20px; box-shadow:0 1px 2px rgba(20,30,60,.04); }
 .chart-box h3 { font-size:13.5px; color:var(--navy); margin:0 0 12px; font-weight:800; }
 .chart-box canvas { max-height:260px; }
+.chart-box.wide { grid-column:1 / -1; }
+.chart-box.wide canvas { max-height:220px; }
 
 details.card summary { cursor:pointer; font-weight:700; color:var(--navy); list-style:none; display:flex; align-items:center; gap:8px; }
 details.card summary::-webkit-details-marker { display:none; }
@@ -103,6 +105,10 @@ footer.note b { color:var(--navy); }
   <div class="chart-box">
     <h3>전사 지급총액 중 정규직·일용직 비중 (7월)</h3>
     <canvas id="donutChart"></canvas>
+  </div>
+  <div class="chart-box wide">
+    <h3>사업장별 지급총액 추이 (6월 → 7월)</h3>
+    <canvas id="trendChart"></canvas>
   </div>
 </div>
 
@@ -226,6 +232,10 @@ footer.note b { color:var(--navy); }
     <h3>전체 지급총액 중 정규직·일용직 비중 (7월)</h3>
     <canvas id="donutChart2"></canvas>
   </div>
+  <div class="chart-box wide">
+    <h3>매장별 지급총액 추이 (6월 → 7월)</h3>
+    <canvas id="trendChart2"></canvas>
+  </div>
 </div>
 
 <section class="card">
@@ -289,87 +299,162 @@ footer.note b { color:var(--navy); }
 </div>
 
 <script>
-const D2 = {"labels": ["연남점", "홍대점", "망원점", "마곡점"], "ft7": [32147323, 10061883, 7177616, 10064207], "pt7": [5586732, 4882908, 4226040, 10256532], "donut": [59451029, 24952212]};
-const D = {"labels": ["필름", "연남점", "홍대점", "망원점", "마곡점"], "ft7": [92246878, 32147323, 10061883, 7177616, 10064207], "pt7": [0, 5586732, 4882908, 4226040, 10256532], "donut": [151697907, 24952212]};
+const D2 = {"labels": ["연남점", "홍대점", "망원점", "마곡점"], "ft7": [32147323, 10061883, 7177616, 10064207], "pt7": [5586732, 4882908, 4226040, 10256532], "donut": [59451029, 24952212], "pay6": [38641844, 12825842, 11921198, 21330706], "pay7": [37734055, 14944791, 11403656, 20320739]};
+const D = {"labels": ["필름", "연남점", "홍대점", "망원점", "마곡점"], "ft7": [92246878, 32147323, 10061883, 7177616, 10064207], "pt7": [0, 5586732, 4882908, 4226040, 10256532], "donut": [151697907, 24952212], "pay6": [88299815, 38641844, 12825842, 11921198, 21330706], "pay7": [92246878, 37734055, 14944791, 11403656, 20320739]};
 const navy = "#1c2b4a";
 Chart.defaults.font.family = "-apple-system,BlinkMacSystemFont,'Segoe UI','Malgun Gothic',Roboto,Arial,sans-serif";
 Chart.defaults.font.size = 11.5;
 Chart.defaults.color = "#6b7280";
 
-new Chart(document.getElementById('barChart'), {
-  type: 'bar',
-  data: {
-    labels: D.labels,
-    datasets: [
-      { label: '정규직', data: D.ft7, backgroundColor: '#2f6fed', borderRadius: 4, stack: 's' },
-      { label: '일용직', data: D.pt7, backgroundColor: '#b8790a', borderRadius: 4, stack: 's' },
-    ]
-  },
-  options: {
-    responsive: true,
-    plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, padding: 14 } },
-      tooltip: { callbacks: { label: (ctx) => ` ${ctx.dataset.label}: ${ctx.parsed.y.toLocaleString()}원` } } },
-    scales: {
-      y: { stacked: true, ticks: { callback: (v) => (v/1000000).toFixed(0)+'백만' }, grid: { color:'#eef0f5' } },
-      x: { stacked: true, grid: { display:false } }
-    }
-  }
-});
+function fmtM(v) { return (v/1000000).toFixed(1) + '백만'; }
 
-new Chart(document.getElementById('donutChart'), {
-  type: 'doughnut',
-  data: {
-    labels: ['정규직', '일용직'],
-    datasets: [{
-      data: D.donut,
-      backgroundColor: ['#2f6fed', '#b8790a'],
-      borderWidth: 2, borderColor: '#fff'
-    }]
-  },
-  options: {
-    responsive: true,
-    plugins: {
-      legend: { position: 'bottom', labels: { boxWidth: 10, padding: 10, font: {size:11} } },
-      tooltip: { callbacks: { label: (ctx) => ` ${ctx.label}: ${ctx.parsed.toLocaleString()}원` } }
+// 스택 막대 위에 총액(정규직+일용직) 라벨 표시
+const stackTotalPlugin = {
+  id: 'stackTotal',
+  afterDatasetsDraw(chart) {
+    if (!chart.config._stackTotal) return;
+    const { ctx } = chart;
+    const topMeta = chart.getDatasetMeta(1).data;
+    ctx.save();
+    ctx.textAlign = 'center';
+    ctx.font = '700 10.5px -apple-system,sans-serif';
+    ctx.fillStyle = navy;
+    topMeta.forEach((bar, i) => {
+      const total = (chart.data.datasets[0].data[i] || 0) + (chart.data.datasets[1].data[i] || 0);
+      if (!total) return;
+      ctx.fillText(fmtM(total), bar.x, bar.y - 6);
+    });
+    ctx.restore();
+  }
+};
+Chart.register(stackTotalPlugin);
+
+// 그룹 막대(추이 차트) 각 막대 위에 값 라벨 표시
+const barLabelsPlugin = {
+  id: 'barLabels',
+  afterDatasetsDraw(chart) {
+    if (!chart.config._barLabels) return;
+    const { ctx } = chart;
+    ctx.save();
+    ctx.textAlign = 'center';
+    ctx.font = '700 9.5px -apple-system,sans-serif';
+    ctx.fillStyle = navy;
+    chart.data.datasets.forEach((ds, di) => {
+      chart.getDatasetMeta(di).data.forEach((bar, i) => {
+        const v = ds.data[i];
+        if (!v) return;
+        ctx.fillText(fmtM(v), bar.x, bar.y - 5);
+      });
+    });
+    ctx.restore();
+  }
+};
+Chart.register(barLabelsPlugin);
+
+// 도넛 가운데에 총액 표시
+const centerTextPlugin = {
+  id: 'centerText',
+  afterDraw(chart) {
+    const cfg = chart.config._centerText;
+    if (!cfg) return;
+    const { ctx, chartArea: { width, height, top, left } } = chart;
+    const cx = left + width / 2, cy = top + height / 2;
+    ctx.save();
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillStyle = navy;
+    ctx.font = '800 16px -apple-system,sans-serif';
+    ctx.fillText(cfg.text, cx, cy - 9);
+    ctx.fillStyle = '#6b7280';
+    ctx.font = '600 10px -apple-system,sans-serif';
+    ctx.fillText(cfg.sub, cx, cy + 9);
+    ctx.restore();
+  }
+};
+Chart.register(centerTextPlugin);
+
+function makeStackBar(id, labels, ft, pt) {
+  const chart = new Chart(document.getElementById(id), {
+    type: 'bar',
+    data: {
+      labels: labels,
+      datasets: [
+        { label: '정규직', data: ft, backgroundColor: '#2f6fed', borderRadius: 4, stack: 's' },
+        { label: '일용직', data: pt, backgroundColor: '#b8790a', borderRadius: 4, stack: 's' },
+      ]
     },
-    cutout: '62%'
-  }
-});
-
-new Chart(document.getElementById('barChart2'), {
-  type: 'bar',
-  data: {
-    labels: D2.labels,
-    datasets: [
-      { label: '정규직', data: D2.ft7, backgroundColor: '#2f6fed', borderRadius: 4, stack: 's' },
-      { label: '일용직', data: D2.pt7, backgroundColor: '#b8790a', borderRadius: 4, stack: 's' },
-    ]
-  },
-  options: {
-    responsive: true,
-    plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, padding: 14 } },
-      tooltip: { callbacks: { label: (ctx) => ` ${ctx.dataset.label}: ${ctx.parsed.y.toLocaleString()}원` } } },
-    scales: {
-      y: { stacked: true, ticks: { callback: (v) => (v/1000000).toFixed(0)+'백만' }, grid: { color:'#eef0f5' } },
-      x: { stacked: true, grid: { display:false } }
+    options: {
+      responsive: true,
+      layout: { padding: { top: 22 } },
+      plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, padding: 14 } },
+        tooltip: { callbacks: { label: (ctx) => ` ${ctx.dataset.label}: ${ctx.parsed.y.toLocaleString()}원` } } },
+      scales: {
+        y: { stacked: true, ticks: { callback: (v) => (v/1000000).toFixed(0)+'백만' }, grid: { color:'#eef0f5' } },
+        x: { stacked: true, grid: { display:false } }
+      }
     }
-  }
-});
+  });
+  chart.config._stackTotal = true;
+  chart.update();
+  return chart;
+}
 
-new Chart(document.getElementById('donutChart2'), {
-  type: 'doughnut',
-  data: {
-    labels: ['정규직', '일용직'],
-    datasets: [{ data: D2.donut, backgroundColor: ['#2f6fed', '#b8790a'], borderWidth: 2, borderColor: '#fff' }]
-  },
-  options: {
-    responsive: true,
-    plugins: {
-      legend: { position: 'bottom', labels: { boxWidth: 10, padding: 10, font: {size:11} } },
-      tooltip: { callbacks: { label: (ctx) => ` ${ctx.label}: ${ctx.parsed.toLocaleString()}원` } }
+function makeDonut(id, data, total7, subLabel) {
+  const chart = new Chart(document.getElementById(id), {
+    type: 'doughnut',
+    data: {
+      labels: ['정규직', '일용직'],
+      datasets: [{ data: data, backgroundColor: ['#2f6fed', '#b8790a'], borderWidth: 2, borderColor: '#fff' }]
     },
-    cutout: '62%'
-  }
-});
+    options: {
+      responsive: true,
+      plugins: {
+        legend: { position: 'bottom', labels: { boxWidth: 10, padding: 10, font: {size:11} } },
+        tooltip: { callbacks: { label: (ctx) => {
+          const pct = ((ctx.parsed / total7) * 100).toFixed(1);
+          return ` ${ctx.label}: ${ctx.parsed.toLocaleString()}원 (${pct}%)`;
+        } } }
+      },
+      cutout: '68%'
+    }
+  });
+  chart.config._centerText = { text: fmtM(total7) + '원', sub: subLabel };
+  chart.update();
+  return chart;
+}
+
+function makeTrend(id, labels, pay6, pay7) {
+  const chart = new Chart(document.getElementById(id), {
+    type: 'bar',
+    data: {
+      labels: labels,
+      datasets: [
+        { label: '6월', data: pay6, backgroundColor: '#c6cbd8', borderRadius: 4 },
+        { label: '7월', data: pay7, backgroundColor: '#1c2b4a', borderRadius: 4 },
+      ]
+    },
+    options: {
+      responsive: true,
+      layout: { padding: { top: 20 } },
+      plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, padding: 14 } },
+        tooltip: { callbacks: { label: (ctx) => ` ${ctx.dataset.label}: ${ctx.parsed.y.toLocaleString()}원` } } },
+      scales: {
+        y: { ticks: { callback: (v) => (v/1000000).toFixed(0)+'백만' }, grid: { color:'#eef0f5' } },
+        x: { grid: { display:false } }
+      }
+    }
+  });
+  chart.config._barLabels = true;
+  chart.update();
+  return chart;
+}
+
+makeStackBar('barChart', D.labels, D.ft7, D.pt7);
+makeDonut('donutChart', D.donut, D.donut[0]+D.donut[1], '전사 지급총액(7월)');
+makeTrend('trendChart', D.labels, D.pay6, D.pay7);
+
+makeStackBar('barChart2', D2.labels, D2.ft7, D2.pt7);
+makeDonut('donutChart2', D2.donut, D2.donut[0]+D2.donut[1], '카페매장 지급총액(7월)');
+makeTrend('trendChart2', D2.labels, D2.pay6, D2.pay7);
 </script>
 </body></html>
