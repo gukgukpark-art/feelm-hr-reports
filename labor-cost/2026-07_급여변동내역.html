@@ -189,12 +189,105 @@ footer.note b { color:var(--navy); }
       </tbody></table>
     </details>
 
+
+<div class="hero" style="margin-top:6px;">
+  <div>
+    <h1 style="font-size:19px;">매장별 정규직·일용직 구성</h1>
+    <p class="sub">2026년 7월 기준 · 매장 인건비를 정규직/일용직(파트타이머)으로 나눠서 비교합니다 (㈜필름 본사·합정점은 일용직 인원이 없거나 개인정보 이슈로 제외)</p>
+  </div>
+</div>
+
+<div class="kpi-grid"><div class="kpi kpi-navy">
+      <div class="label">총 인원 (정규직+일용직)</div>
+      <div class="value">50<small>명</small></div>
+      <div class="sub">6월 54명 <span class='arrow'>→</span> <span class='delta down'>▼ -4명</span> <span class='pct'>(-7.4%)</span></div>
+    </div><div class="kpi kpi-green">
+      <div class="label">총 지급총액</div>
+      <div class="value">84,403,241<small>원</small></div>
+      <div class="sub">6월 84,719,590원 <span class='arrow'>→</span> <span class='delta down'>▼ -316,349원</span> <span class='pct'>(-0.4%)</span></div>
+    </div><div class="kpi kpi-blue">
+      <div class="label">정규직 지급총액</div>
+      <div class="value">59,451,029<small>원</small></div>
+      <div class="sub">7월 전체의 70.4% · 6월 59,835,490원</div>
+    </div><div class="kpi kpi-amber">
+      <div class="label">일용직 지급총액</div>
+      <div class="value">24,952,212<small>원</small></div>
+      <div class="sub">7월 전체의 29.6% · 6월 24,884,100원</div>
+    </div></div>
+
+<div class="chart-grid">
+  <div class="chart-box">
+    <h3>매장별 지급총액 — 정규직·일용직 구성 (7월)</h3>
+    <canvas id="barChart2"></canvas>
+  </div>
+  <div class="chart-box">
+    <h3>전체 지급총액 중 정규직·일용직 비중 (7월)</h3>
+    <canvas id="donutChart2"></canvas>
+  </div>
+</div>
+
+<section class="card">
+  <h2 class="section-title"><span class="dot" style="background:#b8790a;"></span>매장별 요약 (정규직·일용직 구분)</h2>
+  <p class="section-desc">정규직+일용직을 합산한 지급총액 · 공제총액 · 차인지급액 기준 6월 → 7월 비교입니다. 항목별 정규직/일용직 구분 내역은 아래 매장을 펼쳐서 확인하세요.</p>
+  <table><thead><tr><th>매장</th><th>인원</th><th>지급총액</th><th>공제총액</th><th>차인지급액</th></tr></thead>
+  <tbody><tr>
+      <td class="unit-name">연남점</td>
+      <td>21명 → 18명 (-3)<br><span style="color:var(--gray);font-size:11px;font-weight:600;">정규직 13명 · 일용직 5명</span></td>
+      <td class="num">38,641,844 → <b>37,734,055</b><br><span class='delta down'>▼ -907,789원</span> <span class='pct'>(-2.3%)</span></td>
+      <td class="num">3,425,090 → <b>3,842,690</b><br><span class='delta up'>▲ +417,600원</span> <span class='pct'>(+12.2%)</span></td>
+      <td class="num">35,216,754 → <b>33,891,365</b><br><span class='delta down'>▼ -1,325,389원</span> <span class='pct'>(-3.8%)</span></td>
+    </tr><tr>
+      <td class="unit-name">홍대점</td>
+      <td>11명 → 10명 (-1)<br><span style="color:var(--gray);font-size:11px;font-weight:600;">정규직 4명 · 일용직 6명</span></td>
+      <td class="num">12,825,842 → <b>14,944,791</b><br><span class='delta up'>▲ +2,118,949원</span> <span class='pct'>(+16.5%)</span></td>
+      <td class="num">1,037,240 → <b>1,186,840</b><br><span class='delta up'>▲ +149,600원</span> <span class='pct'>(+14.4%)</span></td>
+      <td class="num">11,788,602 → <b>13,757,951</b><br><span class='delta up'>▲ +1,969,349원</span> <span class='pct'>(+16.7%)</span></td>
+    </tr><tr>
+      <td class="unit-name">망원점</td>
+      <td>8명 → 8명<br><span style="color:var(--gray);font-size:11px;font-weight:600;">정규직 4명 · 일용직 4명</span></td>
+      <td class="num">11,921,198 → <b>11,403,656</b><br><span class='delta down'>▼ -517,542원</span> <span class='pct'>(-4.3%)</span></td>
+      <td class="num">676,770 → <b>883,220</b><br><span class='delta up'>▲ +206,450원</span> <span class='pct'>(+30.5%)</span></td>
+      <td class="num">11,244,428 → <b>10,520,436</b><br><span class='delta down'>▼ -723,992원</span> <span class='pct'>(-6.4%)</span></td>
+    </tr><tr>
+      <td class="unit-name">마곡점</td>
+      <td>14명 → 14명<br><span style="color:var(--gray);font-size:11px;font-weight:600;">정규직 4명 · 일용직 10명</span></td>
+      <td class="num">21,330,706 → <b>20,320,739</b><br><span class='delta down'>▼ -1,009,967원</span> <span class='pct'>(-4.7%)</span></td>
+      <td class="num">1,886,300 → <b>1,923,640</b><br><span class='delta up'>▲ +37,340원</span> <span class='pct'>(+2.0%)</span></td>
+      <td class="num">19,444,406 → <b>18,397,099</b><br><span class='delta down'>▼ -1,047,307원</span> <span class='pct'>(-5.4%)</span></td>
+    </tr><tr class="total-row">
+  <td>합계 (4개 매장)</td>
+  <td>54명 → 50명 (-4)<br><span style="font-weight:600;font-size:11px;">정규직 25명 · 일용직 25명</span></td>
+  <td class="num">84,719,590 → <b>84,403,241</b><br><span class='delta down'>▼ -316,349원</span> <span class='pct'>(-0.4%)</span></td>
+  <td class="num">7,025,400 → <b>7,836,390</b><br><span class='delta up'>▲ +810,990원</span> <span class='pct'>(+11.5%)</span></td>
+  <td class="num">77,694,190 → <b>76,566,851</b><br><span class='delta down'>▼ -1,127,339원</span> <span class='pct'>(-1.5%)</span></td>
+</tr></tbody></table>
+</section>
+
+<details class="card unit-detail">
+      <summary>연남점 정규직·일용직 항목별 내역 <span class="hc-badge">정규직 13명 · 일용직 5명</span></summary>
+      <table style="margin-top:10px;"><thead><tr><th>항목</th><th>정규직</th><th>일용직</th><th>합계</th></tr></thead>
+      <tbody><tr><td>기본급</td><td class='num'>27,216,295</td><td class='num' style='color:#c6cbd8;'>-</td><td class='num'>27,216,295</td></tr><tr><td>식대</td><td class='num'>2,477,420</td><td class='num' style='color:#c6cbd8;'>-</td><td class='num'>2,477,420</td></tr><tr><td>직책수당</td><td class='num'>400,000</td><td class='num' style='color:#c6cbd8;'>-</td><td class='num'>400,000</td></tr><tr><td>연장근로수당</td><td class='num'>471,368</td><td class='num' style='color:#c6cbd8;'>-</td><td class='num'>471,368</td></tr><tr><td>야간근로수당</td><td class='num'>154,165</td><td class='num' style='color:#c6cbd8;'>-</td><td class='num'>154,165</td></tr><tr><td>휴일근로수당</td><td class='num'>1,303,939</td><td class='num' style='color:#c6cbd8;'>-</td><td class='num'>1,303,939</td></tr><tr><td>휴일연장수당</td><td class='num'>124,136</td><td class='num' style='color:#c6cbd8;'>-</td><td class='num'>124,136</td></tr><tr><td>급여총액 <span style='color:var(--gray);font-weight:500;font-size:11px;'>(일용직·항목 미세분류)</span></td><td class='num' style='color:#c6cbd8;'>-</td><td class='num'>5,586,732</td><td class='num'>5,586,732</td></tr><tr class='subtotal-row'><td>지급총액</td><td class='num'>32,147,323</td><td class='num'>5,586,732</td><td class='num'><b>37,734,055</b></td></tr><tr><td>국민연금</td><td class='num'>1,331,040</td><td class='num'>308,440</td><td class='num'>1,639,480</td></tr><tr><td>건강보험</td><td class='num'>995,160</td><td class='num'>234,100</td><td class='num'>1,229,260</td></tr><tr><td>고용보험</td><td class='num'>266,970</td><td class='num'>49,900</td><td class='num'>316,870</td></tr><tr><td>장기요양보험료</td><td class='num'>130,720</td><td class='num'>30,730</td><td class='num'>161,450</td></tr><tr><td>소득세</td><td class='num'>449,320</td><td class='num'>1,310</td><td class='num'>450,630</td></tr><tr><td>지방소득세</td><td class='num'>44,870</td><td class='num'>130</td><td class='num'>45,000</td></tr><tr class='subtotal-row'><td>공제총액</td><td class='num'>3,218,080</td><td class='num'>624,610</td><td class='num'><b>3,842,690</b></td></tr><tr class='total-row'><td>차인지급액</td><td class='num'>28,929,243</td><td class='num'>4,962,122</td><td class='num'><b>33,891,365</b></td></tr></tbody></table>
+    </details><details class="card unit-detail">
+      <summary>홍대점 정규직·일용직 항목별 내역 <span class="hc-badge">정규직 4명 · 일용직 6명</span></summary>
+      <table style="margin-top:10px;"><thead><tr><th>항목</th><th>정규직</th><th>일용직</th><th>합계</th></tr></thead>
+      <tbody><tr><td>기본급</td><td class='num'>7,113,443</td><td class='num' style='color:#c6cbd8;'>-</td><td class='num'>7,113,443</td></tr><tr><td>식대</td><td class='num'>619,356</td><td class='num' style='color:#c6cbd8;'>-</td><td class='num'>619,356</td></tr><tr><td>직책수당</td><td class='num'>258,065</td><td class='num' style='color:#c6cbd8;'>-</td><td class='num'>258,065</td></tr><tr><td>연장근로수당</td><td class='num'>56,521</td><td class='num' style='color:#c6cbd8;'>-</td><td class='num'>56,521</td></tr><tr><td>야간근로수당</td><td class='num'>112,086</td><td class='num' style='color:#c6cbd8;'>-</td><td class='num'>112,086</td></tr><tr><td>휴일근로수당</td><td class='num'>299,532</td><td class='num' style='color:#c6cbd8;'>-</td><td class='num'>299,532</td></tr><tr><td>휴일연장수당</td><td class='num'>50,400</td><td class='num' style='color:#c6cbd8;'>-</td><td class='num'>50,400</td></tr><tr><td>급여총액 <span style='color:var(--gray);font-weight:500;font-size:11px;'>(일용직·항목 미세분류)</span></td><td class='num' style='color:#c6cbd8;'>-</td><td class='num'>4,882,908</td><td class='num'>4,882,908</td></tr><tr class='subtotal-row'><td>지급총액</td><td class='num'>10,061,883</td><td class='num'>4,882,908</td><td class='num'><b>14,944,791</b></td></tr><tr><td>국민연금</td><td class='num'>377,100</td><td class='num'>156,740</td><td class='num'>533,840</td></tr><tr><td>건강보험</td><td class='num'>279,120</td><td class='num'>68,340</td><td class='num'>347,460</td></tr><tr><td>고용보험</td><td class='num'>84,970</td><td class='num'>43,420</td><td class='num'>128,390</td></tr><tr><td>장기요양보험료</td><td class='num'>36,660</td><td class='num'>8,920</td><td class='num'>45,580</td></tr><tr><td>소득세</td><td class='num'>71,380</td><td class='num'>3,040</td><td class='num'>74,420</td></tr><tr><td>지방소득세</td><td class='num'>7,140</td><td class='num'>300</td><td class='num'>7,440</td></tr><tr class='subtotal-row'><td>공제총액</td><td class='num'>906,080</td><td class='num'>280,760</td><td class='num'><b>1,186,840</b></td></tr><tr class='total-row'><td>차인지급액</td><td class='num'>9,155,803</td><td class='num'>4,602,148</td><td class='num'><b>13,757,951</b></td></tr></tbody></table>
+    </details><details class="card unit-detail">
+      <summary>망원점 정규직·일용직 항목별 내역 <span class="hc-badge">정규직 4명 · 일용직 4명</span></summary>
+      <table style="margin-top:10px;"><thead><tr><th>항목</th><th>정규직</th><th>일용직</th><th>합계</th></tr></thead>
+      <tbody><tr><td>기본급</td><td class='num'>5,669,089</td><td class='num' style='color:#c6cbd8;'>-</td><td class='num'>5,669,089</td></tr><tr><td>식대</td><td class='num'>567,743</td><td class='num' style='color:#c6cbd8;'>-</td><td class='num'>567,743</td></tr><tr><td>직책수당</td><td class='num'>100,000</td><td class='num' style='color:#c6cbd8;'>-</td><td class='num'>100,000</td></tr><tr><td>연장근로수당</td><td class='num'>103,981</td><td class='num' style='color:#c6cbd8;'>-</td><td class='num'>103,981</td></tr><tr><td>야간근로수당</td><td class='num'>89,347</td><td class='num' style='color:#c6cbd8;'>-</td><td class='num'>89,347</td></tr><tr><td>휴일근로수당</td><td class='num'>316,992</td><td class='num' style='color:#c6cbd8;'>-</td><td class='num'>316,992</td></tr><tr><td>연차수당</td><td class='num'>330,464</td><td class='num' style='color:#c6cbd8;'>-</td><td class='num'>330,464</td></tr><tr><td>급여총액 <span style='color:var(--gray);font-weight:500;font-size:11px;'>(일용직·항목 미세분류)</span></td><td class='num' style='color:#c6cbd8;'>-</td><td class='num'>4,226,040</td><td class='num'>4,226,040</td></tr><tr class='subtotal-row'><td>지급총액</td><td class='num'>7,177,616</td><td class='num'>4,226,040</td><td class='num'><b>11,403,656</b></td></tr><tr><td>국민연금</td><td class='num'>282,940</td><td class='num'>164,670</td><td class='num'>447,610</td></tr><tr><td>건강보험</td><td class='num'>214,190</td><td class='num'>124,640</td><td class='num'>338,830</td></tr><tr><td>고용보험</td><td class='num'>59,480</td><td class='num'>37,920</td><td class='num'>97,400</td></tr><tr><td>장기요양보험료</td><td class='num'>28,140</td><td class='num'>16,350</td><td class='num'>44,490</td></tr><tr><td>소득세</td><td class='num'>-19,840</td><td class='num'>2,620</td><td class='num'>-17,220</td></tr><tr><td>지방소득세</td><td class='num'>-1,990</td><td class='num'>260</td><td class='num'>-1,730</td></tr><tr class='subtotal-row'><td>공제총액</td><td class='num'>536,760</td><td class='num'>346,460</td><td class='num'><b>883,220</b></td></tr><tr class='total-row'><td>차인지급액</td><td class='num'>6,640,856</td><td class='num'>3,879,580</td><td class='num'><b>10,520,436</b></td></tr></tbody></table>
+    </details><details class="card unit-detail">
+      <summary>마곡점 정규직·일용직 항목별 내역 <span class="hc-badge">정규직 4명 · 일용직 10명</span></summary>
+      <table style="margin-top:10px;"><thead><tr><th>항목</th><th>정규직</th><th>일용직</th><th>합계</th></tr></thead>
+      <tbody><tr><td>기본급</td><td class='num'>8,238,829</td><td class='num' style='color:#c6cbd8;'>-</td><td class='num'>8,238,829</td></tr><tr><td>식대</td><td class='num'>767,742</td><td class='num' style='color:#c6cbd8;'>-</td><td class='num'>767,742</td></tr><tr><td>직책수당</td><td class='num'>300,000</td><td class='num' style='color:#c6cbd8;'>-</td><td class='num'>300,000</td></tr><tr><td>연장근로수당</td><td class='num'>57,808</td><td class='num' style='color:#c6cbd8;'>-</td><td class='num'>57,808</td></tr><tr><td>야간근로수당</td><td class='num'>164,719</td><td class='num' style='color:#c6cbd8;'>-</td><td class='num'>164,719</td></tr><tr><td>휴일근로수당</td><td class='num'>523,944</td><td class='num' style='color:#c6cbd8;'>-</td><td class='num'>523,944</td></tr><tr><td>휴일연장수당</td><td class='num'>11,165</td><td class='num' style='color:#c6cbd8;'>-</td><td class='num'>11,165</td></tr><tr><td>급여총액 <span style='color:var(--gray);font-weight:500;font-size:11px;'>(일용직·항목 미세분류)</span></td><td class='num' style='color:#c6cbd8;'>-</td><td class='num'>10,256,532</td><td class='num'>10,256,532</td></tr><tr class='subtotal-row'><td>지급총액</td><td class='num'>10,064,207</td><td class='num'>10,256,532</td><td class='num'><b>20,320,739</b></td></tr><tr><td>국민연금</td><td class='num'>419,120</td><td class='num'>477,540</td><td class='num'>896,660</td></tr><tr><td>건강보험</td><td class='num'>317,240</td><td class='num'>317,800</td><td class='num'>635,040</td></tr><tr><td>고용보험</td><td class='num'>83,660</td><td class='num'>91,680</td><td class='num'>175,340</td></tr><tr><td>장기요양보험료</td><td class='num'>41,670</td><td class='num'>41,540</td><td class='num'>83,210</td></tr><tr><td>소득세</td><td class='num'>119,410</td><td class='num'>1,870</td><td class='num'>121,280</td></tr><tr><td>지방소득세</td><td class='num'>11,930</td><td class='num'>180</td><td class='num'>12,110</td></tr><tr class='subtotal-row'><td>공제총액</td><td class='num'>993,030</td><td class='num'>930,610</td><td class='num'><b>1,923,640</b></td></tr><tr class='total-row'><td>차인지급액</td><td class='num'>9,071,177</td><td class='num'>9,325,922</td><td class='num'><b>18,397,099</b></td></tr></tbody></table>
+    </details>
+
 <footer class="note">이 보고서는 Drive "인건비현황 &gt; 2026.07" 폴더에 업로드된 6월/7월 급여대장 PDF(전사 1건 + 매장별 5건)를 비교하여 자동 생성되었습니다.
 <b>합정점은 1인 근무 사업장으로 개인 급여가 특정될 수 있어 이번 보고에서 제외</b>했습니다.
-매장별 정규직 급여대장은 매장에 따라 지급 항목 구성(연장/야간/휴일수당 세분화 여부)이 다를 수 있어, 상세 항목은 사업장별로 실제 표기된 항목만 표시했습니다.</footer>
+매장별 정규직 급여대장은 매장에 따라 지급 항목 구성(연장/야간/휴일수당 세분화 여부)이 다를 수 있어, 상세 항목은 사업장별로 실제 표기된 항목만 표시했습니다.<br><br><b>매장별 정규직·일용직 구성</b> 섹션은 매장별 일용직(파트타이머) 근태·급여 확인표를 추가로 대조하여 생성했습니다. 일용직은 근무일수·시간에 따른 급여총액으로만 관리되어 기본급/식대 등 항목이 별도로 구분되지 않으며, 4대보험 공제 항목은 정규직과 동일하게 항목별로 비교했습니다.</footer>
 </div>
 
 <script>
+const D2 = {"labels": ["연남점", "홍대점", "망원점", "마곡점"], "ft7": [32147323, 10061883, 7177616, 10064207], "pt7": [5586732, 4882908, 4226040, 10256532], "donut": [59451029, 24952212]};
 const D = {"labels": ["필름", "연남점", "홍대점", "망원점", "마곡점"], "pay6": [88299815, 32041688, 8248922, 8126018, 11418862], "pay7": [92246878, 32147323, 10061883, 7177616, 10064207], "net6": [76157125, 29178428, 7715902, 7727318, 10426632], "net7": [79666658, 28929243, 9155803, 6640856, 9071177], "hc6": [24, 12, 4, 3, 4], "hc7": [25, 13, 4, 4, 4], "ded_labels": ["국민연금", "건강보험", "고용보험", "장기요양보험료", "소득세", "지방소득세"], "ded_values": [5645480, 4655150, 1151710, 605750, 5666100, 566520]};
 const navy = "#1c2b4a";
 Chart.defaults.font.family = "-apple-system,BlinkMacSystemFont,'Segoe UI','Malgun Gothic',Roboto,Arial,sans-serif";
@@ -232,6 +325,42 @@ new Chart(document.getElementById('donutChart'), {
       backgroundColor: ['#2f6fed','#1f8a5f','#b8790a','#8a5cf5','#d9483f','#6b7280'],
       borderWidth: 2, borderColor: '#fff'
     }]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: { position: 'bottom', labels: { boxWidth: 10, padding: 10, font: {size:11} } },
+      tooltip: { callbacks: { label: (ctx) => ` ${ctx.label}: ${ctx.parsed.toLocaleString()}원` } }
+    },
+    cutout: '62%'
+  }
+});
+
+new Chart(document.getElementById('barChart2'), {
+  type: 'bar',
+  data: {
+    labels: D2.labels,
+    datasets: [
+      { label: '정규직', data: D2.ft7, backgroundColor: '#2f6fed', borderRadius: 4, stack: 's' },
+      { label: '일용직', data: D2.pt7, backgroundColor: '#b8790a', borderRadius: 4, stack: 's' },
+    ]
+  },
+  options: {
+    responsive: true,
+    plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, padding: 14 } },
+      tooltip: { callbacks: { label: (ctx) => ` ${ctx.dataset.label}: ${ctx.parsed.y.toLocaleString()}원` } } },
+    scales: {
+      y: { stacked: true, ticks: { callback: (v) => (v/1000000).toFixed(0)+'백만' }, grid: { color:'#eef0f5' } },
+      x: { stacked: true, grid: { display:false } }
+    }
+  }
+});
+
+new Chart(document.getElementById('donutChart2'), {
+  type: 'doughnut',
+  data: {
+    labels: ['정규직', '일용직'],
+    datasets: [{ data: D2.donut, backgroundColor: ['#2f6fed', '#b8790a'], borderWidth: 2, borderColor: '#fff' }]
   },
   options: {
     responsive: true,
