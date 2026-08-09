@@ -70,80 +70,82 @@ footer.note b { color:var(--navy); }
 <div class="hero">
   <div>
     <h1>급여변동 내역</h1>
-    <p class="sub">2026년 6월분 → 7월분 급여대장 비교 · ㈜필름 + 카페공명 정규직 사업장 기준 (합정점 제외)</p>
+    <p class="sub">2026년 6월분 → 7월분 · ㈜필름 + 카페공명 정규직·일용직(파트타이머) 통합 인건비 현황 (합정점 제외)</p>
   </div>
-  <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;"><div class="badge">보고일 2026-08-08</div><a href="#ptSection" class="badge" style="background:var(--amber); text-decoration:none;">▼ 매장별 정규직·일용직 구성 보기</a></div>
+  <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;"><div class="badge">보고일 2026-08-08</div><a href="#ptSection" class="badge" style="background:var(--amber); text-decoration:none;">② 카페 지점별 구성 보기</a></div>
 </div>
 
+<div class="section-title" style="margin:4px 0 14px;"><span class="dot" style="background:#2f6fed;"></span>① 전체 인건비 현황</div>
+<p class="section-desc" style="margin:-8px 0 16px;">㈜필름 본사(정규직) + 카페공명 4개 매장(정규직+일용직)을 모두 합산한 전사 인건비입니다. 우리 회사 전체 인건비가 6월→7월 사이 얼마나, 왜 변동됐는지는 이 숫자로 확인하세요.</p>
 <div class="kpi-grid"><div class="kpi kpi-navy">
-      <div class="label">전체 인원</div>
-      <div class="value">50<small>명</small></div>
-      <div class="sub">6월 47명 <span class="arrow">→</span> <span class='delta up'>▲ +3명</span> <span class='pct'>(+6.4%)</span></div>
+      <div class="label">전사 총 인원 (정규직+일용직)</div>
+      <div class="value">75<small>명</small></div>
+      <div class="sub">6월 78명 <span class='arrow'>→</span> <span class='delta down'>▼ -3명</span> <span class='pct'>(-3.8%)</span></div>
     </div><div class="kpi kpi-blue">
-      <div class="label">지급총액</div>
-      <div class="value">151,697,907<small>원</small></div>
-      <div class="sub">6월 148,135,305원 <span class="arrow">→</span> <span class='delta up'>▲ +3,562,602원</span> <span class='pct'>(+2.4%)</span></div>
+      <div class="label">전사 총 지급총액</div>
+      <div class="value">176,650,119<small>원</small></div>
+      <div class="sub">6월 173,019,405원 <span class='arrow'>→</span> <span class='delta up'>▲ +3,630,714원</span> <span class='pct'>(+2.1%)</span></div>
     </div><div class="kpi kpi-amber">
-      <div class="label">공제총액</div>
-      <div class="value">18,234,170<small>원</small></div>
-      <div class="sub">6월 16,929,900원 <span class="arrow">→</span> <span class='delta up'>▲ +1,304,270원</span> <span class='pct'>(+7.7%)</span></div>
+      <div class="label">전사 총 공제총액</div>
+      <div class="value">20,416,610<small>원</small></div>
+      <div class="sub">6월 19,168,090원 <span class='arrow'>→</span> <span class='delta up'>▲ +1,248,520원</span> <span class='pct'>(+6.5%)</span></div>
     </div><div class="kpi kpi-green">
-      <div class="label">차인지급액(실지급)</div>
-      <div class="value">133,463,737<small>원</small></div>
-      <div class="sub">6월 131,205,405원 <span class="arrow">→</span> <span class='delta up'>▲ +2,258,332원</span> <span class='pct'>(+1.7%)</span></div>
+      <div class="label">전사 총 차인지급액(실지급)</div>
+      <div class="value">156,233,509<small>원</small></div>
+      <div class="sub">6월 153,851,315원 <span class='arrow'>→</span> <span class='delta up'>▲ +2,382,194원</span> <span class='pct'>(+1.5%)</span></div>
     </div></div>
 
 <div class="chart-grid">
   <div class="chart-box">
-    <h3>사업장별 지급총액 · 차인지급액 비교 (6월 → 7월)</h3>
+    <h3>사업장별 지급총액 — 정규직·일용직 구성 (7월)</h3>
     <canvas id="barChart"></canvas>
   </div>
   <div class="chart-box">
-    <h3>7월 공제항목 구성</h3>
+    <h3>전사 지급총액 중 정규직·일용직 비중 (7월)</h3>
     <canvas id="donutChart"></canvas>
   </div>
 </div>
 
 <section class="card">
   <h2 class="section-title"><span class="dot"></span>사업장별 요약</h2>
-  <p class="section-desc">지급총액 · 공제총액 · 차인지급액 기준 6월 → 7월 비교입니다. (공제총액 = 지급총액 − 차인지급액) 항목별 전체 내역은 아래 사업장을 펼쳐서 확인하세요.</p>
+  <p class="section-desc">정규직+일용직 합산 지급총액 · 공제총액 · 차인지급액 기준 6월 → 7월 비교입니다. (공제총액 = 지급총액 − 차인지급액) 정규직 항목별 상세 내역은 아래 사업장을 펼쳐서 확인하세요.</p>
   <table><thead><tr><th>사업장</th><th>인원</th><th>지급총액</th><th>공제총액</th><th>차인지급액</th></tr></thead>
   <tbody><tr>
       <td class="unit-name">필름</td>
-      <td>24명 → 25명 (+1)</td>
+      <td>24명 → 25명 (+1)<br><span style="color:var(--gray);font-size:11px;font-weight:600;">정규직만 (일용직 없음)</span></td>
       <td class="num">88,299,815 → <b>92,246,878</b><br><span class='delta up'>▲ +3,947,063원</span> <span class='pct'>(+4.5%)</span></td>
       <td class="num">12,142,690 → <b>12,580,220</b><br><span class='delta up'>▲ +437,530원</span> <span class='pct'>(+3.6%)</span></td>
       <td class="num">76,157,125 → <b>79,666,658</b><br><span class='delta up'>▲ +3,509,533원</span> <span class='pct'>(+4.6%)</span></td>
     </tr><tr>
       <td class="unit-name">연남점</td>
-      <td>12명 → 13명 (+1)</td>
-      <td class="num">32,041,688 → <b>32,147,323</b><br><span class='delta up'>▲ +105,635원</span> <span class='pct'>(+0.3%)</span></td>
-      <td class="num">2,863,260 → <b>3,218,080</b><br><span class='delta up'>▲ +354,820원</span> <span class='pct'>(+12.4%)</span></td>
-      <td class="num">29,178,428 → <b>28,929,243</b><br><span class='delta down'>▼ -249,185원</span> <span class='pct'>(-0.9%)</span></td>
+      <td>21명 → 18명 (-3)<br><span style="color:var(--gray);font-size:11px;font-weight:600;">정규직 13명 · 일용직 5명</span></td>
+      <td class="num">38,641,844 → <b>37,734,055</b><br><span class='delta down'>▼ -907,789원</span> <span class='pct'>(-2.3%)</span></td>
+      <td class="num">3,425,090 → <b>3,842,690</b><br><span class='delta up'>▲ +417,600원</span> <span class='pct'>(+12.2%)</span></td>
+      <td class="num">35,216,754 → <b>33,891,365</b><br><span class='delta down'>▼ -1,325,389원</span> <span class='pct'>(-3.8%)</span></td>
     </tr><tr>
       <td class="unit-name">홍대점</td>
-      <td>4명 → 4명</td>
-      <td class="num">8,248,922 → <b>10,061,883</b><br><span class='delta up'>▲ +1,812,961원</span> <span class='pct'>(+22.0%)</span></td>
-      <td class="num">533,020 → <b>906,080</b><br><span class='delta up'>▲ +373,060원</span> <span class='pct'>(+70.0%)</span></td>
-      <td class="num">7,715,902 → <b>9,155,803</b><br><span class='delta up'>▲ +1,439,901원</span> <span class='pct'>(+18.7%)</span></td>
+      <td>11명 → 10명 (-1)<br><span style="color:var(--gray);font-size:11px;font-weight:600;">정규직 4명 · 일용직 6명</span></td>
+      <td class="num">12,825,842 → <b>14,944,791</b><br><span class='delta up'>▲ +2,118,949원</span> <span class='pct'>(+16.5%)</span></td>
+      <td class="num">1,037,240 → <b>1,186,840</b><br><span class='delta up'>▲ +149,600원</span> <span class='pct'>(+14.4%)</span></td>
+      <td class="num">11,788,602 → <b>13,757,951</b><br><span class='delta up'>▲ +1,969,349원</span> <span class='pct'>(+16.7%)</span></td>
     </tr><tr>
       <td class="unit-name">망원점</td>
-      <td>3명 → 4명 (+1)</td>
-      <td class="num">8,126,018 → <b>7,177,616</b><br><span class='delta down'>▼ -948,402원</span> <span class='pct'>(-11.7%)</span></td>
-      <td class="num">398,700 → <b>536,760</b><br><span class='delta up'>▲ +138,060원</span> <span class='pct'>(+34.6%)</span></td>
-      <td class="num">7,727,318 → <b>6,640,856</b><br><span class='delta down'>▼ -1,086,462원</span> <span class='pct'>(-14.1%)</span></td>
+      <td>8명 → 8명<br><span style="color:var(--gray);font-size:11px;font-weight:600;">정규직 4명 · 일용직 4명</span></td>
+      <td class="num">11,921,198 → <b>11,403,656</b><br><span class='delta down'>▼ -517,542원</span> <span class='pct'>(-4.3%)</span></td>
+      <td class="num">676,770 → <b>883,220</b><br><span class='delta up'>▲ +206,450원</span> <span class='pct'>(+30.5%)</span></td>
+      <td class="num">11,244,428 → <b>10,520,436</b><br><span class='delta down'>▼ -723,992원</span> <span class='pct'>(-6.4%)</span></td>
     </tr><tr>
       <td class="unit-name">마곡점</td>
-      <td>4명 → 4명</td>
-      <td class="num">11,418,862 → <b>10,064,207</b><br><span class='delta down'>▼ -1,354,655원</span> <span class='pct'>(-11.9%)</span></td>
-      <td class="num">992,230 → <b>993,030</b><br><span class='delta up'>▲ +800원</span> <span class='pct'>(+0.1%)</span></td>
-      <td class="num">10,426,632 → <b>9,071,177</b><br><span class='delta down'>▼ -1,355,455원</span> <span class='pct'>(-13.0%)</span></td>
+      <td>14명 → 14명<br><span style="color:var(--gray);font-size:11px;font-weight:600;">정규직 4명 · 일용직 10명</span></td>
+      <td class="num">21,330,706 → <b>20,320,739</b><br><span class='delta down'>▼ -1,009,967원</span> <span class='pct'>(-4.7%)</span></td>
+      <td class="num">1,886,300 → <b>1,923,640</b><br><span class='delta up'>▲ +37,340원</span> <span class='pct'>(+2.0%)</span></td>
+      <td class="num">19,444,406 → <b>18,397,099</b><br><span class='delta down'>▼ -1,047,307원</span> <span class='pct'>(-5.4%)</span></td>
     </tr><tr class="total-row">
-  <td>합계</td>
-  <td>47명 → 50명 (+3)</td>
-  <td class="num">148,135,305 → <b>151,697,907</b><br><span class='delta up'>▲ +3,562,602원</span> <span class='pct'>(+2.4%)</span></td>
-  <td class="num">16,929,900 → <b>18,234,170</b><br><span class='delta up'>▲ +1,304,270원</span> <span class='pct'>(+7.7%)</span></td>
-  <td class="num">131,205,405 → <b>133,463,737</b><br><span class='delta up'>▲ +2,258,332원</span> <span class='pct'>(+1.7%)</span></td>
+  <td>합계 (전사)</td>
+  <td>78명 → 75명 (-3)</td>
+  <td class="num">173,019,405 → <b>176,650,119</b><br><span class='delta up'>▲ +3,630,714원</span> <span class='pct'>(+2.1%)</span></td>
+  <td class="num">19,168,090 → <b>20,416,610</b><br><span class='delta up'>▲ +1,248,520원</span> <span class='pct'>(+6.5%)</span></td>
+  <td class="num">153,851,315 → <b>156,233,509</b><br><span class='delta up'>▲ +2,382,194원</span> <span class='pct'>(+1.5%)</span></td>
 </tr></tbody></table>
 </section>
 
@@ -192,17 +194,17 @@ footer.note b { color:var(--navy); }
 
 <div class="hero" id="ptSection" style="margin-top:6px; scroll-margin-top:20px;">
   <div>
-    <h1 style="font-size:19px;">매장별 정규직·일용직 구성</h1>
-    <p class="sub">2026년 7월 기준 · 매장 인건비를 정규직/일용직(파트타이머)으로 나눠서 비교합니다 (㈜필름 본사·합정점은 일용직 인원이 없거나 개인정보 이슈로 제외)</p>
+    <h1 style="font-size:19px;">② 공명 지점별 정규직·일용직 구성</h1>
+    <p class="sub">2026년 7월 기준 · 카페공명 매장(연남·홍대·망원·마곡)의 급여를 정규직/일용직(파트타이머)으로 나눠서 비교합니다 (㈜필름 본사·합정점 제외)</p>
   </div>
 </div>
 
 <div class="kpi-grid"><div class="kpi kpi-navy">
-      <div class="label">총 인원 (정규직+일용직)</div>
+      <div class="label">카페 매장 인원 (정규직+일용직)</div>
       <div class="value">50<small>명</small></div>
       <div class="sub">6월 54명 <span class='arrow'>→</span> <span class='delta down'>▼ -4명</span> <span class='pct'>(-7.4%)</span></div>
     </div><div class="kpi kpi-green">
-      <div class="label">총 지급총액</div>
+      <div class="label">카페 매장 지급총액</div>
       <div class="value">84,403,241<small>원</small></div>
       <div class="sub">6월 84,719,590원 <span class='arrow'>→</span> <span class='delta down'>▼ -316,349원</span> <span class='pct'>(-0.4%)</span></div>
     </div><div class="kpi kpi-blue">
@@ -227,7 +229,7 @@ footer.note b { color:var(--navy); }
 </div>
 
 <section class="card">
-  <h2 class="section-title"><span class="dot" style="background:#b8790a;"></span>매장별 요약 (정규직·일용직 구분)</h2>
+  <h2 class="section-title"><span class="dot" style="background:#b8790a;"></span>② 매장별 요약 (정규직·일용직 구분)</h2>
   <p class="section-desc">정규직+일용직을 합산한 지급총액 · 공제총액 · 차인지급액 기준 6월 → 7월 비교입니다. 항목별 정규직/일용직 구분 내역은 아래 매장을 펼쳐서 확인하세요.</p>
   <table><thead><tr><th>매장</th><th>인원</th><th>지급총액</th><th>공제총액</th><th>차인지급액</th></tr></thead>
   <tbody><tr>
@@ -288,7 +290,7 @@ footer.note b { color:var(--navy); }
 
 <script>
 const D2 = {"labels": ["연남점", "홍대점", "망원점", "마곡점"], "ft7": [32147323, 10061883, 7177616, 10064207], "pt7": [5586732, 4882908, 4226040, 10256532], "donut": [59451029, 24952212]};
-const D = {"labels": ["필름", "연남점", "홍대점", "망원점", "마곡점"], "pay6": [88299815, 32041688, 8248922, 8126018, 11418862], "pay7": [92246878, 32147323, 10061883, 7177616, 10064207], "net6": [76157125, 29178428, 7715902, 7727318, 10426632], "net7": [79666658, 28929243, 9155803, 6640856, 9071177], "hc6": [24, 12, 4, 3, 4], "hc7": [25, 13, 4, 4, 4], "ded_labels": ["국민연금", "건강보험", "고용보험", "장기요양보험료", "소득세", "지방소득세"], "ded_values": [5645480, 4655150, 1151710, 605750, 5666100, 566520]};
+const D = {"labels": ["필름", "연남점", "홍대점", "망원점", "마곡점"], "ft7": [92246878, 32147323, 10061883, 7177616, 10064207], "pt7": [0, 5586732, 4882908, 4226040, 10256532], "donut": [151697907, 24952212]};
 const navy = "#1c2b4a";
 Chart.defaults.font.family = "-apple-system,BlinkMacSystemFont,'Segoe UI','Malgun Gothic',Roboto,Arial,sans-serif";
 Chart.defaults.font.size = 11.5;
@@ -299,10 +301,8 @@ new Chart(document.getElementById('barChart'), {
   data: {
     labels: D.labels,
     datasets: [
-      { label: '지급총액 6월', data: D.pay6, backgroundColor: '#c7d7fb', borderRadius: 4, barPercentage:0.8 },
-      { label: '지급총액 7월', data: D.pay7, backgroundColor: '#2f6fed', borderRadius: 4, barPercentage:0.8 },
-      { label: '차인지급액 6월', data: D.net6, backgroundColor: '#bfe3d1', borderRadius: 4, barPercentage:0.8 },
-      { label: '차인지급액 7월', data: D.net7, backgroundColor: '#1f8a5f', borderRadius: 4, barPercentage:0.8 },
+      { label: '정규직', data: D.ft7, backgroundColor: '#2f6fed', borderRadius: 4, stack: 's' },
+      { label: '일용직', data: D.pt7, backgroundColor: '#b8790a', borderRadius: 4, stack: 's' },
     ]
   },
   options: {
@@ -310,8 +310,8 @@ new Chart(document.getElementById('barChart'), {
     plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, padding: 14 } },
       tooltip: { callbacks: { label: (ctx) => ` ${ctx.dataset.label}: ${ctx.parsed.y.toLocaleString()}원` } } },
     scales: {
-      y: { ticks: { callback: (v) => (v/1000000).toFixed(0)+'백만' }, grid: { color:'#eef0f5' } },
-      x: { grid: { display:false } }
+      y: { stacked: true, ticks: { callback: (v) => (v/1000000).toFixed(0)+'백만' }, grid: { color:'#eef0f5' } },
+      x: { stacked: true, grid: { display:false } }
     }
   }
 });
@@ -319,10 +319,10 @@ new Chart(document.getElementById('barChart'), {
 new Chart(document.getElementById('donutChart'), {
   type: 'doughnut',
   data: {
-    labels: D.ded_labels,
+    labels: ['정규직', '일용직'],
     datasets: [{
-      data: D.ded_values,
-      backgroundColor: ['#2f6fed','#1f8a5f','#b8790a','#8a5cf5','#d9483f','#6b7280'],
+      data: D.donut,
+      backgroundColor: ['#2f6fed', '#b8790a'],
       borderWidth: 2, borderColor: '#fff'
     }]
   },
