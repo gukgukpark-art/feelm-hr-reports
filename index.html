@@ -60,6 +60,7 @@
   }
   a.report-link .date-pill.cost { background:#7a5308; }
   a.report-link .title-text { flex:1; }
+  a.report-link .title-text .sub-note { display:block; font-size:10.5px; font-weight:600; color:var(--gray); margin-top:3px; }
   a.report-link .arrow { color:var(--gray); font-weight:400; font-size:13px; transition:.15s; }
   a.report-link:hover .arrow { color:var(--blue); }
 
@@ -109,7 +110,7 @@
     <p class="desc">급여대장 기준 인건비 변동 내역입니다. 전사+매장별 급여변동 및 매장별 정규직·일용직 구성을 함께 담고 있습니다.</p>
     <ul class="report-list">
       <li><a class="report-link" href="labor-cost/급여현황.html"><span><span class="date-pill cost">월별</span><span class="title-text">급여 현황</span></span><span class="arrow">열기 →</span></a></li>
-      <li><a class="report-link" href="labor-cost/지점별주간인건비.html"><span><span class="date-pill cost">주차별</span><span class="title-text">지점별 주간 인건비 현황</span></span><span class="arrow">열기 →</span></a></li>
+      <li><a class="report-link" href="labor-cost/지점별주간인건비.html"><span><span class="date-pill cost">주차별</span><span class="title-text">지점별 주간 인건비 현황<small class="sub-note">파트타이머 인건비는 추후 업데이트 예정</small></span></span><span class="arrow">열기 →</span></a></li>
     </ul>
   </section>
 
