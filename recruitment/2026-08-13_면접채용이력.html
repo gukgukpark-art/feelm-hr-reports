@@ -107,6 +107,39 @@ a.back-link:hover { color:var(--blue); }
 }
 
 .footnote { font-size:12px; color:var(--gray); margin:14px 0 0; }
+
+.cal-card { background:var(--card); border:1px solid var(--border); border-radius:16px; padding:20px 22px 18px; margin-bottom:26px;
+  box-shadow:0 1px 2px rgba(20,30,60,.04); }
+.cal-head-row { display:flex; align-items:center; justify-content:space-between; margin-bottom:14px; flex-wrap:wrap; gap:8px; }
+.cal-title { font-size:14.5px; font-weight:800; color:var(--navy); display:flex; align-items:center; gap:8px; }
+.cal-title .dot { width:8px; height:8px; border-radius:50%; background:var(--blue); display:inline-block; }
+.cal-legend { display:flex; gap:12px; font-size:11px; color:var(--gray); flex-wrap:wrap; }
+.cal-legend span { display:inline-flex; align-items:center; gap:5px; }
+.cal-legend i { width:9px; height:9px; border-radius:3px; display:inline-block; }
+.cal-legend i.pass { background:var(--green); }
+.cal-legend i.fail { background:var(--red); }
+.cal-legend i.pending { background:var(--amber); }
+.cal-grid { display:grid; grid-template-columns:repeat(7,1fr); gap:6px; }
+.cal-dow { text-align:center; font-size:11px; font-weight:700; color:var(--gray); padding-bottom:4px; }
+.cal-dow.sun { color:var(--red); }
+.cal-dow.sat { color:var(--blue); }
+.cal-cell { min-height:78px; border:1px solid var(--border); border-radius:10px; padding:6px 6px 5px; background:var(--gray-l); }
+.cal-cell.empty { background:transparent; border-color:transparent; }
+.cal-cell.has-event { background:#fff; border-color:#dfe4ee; }
+.cal-daynum { font-size:11px; font-weight:700; color:var(--gray); margin-bottom:4px; }
+.cal-chip { display:block; width:100%; text-align:left; border:none; border-radius:6px; padding:3px 6px; font-size:10.5px; font-weight:700;
+  margin-bottom:3px; cursor:pointer; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.cal-chip.status-pass { background:var(--green-l); color:var(--green); }
+.cal-chip.status-fail { background:var(--red-l); color:var(--red); }
+.cal-chip.status-pending { background:var(--amber-l); color:#7a5308; }
+.cal-chip:hover { filter:brightness(0.95); }
+@media (max-width:640px) {
+  .cal-grid { gap:4px; }
+  .cal-cell { min-height:60px; padding:4px 3px 3px; }
+  .cal-chip { font-size:9px; padding:2px 4px; }
+  .cal-dow { font-size:10px; }
+}
+
 footer.note { color:var(--gray); font-size:11.5px; margin-top:26px; line-height:1.75; padding-top:18px; border-top:1px solid var(--border); }
 footer.note b { color:var(--navy); }
 </style></head>
@@ -149,6 +182,64 @@ footer.note b { color:var(--navy); }
     <div class="label">면접 예정</div>
     <div class="value">2<small>명</small></div>
     <div class="sub">강지은(8/13) · 은혜지(8/21)</div>
+  </div>
+</div>
+
+<div class="cal-card">
+  <div class="cal-head-row">
+    <div class="cal-title"><span class="dot"></span>2026년 8월 면접 캘린더</div>
+    <div class="cal-legend"><span><i class="pass"></i>합격</span><span><i class="fail"></i>불합격</span><span><i class="pending"></i>면접예정</span></div>
+  </div>
+  <div class="cal-grid">
+    <div class="cal-dow sun">일</div>
+    <div class="cal-dow">월</div>
+    <div class="cal-dow">화</div>
+    <div class="cal-dow">수</div>
+    <div class="cal-dow">목</div>
+    <div class="cal-dow">금</div>
+    <div class="cal-dow sat">토</div>
+    <div class="cal-cell empty"></div>
+    <div class="cal-cell empty"></div>
+    <div class="cal-cell empty"></div>
+    <div class="cal-cell empty"></div>
+    <div class="cal-cell empty"></div>
+    <div class="cal-cell empty"></div>
+    <div class="cal-cell"><div class="cal-daynum">1</div></div>
+    <div class="cal-cell"><div class="cal-daynum">2</div></div>
+    <div class="cal-cell"><div class="cal-daynum">3</div></div>
+    <div class="cal-cell"><div class="cal-daynum">4</div></div>
+    <div class="cal-cell has-event"><div class="cal-daynum">5</div><button class="cal-chip status-pass" data-idx="1">백다연</button><button class="cal-chip status-fail" data-idx="2">최민유</button></div>
+    <div class="cal-cell"><div class="cal-daynum">6</div></div>
+    <div class="cal-cell has-event"><div class="cal-daynum">7</div><button class="cal-chip status-fail" data-idx="3">임경은</button></div>
+    <div class="cal-cell"><div class="cal-daynum">8</div></div>
+    <div class="cal-cell"><div class="cal-daynum">9</div></div>
+    <div class="cal-cell"><div class="cal-daynum">10</div></div>
+    <div class="cal-cell"><div class="cal-daynum">11</div></div>
+    <div class="cal-cell has-event"><div class="cal-daynum">12</div><button class="cal-chip status-pass" data-idx="4">김민정</button><button class="cal-chip status-pass" data-idx="5">박정애</button></div>
+    <div class="cal-cell has-event"><div class="cal-daynum">13</div><button class="cal-chip status-pending" data-idx="6">강지은</button></div>
+    <div class="cal-cell"><div class="cal-daynum">14</div></div>
+    <div class="cal-cell"><div class="cal-daynum">15</div></div>
+    <div class="cal-cell"><div class="cal-daynum">16</div></div>
+    <div class="cal-cell"><div class="cal-daynum">17</div></div>
+    <div class="cal-cell"><div class="cal-daynum">18</div></div>
+    <div class="cal-cell"><div class="cal-daynum">19</div></div>
+    <div class="cal-cell"><div class="cal-daynum">20</div></div>
+    <div class="cal-cell has-event"><div class="cal-daynum">21</div><button class="cal-chip status-pending" data-idx="7">은혜지</button></div>
+    <div class="cal-cell"><div class="cal-daynum">22</div></div>
+    <div class="cal-cell"><div class="cal-daynum">23</div></div>
+    <div class="cal-cell"><div class="cal-daynum">24</div></div>
+    <div class="cal-cell"><div class="cal-daynum">25</div></div>
+    <div class="cal-cell"><div class="cal-daynum">26</div></div>
+    <div class="cal-cell"><div class="cal-daynum">27</div></div>
+    <div class="cal-cell"><div class="cal-daynum">28</div></div>
+    <div class="cal-cell"><div class="cal-daynum">29</div></div>
+    <div class="cal-cell"><div class="cal-daynum">30</div></div>
+    <div class="cal-cell"><div class="cal-daynum">31</div></div>
+    <div class="cal-cell empty"></div>
+    <div class="cal-cell empty"></div>
+    <div class="cal-cell empty"></div>
+    <div class="cal-cell empty"></div>
+    <div class="cal-cell empty"></div>
   </div>
 </div>
 
@@ -459,6 +550,20 @@ function loadPreview(idx, fileId) {
   newtab.href = viewUrl;
   if (mobileBtn) mobileBtn.href = viewUrl;
 }
+
+document.querySelectorAll('.cal-chip').forEach(chip => {
+  chip.addEventListener('click', () => {
+    const idx = chip.getAttribute('data-idx');
+    // reset any active filter to 'all' so the card is visible
+    document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+    document.querySelector('.filter-tab[data-filter="all"]').classList.add('active');
+    document.querySelectorAll('.cand-card').forEach(card => card.classList.remove('hidden'));
+    const body = document.getElementById('body-' + idx);
+    if (!body.classList.contains('open')) toggleCard(idx);
+    const head = document.querySelector('.cand-head[data-idx="' + idx + '"]');
+    if (head) head.scrollIntoView({ behavior:'smooth', block:'center' });
+  });
+});
 
 document.querySelectorAll('.filter-tab').forEach(tab => {
   tab.addEventListener('click', () => {
