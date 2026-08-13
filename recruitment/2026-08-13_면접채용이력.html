@@ -21,12 +21,14 @@ a.back-link:hover { color:var(--blue); }
 .notice-banner .dot { width:6px; height:6px; border-radius:50%; background:var(--amber); flex-shrink:0; margin-top:6px; }
 .notice-banner b { font-weight:800; }
 
-.kpi-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-bottom:30px; }
+.kpi-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:12px; margin-bottom:30px; }
+@media (max-width:1000px) { .kpi-grid{grid-template-columns:repeat(3,1fr);} }
 @media (max-width:800px) { .kpi-grid{grid-template-columns:repeat(2,1fr);} .cand-head{flex-wrap:wrap;} .cand-date{order:5; width:100%; margin-left:52px;} }
 .kpi { background:var(--card); border:1px solid var(--border); border-radius:14px; padding:16px 16px 14px; position:relative; overflow:hidden;
   box-shadow:0 1px 2px rgba(20,30,60,.04); }
 .kpi::before { content:""; position:absolute; top:0; left:0; right:0; height:4px; }
 .kpi-navy::before { background:var(--navy); }
+.kpi-blue::before { background:var(--blue); }
 .kpi-green::before { background:var(--green); }
 .kpi-red::before { background:var(--red); }
 .kpi-amber::before { background:var(--amber); }
@@ -58,6 +60,7 @@ a.back-link:hover { color:var(--blue); }
 .cand-card[data-status="pass"] .cand-avatar { background:var(--green-l); color:var(--green); }
 .cand-card[data-status="fail"] .cand-avatar { background:var(--red-l); color:var(--red); }
 .cand-card[data-status="pending"] .cand-avatar { background:var(--amber-l); color:#7a5308; }
+.cand-card[data-status="review"] .cand-avatar { background:var(--blue-l); color:var(--blue); }
 .cand-main { flex:1; min-width:0; }
 .cand-name-row { display:flex; align-items:center; gap:9px; margin-bottom:3px; flex-wrap:wrap; }
 .cand-name { font-size:15px; font-weight:800; color:var(--navy); }
@@ -66,6 +69,7 @@ a.back-link:hover { color:var(--blue); }
 .status-pass { background:var(--green-l); color:var(--green); }
 .status-fail { background:var(--red-l); color:var(--red); }
 .status-pending { background:var(--amber-l); color:#7a5308; }
+.status-review { background:var(--blue-l); color:var(--blue); }
 .cand-date { font-size:12px; color:var(--gray); font-weight:600; white-space:nowrap; flex-shrink:0; }
 .file-btn { display:inline-flex; align-items:center; gap:5px; background:var(--gray-l); color:var(--navy); border:1px solid var(--border); border-radius:9px;
   padding:8px 14px; font-size:12px; font-weight:700; cursor:pointer; white-space:nowrap; flex-shrink:0; transition:.12s; }
@@ -132,6 +136,7 @@ a.back-link:hover { color:var(--blue); }
 .cal-chip.status-pass { background:var(--green-l); color:var(--green); }
 .cal-chip.status-fail { background:var(--red-l); color:var(--red); }
 .cal-chip.status-pending { background:var(--amber-l); color:#7a5308; }
+.cal-chip.status-review { background:var(--blue-l); color:var(--blue); }
 .cal-chip:hover { filter:brightness(0.95); }
 @media (max-width:640px) {
   .cal-grid { gap:4px; }
@@ -170,18 +175,23 @@ footer.note b { color:var(--navy); }
   </div>
   <div class="kpi kpi-green">
     <div class="label">합격</div>
-    <div class="value">3<small>명</small></div>
-    <div class="sub">백다연(입사완료) · 김민정 · 박정애(처우협의중)</div>
+    <div class="value">2<small>명</small></div>
+    <div class="sub">백다연(입사완료) · 박정애(9/1 입사확정)</div>
   </div>
   <div class="kpi kpi-red">
     <div class="label">불합격</div>
-    <div class="value">2<small>명</small></div>
-    <div class="sub">최민유(입사시기) · 임경은(태도·연봉)</div>
+    <div class="value">3<small>명</small></div>
+    <div class="sub">최민유(입사시기) · 임경은(태도·연봉) · 김민정(연봉 재협상)</div>
+  </div>
+  <div class="kpi kpi-blue">
+    <div class="label">결과 대기</div>
+    <div class="value">1<small>명</small></div>
+    <div class="sub">강지은(연봉 협의 중)</div>
   </div>
   <div class="kpi kpi-amber">
     <div class="label">면접 예정</div>
-    <div class="value">2<small>명</small></div>
-    <div class="sub">강지은(8/13) · 은혜지(8/21)</div>
+    <div class="value">1<small>명</small></div>
+    <div class="sub">은혜지(8/21)</div>
   </div>
 </div>
 
@@ -215,8 +225,8 @@ footer.note b { color:var(--navy); }
     <div class="cal-cell"><div class="cal-daynum">9</div></div>
     <div class="cal-cell"><div class="cal-daynum">10</div></div>
     <div class="cal-cell"><div class="cal-daynum">11</div></div>
-    <div class="cal-cell has-event"><div class="cal-daynum">12</div><button class="cal-chip status-pass" data-idx="4">김민정</button><button class="cal-chip status-pass" data-idx="5">박정애</button></div>
-    <div class="cal-cell has-event"><div class="cal-daynum">13</div><button class="cal-chip status-pending" data-idx="6">강지은</button></div>
+    <div class="cal-cell has-event"><div class="cal-daynum">12</div><button class="cal-chip status-fail" data-idx="4">김민정</button><button class="cal-chip status-pass" data-idx="5">박정애</button></div>
+    <div class="cal-cell has-event"><div class="cal-daynum">13</div><button class="cal-chip status-review" data-idx="6">강지은</button></div>
     <div class="cal-cell"><div class="cal-daynum">14</div></div>
     <div class="cal-cell"><div class="cal-daynum">15</div></div>
     <div class="cal-cell"><div class="cal-daynum">16</div></div>
@@ -250,9 +260,10 @@ footer.note b { color:var(--navy); }
   </div>
   <div class="filter-tabs">
     <button class="filter-tab active" data-filter="all">전체 7</button>
-    <button class="filter-tab" data-filter="pass">합격 3</button>
-    <button class="filter-tab" data-filter="fail">불합격 2</button>
-    <button class="filter-tab" data-filter="pending">면접예정 2</button>
+    <button class="filter-tab" data-filter="pass">합격 2</button>
+    <button class="filter-tab" data-filter="fail">불합격 3</button>
+    <button class="filter-tab" data-filter="review">결과대기 1</button>
+    <button class="filter-tab" data-filter="pending">면접예정 1</button>
   </div>
 </div>
 
@@ -356,11 +367,11 @@ footer.note b { color:var(--navy); }
   </div>
 </div>
 
-<div class="cand-card" data-status="pass">
+<div class="cand-card" data-status="fail">
   <div class="cand-head" data-idx="4">
     <div class="cand-avatar">김</div>
     <div class="cand-main">
-      <div class="cand-name-row"><span class="cand-name">김민정</span><span class="status-pill status-pass">합격</span></div>
+      <div class="cand-name-row"><span class="cand-name">김민정</span><span class="status-pill status-fail">불합격</span></div>
       <div class="cand-meta">콘텐츠사업본부 · 마케팅팀 · IMC파트 · 경력 3년 9개월</div>
     </div>
     <div class="cand-date">면접 2026.08.12</div>
@@ -371,8 +382,9 @@ footer.note b { color:var(--navy); }
       <div class="fact"><span class="fl">입사가능시기</span><span class="fv">2026.09.01</span></div>
       <div class="fact"><span class="fl">직전연봉</span><span class="fv">3,500만원</span></div>
       <div class="fact"><span class="fl">희망연봉</span><span class="fv">3,600만원 이상</span></div>
-      <div class="fact"><span class="fl">최종입사일</span><span class="fv">협의 중</span></div>
+      <div class="fact"><span class="fl">최종입사일</span><span class="fv">-</span></div>
     </div>
+    <div class="cand-note-row"><b>비고</b> · 연봉 추가인상 문의</div>
     <div class="preview-panel" id="panel-4">
       <a class="open-btn mobile-only" id="mobileopen-4" href="#" target="_blank" rel="noopener">Drive에서 크게 보기 →</a>
       <div class="preview-tabs">
@@ -403,7 +415,7 @@ footer.note b { color:var(--navy); }
       <div class="fact"><span class="fl">입사가능시기</span><span class="fv">2026.09.01</span></div>
       <div class="fact"><span class="fl">직전연봉</span><span class="fv">3,720만원</span></div>
       <div class="fact"><span class="fl">희망연봉</span><span class="fv">3,600만원 이상</span></div>
-      <div class="fact"><span class="fl">최종입사일</span><span class="fv">협의 중</span></div>
+      <div class="fact"><span class="fl">최종입사일</span><span class="fv">2026.09.01</span></div>
     </div>
     <div class="preview-panel" id="panel-5">
       <a class="open-btn mobile-only" id="mobileopen-5" href="#" target="_blank" rel="noopener">Drive에서 크게 보기 →</a>
@@ -420,11 +432,11 @@ footer.note b { color:var(--navy); }
   </div>
 </div>
 
-<div class="cand-card" data-status="pending">
+<div class="cand-card" data-status="review">
   <div class="cand-head" data-idx="6">
     <div class="cand-avatar">강</div>
     <div class="cand-main">
-      <div class="cand-name-row"><span class="cand-name">강지은</span><span class="status-pill status-pending">면접예정</span></div>
+      <div class="cand-name-row"><span class="cand-name">강지은</span><span class="status-pill status-review">결과대기</span></div>
       <div class="cand-meta">콘텐츠사업본부 · 출판팀 · 기획파트 · 경력 14년 2개월</div>
     </div>
     <div class="cand-date">면접 2026.08.13</div>
@@ -433,10 +445,11 @@ footer.note b { color:var(--navy); }
   <div class="cand-body" id="body-6">
     <div class="cand-facts">
       <div class="fact"><span class="fl">입사가능시기</span><span class="fv">-</span></div>
-      <div class="fact"><span class="fl">직전연봉</span><span class="fv">-</span></div>
-      <div class="fact"><span class="fl">희망연봉</span><span class="fv">-</span></div>
+      <div class="fact"><span class="fl">직전연봉</span><span class="fv">6,800만원</span></div>
+      <div class="fact"><span class="fl">희망연봉</span><span class="fv">7,400만원 이상</span></div>
       <div class="fact"><span class="fl">최종입사일</span><span class="fv">-</span></div>
     </div>
+    <div class="cand-note-row"><b>비고</b> · 업무 추진비 감안하여 높은 희망 연봉</div>
     <div class="preview-panel" id="panel-6">
       <a class="open-btn mobile-only" id="mobileopen-6" href="#" target="_blank" rel="noopener">Drive에서 크게 보기 →</a>
       <div class="preview-tabs">
