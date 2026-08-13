@@ -96,6 +96,15 @@ a.back-link:hover { color:var(--blue); }
 .preview-linkrow a { color:var(--blue); font-size:11.5px; font-weight:700; text-decoration:none; }
 .preview-linkrow a:hover { text-decoration:underline; }
 .preview-hint { font-size:11px; color:var(--gray); }
+.open-btn { display:flex; align-items:center; justify-content:center; gap:8px; width:100%; background:var(--navy); color:#fff;
+  border:none; border-radius:10px; padding:14px 16px; font-size:13.5px; font-weight:800; text-decoration:none; margin-bottom:10px; }
+.open-btn:hover { background:var(--navy2); }
+.mobile-only { display:none; }
+.desktop-only { display:block; }
+@media (max-width:700px) {
+  .mobile-only { display:flex; }
+  .desktop-only { display:none; }
+}
 
 .footnote { font-size:12px; color:var(--gray); margin:14px 0 0; }
 footer.note { color:var(--gray); font-size:11.5px; margin-top:26px; line-height:1.75; padding-top:18px; border-top:1px solid var(--border); }
@@ -176,6 +185,7 @@ footer.note b { color:var(--navy); }
       <div class="fact"><span class="fl">최종입사일</span><span class="fv">2026.08.18</span></div>
     </div>
     <div class="preview-panel" id="panel-1">
+      <a class="open-btn mobile-only" id="mobileopen-1" href="#" target="_blank" rel="noopener">Drive에서 크게 보기 →</a>
       <div class="preview-tabs">
         <button class="preview-tab active" data-idx="1" data-file="1lTxd2nS4nxYzQkYyLCrpjm45UBaCihSr">이력서</button>
         <button class="preview-tab" data-idx="1" data-file="10rhbmQaRCYZf99bh4D2-A0nWylkwbaEJ">포트폴리오</button>
@@ -208,6 +218,7 @@ footer.note b { color:var(--navy); }
     </div>
     <div class="cand-note-row"><b>비고</b> · 입사가능 시기 이슈 (11월 입사)</div>
     <div class="preview-panel" id="panel-2">
+      <a class="open-btn mobile-only" id="mobileopen-2" href="#" target="_blank" rel="noopener">Drive에서 크게 보기 →</a>
       <div class="preview-tabs">
         <button class="preview-tab active" data-idx="2" data-file="1vKadj16urezDWj8LTYKfXS5PWISokSqb">이력서</button>
         <button class="preview-tab" data-idx="2" data-file="1sDmMh7d7c7ZDH8owWJYutnUAwwMoUHJd">포트폴리오</button>
@@ -240,6 +251,7 @@ footer.note b { color:var(--navy); }
     </div>
     <div class="cand-note-row"><b>비고</b> · 지각 및 다소 방어적 자세 + 연봉 구간</div>
     <div class="preview-panel" id="panel-3">
+      <a class="open-btn mobile-only" id="mobileopen-3" href="#" target="_blank" rel="noopener">Drive에서 크게 보기 →</a>
       <div class="preview-tabs">
         <button class="preview-tab active" data-idx="3" data-file="1b-FGzNsq0_PKHRn-p7dCUohqUHsGkV60">이력서</button>
         <button class="preview-tab" data-idx="3" data-file="1csKQdfVm9iIiI8gu3LSL95G4IM9PTmnV">포트폴리오</button>
@@ -271,6 +283,7 @@ footer.note b { color:var(--navy); }
       <div class="fact"><span class="fl">최종입사일</span><span class="fv">협의 중</span></div>
     </div>
     <div class="preview-panel" id="panel-4">
+      <a class="open-btn mobile-only" id="mobileopen-4" href="#" target="_blank" rel="noopener">Drive에서 크게 보기 →</a>
       <div class="preview-tabs">
         <button class="preview-tab active" data-idx="4" data-file="1zFg_NRqyPF3skRcjXTCMKgtHoral8fo9">이력서</button>
         <button class="preview-tab" data-idx="4" data-file="1yOXsuQuPPbDWqvjxxxXR_7wMECBIBZEa">포트폴리오</button>
@@ -302,6 +315,7 @@ footer.note b { color:var(--navy); }
       <div class="fact"><span class="fl">최종입사일</span><span class="fv">협의 중</span></div>
     </div>
     <div class="preview-panel" id="panel-5">
+      <a class="open-btn mobile-only" id="mobileopen-5" href="#" target="_blank" rel="noopener">Drive에서 크게 보기 →</a>
       <div class="preview-tabs">
         <button class="preview-tab active" data-idx="5" data-file="1REUcIg5menoqNJhrCV4d74r_jadcMLzY">이력서</button>
         <button class="preview-tab" data-idx="5" data-file="15xGqMFhT8tBv8228pGzLcQGCHdtRK0UD">포트폴리오</button>
@@ -333,6 +347,7 @@ footer.note b { color:var(--navy); }
       <div class="fact"><span class="fl">최종입사일</span><span class="fv">-</span></div>
     </div>
     <div class="preview-panel" id="panel-6">
+      <a class="open-btn mobile-only" id="mobileopen-6" href="#" target="_blank" rel="noopener">Drive에서 크게 보기 →</a>
       <div class="preview-tabs">
         <button class="preview-tab active" data-idx="6" data-file="1yYG-ESHQu_X0p2dx2Qe_VkmPhk6IjyOI">이력서</button>
         <button class="preview-tab" data-idx="6" data-file="118d5Wn82tdg_17TNKch6xNStNgXpMpWZ">지원서</button>
@@ -364,6 +379,7 @@ footer.note b { color:var(--navy); }
       <div class="fact"><span class="fl">최종입사일</span><span class="fv">-</span></div>
     </div>
     <div class="preview-panel" id="panel-7">
+      <a class="open-btn mobile-only" id="mobileopen-7" href="#" target="_blank" rel="noopener">Drive에서 크게 보기 →</a>
       <div class="preview-tabs">
         <button class="preview-tab active" data-idx="7" data-file="1_HOWCl-58zQNw4lEqPJy6IgU0v41qLW8">이력서</button>
         <button class="preview-tab" data-idx="7" data-file="1PmqOkk-z7hpJJTC7FgNnguUK6OhjUuxJ">포트폴리오</button>
@@ -437,8 +453,11 @@ document.querySelectorAll('.preview-tab').forEach(tab => {
 function loadPreview(idx, fileId) {
   const iframe = document.getElementById('iframe-' + idx);
   const newtab = document.getElementById('newtab-' + idx);
+  const mobileBtn = document.getElementById('mobileopen-' + idx);
+  const viewUrl = 'https://drive.google.com/file/d/' + fileId + '/view';
   iframe.src = 'https://drive.google.com/file/d/' + fileId + '/preview';
-  newtab.href = 'https://drive.google.com/file/d/' + fileId + '/view';
+  newtab.href = viewUrl;
+  if (mobileBtn) mobileBtn.href = viewUrl;
 }
 
 document.querySelectorAll('.filter-tab').forEach(tab => {
