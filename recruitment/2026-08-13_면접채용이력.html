@@ -21,7 +21,8 @@ a.back-link:hover { color:var(--blue); }
 .notice-banner .dot { width:6px; height:6px; border-radius:50%; background:var(--amber); flex-shrink:0; margin-top:6px; }
 .notice-banner b { font-weight:800; }
 
-.kpi-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-bottom:30px; }
+.kpi-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:12px; margin-bottom:30px; }
+@media (max-width:1000px) { .kpi-grid{grid-template-columns:repeat(3,1fr);} }
 @media (max-width:800px) { .kpi-grid{grid-template-columns:repeat(2,1fr);} .cand-head{flex-wrap:wrap;} .cand-date{order:5; width:100%; margin-left:52px;} }
 .kpi { background:var(--card); border:1px solid var(--border); border-radius:14px; padding:16px 16px 14px; position:relative; overflow:hidden;
   box-shadow:0 1px 2px rgba(20,30,60,.04); }
@@ -181,8 +182,13 @@ footer.note b { color:var(--navy); }
   </div>
   <div class="kpi kpi-red">
     <div class="label">불합격</div>
-    <div class="value">3<small>명</small></div>
-    <div class="sub">최민유(입사시기) · 임경은(태도·연봉) · 김민정(연봉 재협상)</div>
+    <div class="value">2<small>명</small></div>
+    <div class="sub">최민유(입사시기) · 김민정(연봉 재협상)</div>
+  </div>
+  <div class="kpi kpi-blue">
+    <div class="label">2차면접 예정</div>
+    <div class="value">1<small>명</small></div>
+    <div class="sub">임경은(1차 후 재검토)</div>
   </div>
   <div class="kpi kpi-amber">
     <div class="label">면접 예정</div>
@@ -194,7 +200,7 @@ footer.note b { color:var(--navy); }
 <div class="cal-card">
   <div class="cal-head-row">
     <div class="cal-title"><span class="dot"></span>2026년 8월 면접 캘린더</div>
-    <div class="cal-legend"><span><i class="pass"></i>합격</span><span><i class="fail"></i>불합격</span><span><i class="pending"></i>면접예정</span></div>
+    <div class="cal-legend"><span><i class="pass"></i>합격</span><span><i class="fail"></i>불합격</span><span><i class="review"></i>2차면접예정</span><span><i class="pending"></i>면접예정</span></div>
   </div>
   <div class="cal-grid">
     <div class="cal-dow sun">일</div>
@@ -216,7 +222,7 @@ footer.note b { color:var(--navy); }
     <div class="cal-cell"><div class="cal-daynum">4</div></div>
     <div class="cal-cell has-event"><div class="cal-daynum">5</div><button class="cal-chip status-pass" data-idx="1">백다연</button><button class="cal-chip status-fail" data-idx="2">최민유</button></div>
     <div class="cal-cell"><div class="cal-daynum">6</div></div>
-    <div class="cal-cell has-event"><div class="cal-daynum">7</div><button class="cal-chip status-fail" data-idx="3">임경은</button></div>
+    <div class="cal-cell has-event"><div class="cal-daynum">7</div><button class="cal-chip status-review" data-idx="3">임경은</button></div>
     <div class="cal-cell"><div class="cal-daynum">8</div></div>
     <div class="cal-cell"><div class="cal-daynum">9</div></div>
     <div class="cal-cell"><div class="cal-daynum">10</div></div>
@@ -257,7 +263,8 @@ footer.note b { color:var(--navy); }
   <div class="filter-tabs">
     <button class="filter-tab active" data-filter="all">전체 7</button>
     <button class="filter-tab" data-filter="pass">합격 3</button>
-    <button class="filter-tab" data-filter="fail">불합격 3</button>
+    <button class="filter-tab" data-filter="fail">불합격 2</button>
+    <button class="filter-tab" data-filter="review">2차면접예정 1</button>
     <button class="filter-tab" data-filter="pending">면접예정 1</button>
   </div>
 </div>
@@ -331,11 +338,11 @@ footer.note b { color:var(--navy); }
   </div>
 </div>
 
-<div class="cand-card" data-status="fail">
+<div class="cand-card" data-status="review">
   <div class="cand-head" data-idx="3">
     <div class="cand-avatar">임</div>
     <div class="cand-main">
-      <div class="cand-name-row"><span class="cand-name">임경은</span><span class="status-pill status-fail">불합격</span></div>
+      <div class="cand-name-row"><span class="cand-name">임경은</span><span class="status-pill status-review">2차면접예정</span></div>
       <div class="cand-meta">콘텐츠사업본부 · 출판팀 · 기획파트 · 경력 10년 10개월</div>
     </div>
     <div class="cand-date">면접 2026.08.07</div>
