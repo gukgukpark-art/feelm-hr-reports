@@ -246,6 +246,12 @@
       </div></div>
 
   <section class="card">
+    <h2>주차별 인원 추이</h2>
+    <p class="desc">최근 3주 스냅샷(8/4·8/7·8/11) 기준 전체 재직인원 및 카페 파트타이머 추이</p>
+    <div class="chart-box" style="max-width:640px;"><canvas id="trendChart" style="max-height:230px;"></canvas></div>
+  </section>
+
+  <section class="card">
     <h2>인원 구성</h2>
     <p class="desc">현재 재직 중인 정규직 기준 (㈜필름 본사 vs 카페공명), 매장/파트별 TO 충원율</p>
     <div class="two-col">
@@ -1032,6 +1038,18 @@
       }
     };
   }
+  var __TREND__ = {"labels":["8/4","8/7","8/11"],"total":[52,52,52],"pt":[26,26,29],"hire":[2,2,1],"resign":[4,1,0]};
+  new Chart(document.getElementById("trendChart"), {
+    type: "line",
+    data: { labels: __TREND__.labels, datasets: [
+      { label:"전체 재직", data:__TREND__.total, borderColor:"#1c2b4a", backgroundColor:"#1c2b4a", tension:.3, pointRadius:4, yAxisID:"y" },
+      { label:"카페 파트타이머", data:__TREND__.pt, borderColor:"#2f6fed", backgroundColor:"#2f6fed", tension:.3, pointRadius:4, yAxisID:"y" },
+    ]},
+    options: { responsive:true, maintainAspectRatio:false,
+      plugins:{ legend:{ position:"bottom", labels:{ boxWidth:10, font:{size:11} } },
+        tooltip:{ callbacks:{ afterBody(items){ const i = items[0].dataIndex; return `입사 ${__TREND__.hire[i]}명 · 퇴사 ${__TREND__.resign[i]}명`; } } } },
+      scales:{ y:{ suggestedMin:20, ticks:{ callback:v=>v+"명" } } } }
+  });
   new Chart(document.getElementById("deptChart"), deptChartConfig(__DEPT_STATS__));
   new Chart(document.getElementById("toChart"), toChartConfig(__CD__));
 </script>
