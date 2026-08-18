@@ -234,7 +234,7 @@
       </div>
       <div class="kpi resign">
         <div class="label">이번 주 퇴사</div>
-        <div class="value">1<small>명</small></div>
+        <div class="value">0<small>명</small></div>
       </div>
       <div class="kpi ">
         <div class="label">입사·퇴사 예정</div>
@@ -846,13 +846,7 @@
       <td>2026-08-18</td>
     </tr></tbody></table>
     <h3 style="font-size:13px; color:var(--navy); margin:14px 0 6px;">이번 주 퇴사</h3>
-    <table><thead><tr><th>성명</th><th>근무지/소속</th><th>부서</th><th>직책</th><th>퇴사일</th></tr></thead><tbody><tr>
-      <td>송은지</td>
-      <td>공명 홍대점</td>
-      <td>-</td>
-      <td>바리스타</td>
-      <td>2026-08-20</td>
-    </tr></tbody></table>
+    <div class="empty-note">해당 인원이 없습니다.</div>
     <h3 style="font-size:13px; color:var(--navy); margin:14px 0 6px;">입사 예정</h3>
     <div class="empty-note">해당 인원이 없습니다.</div>
     <h3 style="font-size:13px; color:var(--navy); margin:14px 0 6px;">퇴사 예정</h3>
@@ -1042,7 +1036,7 @@
       }
     };
   }
-  var __TREND__ = {"labels":["8/4","8/7","8/11","8/18"],"total":[52,52,52,52],"pt":[26,26,27,28],"hire":[2,2,1,1],"resign":[4,1,0,1]};
+  var __TREND__ = {"labels":["8/4","8/7","8/11","8/18"],"total":[52,52,52,52],"pt":[26,26,27,28],"hire":[2,2,1,1],"resign":[4,1,0,0]};
   new Chart(document.getElementById("trendChart"), {
     type: "line",
     data: { labels: __TREND__.labels, datasets: [
