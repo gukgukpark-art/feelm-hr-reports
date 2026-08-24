@@ -5,7 +5,7 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0/dist/chart.umd.min.js"></script>
 <style>
 :root { color-scheme: light; --navy:#1c2b4a; --navy2:#2a4270; --blue:#2f6fed; --amber:#b8790a; --green:#1f8a5f; --red:#d9483f;
-  --gray:#6b7280; --gray-l:#f4f5f7; --border:#e4e7ee; --bg:#f5f7fb; --card:#ffffff; --text:#1b1f2a; --blue-l:#eaf1ff; --amber-l:#fdf3e0; --green-l:#e6f4ee; --red-l:#fbeae9; }
+  --gray:#6b7280; --gray-l:#f4f5f7; --border:#e4e7ee; --bg:#f5f7fb; --card:#ffffff; --text:#1b1f2a; --blue-l:#eaf1ff; --amber-l:#fdf3e0; --green-l:#e6f4ee; --red-l:#fbeae9; --purple:#7c5cbf; --purple-l:#f1ecfa; }
 * { box-sizing:border-box; }
 body { margin:0; background:linear-gradient(180deg,#eef2fb 0%,#f5f7fb 260px,#f5f7fb 100%); color:var(--text);
   font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Malgun Gothic",Roboto,Arial,sans-serif; font-size:14px; line-height:1.55; -webkit-font-smoothing:antialiased; }
@@ -22,7 +22,7 @@ a.back-link:hover { color:var(--blue); }
 .notice-banner .dot { width:6px; height:6px; border-radius:50%; background:var(--amber); flex-shrink:0; margin-top:6px; }
 .notice-banner b { font-weight:800; }
 
-.kpi-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:12px; margin-bottom:30px; }
+.kpi-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-bottom:30px; }
 @media (max-width:1000px) { .kpi-grid{grid-template-columns:repeat(3,1fr);} }
 @media (max-width:800px) { .kpi-grid{grid-template-columns:repeat(2,1fr);} .cand-head{flex-wrap:wrap;} .cand-date{order:5; width:100%; margin-left:52px;} }
 .kpi { background:var(--card); border:1px solid var(--border); border-radius:14px; padding:16px 16px 14px; position:relative; overflow:hidden;
@@ -33,6 +33,7 @@ a.back-link:hover { color:var(--blue); }
 .kpi-green::before { background:var(--green); }
 .kpi-red::before { background:var(--red); }
 .kpi-amber::before { background:var(--amber); }
+.kpi-purple::before { background:var(--purple); }
 .kpi .label { font-size:12px; color:var(--gray); font-weight:700; margin-bottom:8px; }
 .kpi .value { font-size:24px; font-weight:800; color:var(--navy); letter-spacing:-0.3px; }
 .kpi .value small { font-size:13px; font-weight:700; color:var(--gray); margin-left:2px; }
@@ -69,6 +70,7 @@ a.back-link:hover { color:var(--blue); }
 .cand-card[data-status="fail"] .cand-avatar { background:var(--red-l); color:var(--red); }
 .cand-card[data-status="pending"] .cand-avatar { background:var(--amber-l); color:#7a5308; }
 .cand-card[data-status="review"] .cand-avatar { background:var(--blue-l); color:var(--blue); }
+.cand-card[data-status="withdraw"] .cand-avatar { background:var(--purple-l); color:var(--purple); }
 .cand-main { flex:1; min-width:0; }
 .cand-name-row { display:flex; align-items:center; gap:9px; margin-bottom:3px; flex-wrap:wrap; }
 .cand-name { font-size:15px; font-weight:800; color:var(--navy); }
@@ -78,6 +80,7 @@ a.back-link:hover { color:var(--blue); }
 .status-fail { background:var(--red-l); color:var(--red); }
 .status-pending { background:var(--amber-l); color:#7a5308; }
 .status-review { background:var(--blue-l); color:var(--blue); }
+.status-withdraw { background:var(--purple-l); color:var(--purple); }
 .cand-date { font-size:12px; color:var(--gray); font-weight:600; white-space:nowrap; flex-shrink:0; }
 .file-btn { display:inline-flex; align-items:center; gap:5px; background:var(--gray-l); color:var(--navy); border:1px solid var(--border); border-radius:9px;
   padding:8px 14px; font-size:12px; font-weight:700; cursor:pointer; white-space:nowrap; flex-shrink:0; transition:.12s; }
@@ -133,6 +136,7 @@ a.back-link:hover { color:var(--blue); }
 .cal-legend i.fail { background:var(--red); }
 .cal-legend i.pending { background:var(--amber); }
 .cal-legend i.review { background:var(--blue); }
+.cal-legend i.withdraw { background:var(--purple); }
 .cal-grid { display:grid; grid-template-columns:repeat(7,1fr); gap:6px; }
 .cal-dow { text-align:center; font-size:11px; font-weight:700; color:var(--gray); padding-bottom:4px; }
 .cal-dow.sun { color:var(--red); }
@@ -147,6 +151,7 @@ a.back-link:hover { color:var(--blue); }
 .cal-chip.status-fail { background:var(--red-l); color:var(--red); }
 .cal-chip.status-pending { background:var(--amber-l); color:#7a5308; }
 .cal-chip.status-review { background:var(--blue-l); color:var(--blue); }
+.cal-chip.status-withdraw { background:var(--purple-l); color:var(--purple); }
 .cal-chip:hover { filter:brightness(0.95); }
 @media (max-width:640px) {
   .cal-grid { gap:4px; }
@@ -185,30 +190,25 @@ footer.note b { color:var(--navy); }
   </div>
   <div class="kpi kpi-green">
     <div class="label">합격</div>
-    <div class="value">3<small>명</small></div>
-    <div class="sub">백다연(입사완료) · 박정애(9/1) · 강지은(9/14, 6900만원)</div>
+    <div class="value">4<small>명</small></div>
+    <div class="sub">백다연(입사완료) · 박정애(9/1) · 강지은(9/14, 6900만원) · 은혜지(9/1, IMC·그로스 순환배치)</div>
   </div>
   <div class="kpi kpi-red">
     <div class="label">불합격</div>
     <div class="value">2<small>명</small></div>
     <div class="sub">최민유(입사시기) · 김민정(연봉 재협상)</div>
   </div>
-  <div class="kpi kpi-blue">
-    <div class="label">처우협의</div>
+  <div class="kpi kpi-purple">
+    <div class="label">입사포기</div>
     <div class="value">1<small>명</small></div>
-    <div class="sub">임경은(연봉·조건 협의 중)</div>
-  </div>
-  <div class="kpi kpi-amber">
-    <div class="label">면접 예정</div>
-    <div class="value">1<small>명</small></div>
-    <div class="sub">은혜지(8/21)</div>
+    <div class="sub">임경은(출퇴근 거리·역량 부담으로 자진 포기)</div>
   </div>
 </div>
 
 <div class="cal-card">
   <div class="cal-head-row">
     <div class="cal-title"><span class="dot"></span>2026년 8월 면접 캘린더</div>
-    <div class="cal-legend"><span><i class="pass"></i>합격</span><span><i class="fail"></i>불합격</span><span><i class="review"></i>처우협의</span><span><i class="pending"></i>면접예정</span></div>
+    <div class="cal-legend"><span><i class="pass"></i>합격</span><span><i class="fail"></i>불합격</span><span><i class="withdraw"></i>입사포기</span></div>
   </div>
   <div class="cal-grid">
     <div class="cal-dow sun">일</div>
@@ -230,7 +230,7 @@ footer.note b { color:var(--navy); }
     <div class="cal-cell"><div class="cal-daynum">4</div></div>
     <div class="cal-cell has-event"><div class="cal-daynum">5</div><button class="cal-chip status-pass" data-idx="1">백다연</button><button class="cal-chip status-fail" data-idx="2">최민유</button></div>
     <div class="cal-cell"><div class="cal-daynum">6</div></div>
-    <div class="cal-cell has-event"><div class="cal-daynum">7</div><button class="cal-chip status-review" data-idx="3">임경은</button></div>
+    <div class="cal-cell has-event"><div class="cal-daynum">7</div><button class="cal-chip status-withdraw" data-idx="3">임경은</button></div>
     <div class="cal-cell"><div class="cal-daynum">8</div></div>
     <div class="cal-cell"><div class="cal-daynum">9</div></div>
     <div class="cal-cell"><div class="cal-daynum">10</div></div>
@@ -241,10 +241,10 @@ footer.note b { color:var(--navy); }
     <div class="cal-cell"><div class="cal-daynum">15</div></div>
     <div class="cal-cell"><div class="cal-daynum">16</div></div>
     <div class="cal-cell"><div class="cal-daynum">17</div></div>
-    <div class="cal-cell has-event"><div class="cal-daynum">18</div><button class="cal-chip status-review" data-idx="3">임경은(2차)</button></div>
+    <div class="cal-cell has-event"><div class="cal-daynum">18</div><button class="cal-chip status-withdraw" data-idx="3">임경은(2차)</button></div>
     <div class="cal-cell"><div class="cal-daynum">19</div></div>
     <div class="cal-cell"><div class="cal-daynum">20</div></div>
-    <div class="cal-cell has-event"><div class="cal-daynum">21</div><button class="cal-chip status-pending" data-idx="7">은혜지</button></div>
+    <div class="cal-cell has-event"><div class="cal-daynum">21</div><button class="cal-chip status-pass" data-idx="7">은혜지</button></div>
     <div class="cal-cell"><div class="cal-daynum">22</div></div>
     <div class="cal-cell"><div class="cal-daynum">23</div></div>
     <div class="cal-cell"><div class="cal-daynum">24</div></div>
@@ -270,10 +270,9 @@ footer.note b { color:var(--navy); }
   </div>
   <div class="filter-tabs">
     <button class="filter-tab active" data-filter="all">전체 7</button>
-    <button class="filter-tab" data-filter="pass">합격 3</button>
+    <button class="filter-tab" data-filter="pass">합격 4</button>
     <button class="filter-tab" data-filter="fail">불합격 2</button>
-    <button class="filter-tab" data-filter="review">처우협의 1</button>
-    <button class="filter-tab" data-filter="pending">면접예정 1</button>
+    <button class="filter-tab" data-filter="withdraw">입사포기 1</button>
   </div>
 </div>
 
@@ -346,11 +345,11 @@ footer.note b { color:var(--navy); }
   </div>
 </div>
 
-<div class="cand-card" data-status="review">
+<div class="cand-card" data-status="withdraw">
   <div class="cand-head" data-idx="3">
     <div class="cand-avatar">임</div>
     <div class="cand-main">
-      <div class="cand-name-row"><span class="cand-name">임경은</span><span class="status-pill status-review">처우협의</span></div>
+      <div class="cand-name-row"><span class="cand-name">임경은</span><span class="status-pill status-withdraw">입사포기</span></div>
       <div class="cand-meta">콘텐츠사업본부 · 출판팀 · 기획파트 · 경력 10년 10개월</div>
     </div>
     <div class="cand-date">1차 2026.08.07 · 2차 2026.08.18</div>
@@ -364,7 +363,7 @@ footer.note b { color:var(--navy); }
       <div class="fact"><span class="fl">최종입사연봉</span><span class="fv">-</span></div>
       <div class="fact"><span class="fl">최종입사일</span><span class="fv">-</span></div>
     </div>
-    <div class="cand-note-row"><b>비고</b> · 지각 및 다소 방어적 자세 + 연봉 구간 / 강지은님 팀장 입사에 따른 기획파트장으로 2차면접 요청 / 2차면접 진행으로 입사가능일자 변경 (9.1부)</div>
+    <div class="cand-note-row"><b>비고</b> · 지각 및 다소 방어적 자세 + 연봉 구간 / 강지은님 팀장 입사에 따른 기획파트장으로 2차면접 요청 / 2차면접 진행으로 입사가능일자 변경 (9.1부)<br>포기사유 : 출퇴근 거리(편도 약 1시간 소요) 부담 + 본인 스스로 판단하기에 해당 포지션 요구 역량 대비 본인 역량이 충분치 않다고 느낌<br>처우(연봉 등) 관련 이견은 없었음. 순수하게 지원자 개인 사정(거리, 역량에 대한 본인 판단)으로 인한 포기 의사</div>
     <div class="preview-panel" id="panel-3">
       <a class="open-btn mobile-only" id="mobileopen-3" href="#" target="_blank" rel="noopener">Drive에서 크게 보기 →</a>
       <div class="preview-tabs">
@@ -481,24 +480,25 @@ footer.note b { color:var(--navy); }
   </div>
 </div>
 
-<div class="cand-card" data-status="pending">
+<div class="cand-card" data-status="pass">
   <div class="cand-head" data-idx="7">
     <div class="cand-avatar">은</div>
     <div class="cand-main">
-      <div class="cand-name-row"><span class="cand-name">은혜지</span><span class="status-pill status-pending">면접예정</span></div>
-      <div class="cand-meta">콘텐츠사업본부 · 마케팅팀 · 경력 3년 1개월</div>
+      <div class="cand-name-row"><span class="cand-name">은혜지</span><span class="status-pill status-pass">합격</span></div>
+      <div class="cand-meta">콘텐츠사업본부 · 마케팅팀 · IMC파트 · 경력 3년 1개월</div>
     </div>
     <div class="cand-date">면접 2026.08.21</div>
     <button class="file-btn" data-idx="7"><span>자료보기</span><span class="chev">▾</span></button>
   </div>
   <div class="cand-body" id="body-7">
     <div class="cand-facts">
-      <div class="fact"><span class="fl">입사가능시기</span><span class="fv">-</span></div>
-      <div class="fact"><span class="fl">직전연봉</span><span class="fv">-</span></div>
-      <div class="fact"><span class="fl">희망연봉</span><span class="fv">-</span></div>
-      <div class="fact"><span class="fl">최종입사연봉</span><span class="fv">-</span></div>
-      <div class="fact"><span class="fl">최종입사일</span><span class="fv">-</span></div>
+      <div class="fact"><span class="fl">입사가능시기</span><span class="fv">2026.09.01</span></div>
+      <div class="fact"><span class="fl">직전연봉</span><span class="fv">3,600만원</span></div>
+      <div class="fact"><span class="fl">희망연봉</span><span class="fv">회사내규</span></div>
+      <div class="fact"><span class="fl">최종입사연봉</span><span class="fv">3,600만원</span></div>
+      <div class="fact"><span class="fl">최종입사일</span><span class="fv">2026.09.01</span></div>
     </div>
+    <div class="cand-note-row"><b>비고</b> · IMC 파트 3주, 그로스파트 3주 순환근무 후 최종배치 예정 (설명완료)</div>
     <div class="preview-panel" id="panel-7">
       <a class="open-btn mobile-only" id="mobileopen-7" href="#" target="_blank" rel="noopener">Drive에서 크게 보기 →</a>
       <div class="preview-tabs">
@@ -539,7 +539,8 @@ footer.note b { color:var(--navy); }
   <b>개인정보 취급 주의</b> — 이 표에는 지원자 실명·연봉·평가 코멘트 등 민감한 개인정보가 포함되어 있습니다. 채용 목적 외 공유·전달을 금지하며, 열람 권한은 인사총무 담당자·대표 및 관련 결재라인으로 한정해 주세요.<br>
   보고서 생성: 2026-08-13<br>
   <b>2026-08-18 수정 반영</b> — 임경은님 입사가능시기가 2026.08.18 → 2026.09.01로 정정되었습니다.<br>
-  <b>2026-08-21 수정 반영</b> — 임경은님 상태가 2차면접예정 → 처우협의로 변경되었습니다(연봉·조건 협의 진행 중, 최종입사일 미확정).
+  <b>2026-08-21 수정 반영</b> — 임경은님 상태가 2차면접예정 → 처우협의로 변경되었습니다(연봉·조건 협의 진행 중, 최종입사일 미확정).<br>
+  <b>2026-08-24 수정 반영</b> — 임경은님이 개인 사정(출퇴근 거리·역량 부담)으로 입사를 포기해 상태가 처우협의 → 입사포기로 변경되었습니다. 은혜지님은 8/21 면접 후 합격 확정되어 9/1 입사 예정입니다(IMC파트 3주·그로스파트 3주 순환근무 후 최종배치).
 </footer>
 
 </div>
@@ -632,7 +633,7 @@ new Chart(document.getElementById('funnelChart'), {
   data: {
     labels: ['지원자', '1차면접 진행', '결과 확정', '최종 합격'],
     datasets: [{
-      data: [7, 6, 6, 3],
+      data: [7, 7, 7, 4],
       backgroundColor: ['#1c2b4a', '#2f6fed', '#b8790a', '#1f8a5f'],
       borderRadius: 6,
       barPercentage: 0.65,
