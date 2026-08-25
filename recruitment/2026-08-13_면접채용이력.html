@@ -22,7 +22,7 @@ a.back-link:hover { color:var(--blue); }
 .notice-banner .dot { width:6px; height:6px; border-radius:50%; background:var(--amber); flex-shrink:0; margin-top:6px; }
 .notice-banner b { font-weight:800; }
 
-.kpi-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-bottom:30px; }
+.kpi-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:12px; margin-bottom:30px; }
 @media (max-width:1000px) { .kpi-grid{grid-template-columns:repeat(3,1fr);} }
 @media (max-width:800px) { .kpi-grid{grid-template-columns:repeat(2,1fr);} .cand-head{flex-wrap:wrap;} .cand-date{order:5; width:100%; margin-left:52px;} }
 .kpi { background:var(--card); border:1px solid var(--border); border-radius:14px; padding:16px 16px 14px; position:relative; overflow:hidden;
@@ -181,12 +181,12 @@ footer.note b { color:var(--navy); }
 </div>
 
 <div class="section-title"><span class="dot"></span>① 채용 현황 요약</div>
-<p class="section-desc">2026년 8월 진행된 면접 7건 기준입니다.</p>
+<p class="section-desc">2026년 8월 진행된 면접 8건 기준입니다(민재영 1차 면접 8/27 예정).</p>
 <div class="kpi-grid">
   <div class="kpi kpi-navy">
     <div class="label">총 면접 인원</div>
-    <div class="value">7<small>명</small></div>
-    <div class="sub">2026.08.05 ~ 08.21 진행/예정</div>
+    <div class="value">8<small>명</small></div>
+    <div class="sub">2026.08.05 ~ 08.27 진행/예정</div>
   </div>
   <div class="kpi kpi-green">
     <div class="label">합격</div>
@@ -203,12 +203,17 @@ footer.note b { color:var(--navy); }
     <div class="value">1<small>명</small></div>
     <div class="sub">임경은(출퇴근 거리·역량 부담으로 자진 포기)</div>
   </div>
+  <div class="kpi kpi-amber">
+    <div class="label">면접예정</div>
+    <div class="value">1<small>명</small></div>
+    <div class="sub">민재영(마케팅팀 IMC파트, 1차 면접 8/27)</div>
+  </div>
 </div>
 
 <div class="cal-card">
   <div class="cal-head-row">
     <div class="cal-title"><span class="dot"></span>2026년 8월 면접 캘린더</div>
-    <div class="cal-legend"><span><i class="pass"></i>합격</span><span><i class="fail"></i>불합격</span><span><i class="withdraw"></i>입사포기</span></div>
+    <div class="cal-legend"><span><i class="pass"></i>합격</span><span><i class="fail"></i>불합격</span><span><i class="withdraw"></i>입사포기</span><span><i class="pending"></i>면접예정</span></div>
   </div>
   <div class="cal-grid">
     <div class="cal-dow sun">일</div>
@@ -250,7 +255,7 @@ footer.note b { color:var(--navy); }
     <div class="cal-cell"><div class="cal-daynum">24</div></div>
     <div class="cal-cell"><div class="cal-daynum">25</div></div>
     <div class="cal-cell"><div class="cal-daynum">26</div></div>
-    <div class="cal-cell"><div class="cal-daynum">27</div></div>
+    <div class="cal-cell has-event"><div class="cal-daynum">27</div><button class="cal-chip status-pending" data-idx="8">민재영</button></div>
     <div class="cal-cell"><div class="cal-daynum">28</div></div>
     <div class="cal-cell"><div class="cal-daynum">29</div></div>
     <div class="cal-cell"><div class="cal-daynum">30</div></div>
@@ -269,10 +274,11 @@ footer.note b { color:var(--navy); }
     <p class="section-desc" style="margin-bottom:0;">카드를 클릭하면 상세 정보와 이력서·포트폴리오가 펼쳐집니다.</p>
   </div>
   <div class="filter-tabs">
-    <button class="filter-tab active" data-filter="all">전체 7</button>
+    <button class="filter-tab active" data-filter="all">전체 8</button>
     <button class="filter-tab" data-filter="pass">합격 4</button>
     <button class="filter-tab" data-filter="fail">불합격 2</button>
     <button class="filter-tab" data-filter="withdraw">입사포기 1</button>
+    <button class="filter-tab" data-filter="pending">면접예정 1</button>
   </div>
 </div>
 
@@ -514,6 +520,40 @@ footer.note b { color:var(--navy); }
   </div>
 </div>
 
+<div class="cand-card" data-status="pending">
+  <div class="cand-head" data-idx="8">
+    <div class="cand-avatar">민</div>
+    <div class="cand-main">
+      <div class="cand-name-row"><span class="cand-name">민재영</span><span class="status-pill status-pending">면접예정</span></div>
+      <div class="cand-meta">콘텐츠사업본부 · 마케팅팀 · IMC파트 · 경력 확인 예정</div>
+    </div>
+    <div class="cand-date">1차 2026.08.27 예정</div>
+    <button class="file-btn" data-idx="8"><span>자료보기</span><span class="chev">▾</span></button>
+  </div>
+  <div class="cand-body" id="body-8">
+    <div class="cand-facts">
+      <div class="fact"><span class="fl">입사가능시기</span><span class="fv">-</span></div>
+      <div class="fact"><span class="fl">직전연봉</span><span class="fv">-</span></div>
+      <div class="fact"><span class="fl">희망연봉</span><span class="fv">-</span></div>
+      <div class="fact"><span class="fl">최종입사연봉</span><span class="fv">-</span></div>
+      <div class="fact"><span class="fl">최종입사일</span><span class="fv">-</span></div>
+    </div>
+    <div class="cand-note-row"><b>비고</b> · 1차 면접 예정(2026.08.27). 상세 정보는 면접 진행 후 반영 예정입니다.</div>
+    <div class="preview-panel" id="panel-8">
+      <a class="open-btn mobile-only" id="mobileopen-8" href="#" target="_blank" rel="noopener">Drive에서 크게 보기 →</a>
+      <div class="preview-tabs">
+        <button class="preview-tab active" data-idx="8" data-file="1Ex4qdT4ZtWCaXHXLP4pOkA0wRmPkWECU">이력서</button>
+        <button class="preview-tab" data-idx="8" data-file="1tio1u4B92xGketThaxo84wpMhsBa4M5G">포트폴리오</button>
+      </div>
+      <div class="preview-frame-wrap"><iframe id="iframe-8" loading="lazy" src=""></iframe></div>
+      <div class="preview-linkrow">
+        <span class="preview-hint">화면이 비어 보이면 공유받은 구글 계정으로 로그인되어 있는지 확인하세요.</span>
+        <a id="newtab-8" href="#" target="_blank" rel="noopener">Drive 새 창에서 열기 →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
 </div>
 
 <div class="section-title" style="margin-top:6px;"><span class="dot amber"></span>③ 채용 데이터 분석</div>
@@ -540,7 +580,8 @@ footer.note b { color:var(--navy); }
   보고서 생성: 2026-08-13<br>
   <b>2026-08-18 수정 반영</b> — 임경은님 입사가능시기가 2026.08.18 → 2026.09.01로 정정되었습니다.<br>
   <b>2026-08-21 수정 반영</b> — 임경은님 상태가 2차면접예정 → 처우협의로 변경되었습니다(연봉·조건 협의 진행 중, 최종입사일 미확정).<br>
-  <b>2026-08-24 수정 반영</b> — 임경은님이 개인 사정(출퇴근 거리·역량 부담)으로 입사를 포기해 상태가 처우협의 → 입사포기로 변경되었습니다. 은혜지님은 8/21 면접 후 합격 확정되어 9/1 입사 예정입니다(IMC파트 3주·그로스파트 3주 순환근무 후 최종배치).
+  <b>2026-08-24 수정 반영</b> — 임경은님이 개인 사정(출퇴근 거리·역량 부담)으로 입사를 포기해 상태가 처우협의 → 입사포기로 변경되었습니다. 은혜지님은 8/21 면접 후 합격 확정되어 9/1 입사 예정입니다(IMC파트 3주·그로스파트 3주 순환근무 후 최종배치).<br>
+  <b>2026-08-25 수정 반영</b> — 마케팅팀 IMC파트 신규 지원자 민재영님이 등록되어 8번째 후보로 추가되었습니다(1차 면접 2026.08.27 예정).
 </footer>
 
 </div>
@@ -633,7 +674,7 @@ new Chart(document.getElementById('funnelChart'), {
   data: {
     labels: ['지원자', '1차면접 진행', '결과 확정', '최종 합격'],
     datasets: [{
-      data: [7, 7, 7, 4],
+      data: [8, 7, 7, 4],
       backgroundColor: ['#1c2b4a', '#2f6fed', '#b8790a', '#1f8a5f'],
       borderRadius: 6,
       barPercentage: 0.65,
