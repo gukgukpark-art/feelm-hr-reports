@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>필름 인원현황 · 주간업무 보고 (2026-09-01)</title>
+<style>
+  :root {
+    color-scheme: light;
+    --navy:#1c2b4a;
+    --navy-2:#2a3f66;
+    --blue:#2f6fed;
+    --blue-l:#eaf1ff;
+    --green:#1a9e6b;
+    --green-l:#e7f8f1;
+    --red:#d9483f;
+    --red-l:#fdecea;
+    --amber:#c9860b;
+    --amber-l:#fdf3e0;
+    --gray:#6b7280;
+    --gray-l:#f4f5f7;
+    --border:#e4e7ee;
+    --bg:#f7f8fb;
+    --card:#ffffff;
+    --text:#1b1f2a;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin:0; background:linear-gradient(180deg,#eef2fb 0%,#f7f8fb 260px,#f7f8fb 100%); color:var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Malgun Gothic", "Apple SD Gothic Neo", Roboto, Arial, sans-serif;
+    font-size:14px; line-height:1.5;
+  }
+  .wrap { max-width:1180px; margin:0 auto; padding:24px 20px 60px; }
+  header.top {
+    display:flex; justify-content:space-between; align-items:flex-start; gap:16px;
+    margin-bottom:20px; flex-wrap:wrap;
+  }
+  header.top h1 { font-size:21px; margin:0 0 4px; color:var(--navy); display:flex; align-items:center; gap:12px; }
+  header.top p.sub { margin:0; color:var(--gray); font-size:13px; }
+  /* 필름(블랙 워드마크) + 공명(노란 링 + 브라운 필기체 워드마크) 브랜드 로고 조합 미니어처 */
+  .brand-lockup { display:inline-flex; align-items:center; gap:8px; flex-shrink:0; }
+  .brand-lockup svg { display:block; }
+  .brand-film { font-weight:900; font-size:18px; color:#111; letter-spacing:-0.5px; }
+  .brand-divider { width:1px; height:20px; background:var(--border); }
+  .brand-gm-block { display:flex; flex-direction:column; align-items:flex-start; line-height:1; gap:2px; }
+  .brand-gm-word { font-family:"Segoe Script","Brush Script MT","Snell Roundhand",cursive; font-weight:700; font-style:italic; font-size:18px; color:#4a2a16; }
+  .brand-gm-tag { font-size:6.5px; font-weight:700; letter-spacing:.3px; color:#fff; background:#3a2213; padding:1px 5px; border-radius:8px; white-space:nowrap; }
+  .status-row { display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+  .badge { display:inline-flex; align-items:center; gap:6px; padding:5px 10px; border-radius:20px; font-size:12px; font-weight:600; }
+  .badge.ok { background:var(--green-l); color:var(--green); }
+  .badge.warn { background:var(--amber-l); color:var(--amber); }
+  .badge.err { background:var(--red-l); color:var(--red); }
+  .badge.muted { background:var(--gray-l); color:var(--gray); }
+  button {
+    font:inherit; cursor:pointer; border-radius:8px; border:1px solid var(--border);
+    background:#fff; padding:8px 14px; color:var(--navy); font-weight:600; transition:.15s;
+  }
+  button:hover { border-color:var(--blue); color:var(--blue); }
+  button.primary { background:var(--blue); border-color:var(--blue); color:#fff; }
+  button.primary:hover { background:#2560d6; color:#fff; }
+  button:disabled { opacity:.5; cursor:default; }
+  button.small { padding:5px 10px; font-size:12px; }
+
+  .banner { padding:12px 16px; border-radius:10px; margin-bottom:18px; font-size:13px; display:none; }
+  .banner.show { display:block; }
+  .banner.err { background:var(--red-l); color:#8f251d; border:1px solid #f3c7c3; }
+  .banner.warn { background:var(--amber-l); color:#7a5308; border:1px solid #f0dba3; }
+
+  .kpi-grid { display:grid; grid-template-columns:repeat(6,1fr); gap:12px; margin-bottom:22px; }
+  @media (max-width:980px){ .kpi-grid{ grid-template-columns:repeat(3,1fr);} }
+  @media (max-width:600px){ .kpi-grid{ grid-template-columns:repeat(2,1fr);} }
+  .kpi {
+    background:var(--card); border:1px solid var(--border); border-radius:12px; padding:16px 14px 12px;
+    position:relative; overflow:hidden; box-shadow:0 1px 2px rgba(20,30,60,.05);
+  }
+  .kpi::before { content:""; position:absolute; top:0; left:0; right:0; height:4px; background:var(--navy); }
+  .kpi.hire::before { background:var(--green); }
+  .kpi.resign::before { background:var(--red); }
+  .kpi.probation::before { background:var(--amber); }
+  .kpi .label { font-size:12px; color:var(--gray); font-weight:600; margin-bottom:6px; }
+  .kpi .value { font-size:24px; font-weight:800; color:var(--navy); }
+  .kpi .value small { font-size:12px; font-weight:600; color:var(--gray); margin-left:2px;}
+  .kpi.hire .value { color:var(--green); }
+  .kpi.resign .value { color:var(--red); }
+  .kpi.probation .value { color:var(--amber); }
+
+  section.card, details.card {
+    background:var(--card); border:1px solid var(--border); border-radius:14px;
+    padding:18px 20px; margin-bottom:20px; box-shadow:0 1px 2px rgba(20,30,60,.05);
+  }
+  section.card h2, details.card summary { font-size:15px; margin:0 0 4px; color:var(--navy); display:flex; align-items:center; gap:8px; }
+  section.card h2::before { content:""; width:8px; height:8px; border-radius:50%; background:var(--blue); display:inline-block; flex-shrink:0; }
+  section.card p.desc, details.card p.desc { margin:0 0 14px; color:var(--gray); font-size:12.5px; }
+  .two-col { display:grid; grid-template-columns:1.1fr .9fr; gap:20px; }
+  @media (max-width:900px){ .two-col{ grid-template-columns:1fr; } }
+
+  table { width:100%; border-collapse:collapse; font-size:13px; }
+  th, td { text-align:left; padding:8px 10px; border-bottom:1px solid var(--border); }
+  th { color:var(--gray); font-weight:700; font-size:12px; text-transform:uppercase; letter-spacing:.02em; background:var(--gray-l); }
+  tr:hover td { background:#fafbfe; }
+  td.num { text-align:right; font-variant-numeric:tabular-nums; }
+  .pill { display:inline-block; padding:2px 8px; border-radius:10px; font-size:11.5px; font-weight:700; }
+  .pill.green { background:var(--green-l); color:var(--green); }
+  .pill.red { background:var(--red-l); color:var(--red); }
+  .pill.amber { background:var(--amber-l); color:var(--amber); }
+  .pill.gray { background:var(--gray-l); color:var(--gray); }
+
+  .bar-track { width:100%; height:8px; background:var(--gray-l); border-radius:6px; overflow:hidden; margin-top:4px; }
+  .bar-fill { height:100%; border-radius:6px; background:var(--blue); }
+  .bar-fill.over { background:var(--amber); }
+  .bar-fill.zero { background:var(--red); }
+
+  .tabs { display:flex; gap:6px; margin-bottom:12px; }
+  .tab-btn { padding:6px 12px; font-size:12.5px; border-radius:8px; }
+  .tab-btn.active { background:var(--navy); border-color:var(--navy); color:#fff; }
+  .tab-panel { display:none; }
+  .tab-panel.active { display:block; }
+  .empty-note { color:var(--gray); font-size:13px; padding:14px 4px; }
+
+  .chart-box { position:relative; height:230px; }
+  .to-summary { display:grid; grid-template-columns:repeat(auto-fill, minmax(150px,1fr)); gap:6px 14px; margin-top:12px; padding-top:12px; border-top:1px solid var(--border); }
+  .to-summary-row { display:flex; flex-direction:column; gap:2px; font-size:12px; }
+  .to-summary-name { color:var(--gray); font-weight:600; }
+  .to-summary-nums { font-weight:700; color:var(--text); }
+  .to-editor-row { display:grid; grid-template-columns:1.4fr .7fr .7fr .7fr .7fr; gap:8px; align-items:center; padding:6px 0; border-bottom:1px dashed var(--border); font-size:13px;}
+  .to-editor-row.gm { grid-template-columns:1.4fr .8fr .8fr; }
+  .to-editor-row.head { color:var(--gray); font-weight:700; font-size:11.5px; text-transform:uppercase; }
+  .to-editor-row input { width:60px; padding:5px 6px; border:1px solid var(--border); border-radius:6px; font:inherit; }
+  .gm-hiring-input { width:36px; padding:2px 4px; border:1px solid var(--border); border-radius:6px; font:inherit; font-size:11.5px; }
+  .supp-textarea { width:100%; min-height:80px; border:1px solid var(--border); border-radius:10px; padding:10px 12px; font:inherit; font-size:12.5px; resize:vertical; }
+
+  .line-editor-head { display:grid; gap:8px; padding:0 4px 6px; color:var(--gray); font-weight:700; font-size:11px; text-transform:uppercase; letter-spacing:.02em; }
+  .line-editor-head.shinsa { grid-template-columns:1fr 1.3fr 1.1fr .8fr 1fr 1.1fr 1fr 28px; }
+  .line-editor-head.supp { grid-template-columns:1.1fr 1.3fr 1fr 1fr 1fr 28px; }
+  .line-row { display:grid; gap:8px; align-items:center; padding:6px 4px; border-bottom:1px dashed var(--border); position:relative; }
+  .line-row.shinsa { grid-template-columns:1fr 1.3fr 1.1fr .8fr 1fr 1.1fr 1fr 28px; }
+  .line-row.supp { grid-template-columns:1.1fr 1.3fr 1fr 1fr 1fr 28px; }
+  .line-row.is-resigned { background:var(--gray-l); border-radius:8px; opacity:.7; }
+  .line-row.is-resigned::before {
+    content:"퇴사됨"; position:absolute; top:-9px; left:8px; z-index:1;
+    background:var(--gray); color:#fff; font-size:10px; font-weight:700; letter-spacing:.02em;
+    padding:1px 8px; border-radius:8px;
+  }
+  .line-row input, .line-row select {
+    width:100%; padding:6px 8px; border:1px solid var(--border); border-radius:7px; font:inherit; font-size:12.5px; background:#fff;
+  }
+  .line-row input:disabled { background:var(--gray-l); color:var(--gray); }
+  .line-row .line-del {
+    width:28px; height:28px; padding:0; display:flex; align-items:center; justify-content:center;
+    border-radius:7px; color:var(--red); border-color:#f3c7c3; font-size:13px;
+  }
+  .line-row .line-del:hover { background:var(--red-l); border-color:var(--red); }
+  .line-editor-empty { color:var(--gray); font-size:12.5px; padding:10px 4px; }
+  @media (max-width:900px){
+    .line-editor-head.shinsa, .line-row.shinsa, .line-editor-head.supp, .line-row.supp { grid-template-columns:1fr; }
+    .line-editor-head { display:none; }
+    .line-row { border:1px solid var(--border); border-radius:10px; margin-bottom:8px; padding:10px; }
+  }
+
+  textarea.notes { width:100%; min-height:110px; border:1px solid var(--border); border-radius:10px; padding:10px 12px; font:inherit; resize:vertical; }
+  .note-entry { border:1px solid var(--border); border-radius:10px; padding:10px 12px; margin-bottom:10px; background:#fbfcfe; }
+  .note-entry .meta { font-size:11.5px; color:var(--gray); margin-bottom:4px; font-weight:700; }
+  .note-entry .body { white-space:pre-wrap; font-size:13px; }
+
+  .org-tree { font-size:13.5px; }
+  .org-node { position:relative; }
+  details.org-node > summary {
+    list-style:none; cursor:pointer; padding:7px 8px; border-radius:8px; display:flex; align-items:center; flex-wrap:wrap; gap:2px;
+  }
+  details.org-node > summary::-webkit-details-marker { display:none; }
+  details.org-node > summary:hover { background:var(--gray-l); }
+  .org-leaf-empty { padding:7px 8px 7px 26px; color:var(--gray); display:flex; align-items:center; gap:2px; }
+  .org-caret { display:inline-block; width:16px; color:var(--gray); font-size:11px; transition:transform .12s; }
+  details.org-node:not([open]) > summary .org-caret { transform:rotate(-90deg); }
+  .org-node-name { margin-right:2px; }
+  .org-leader-label { color:var(--blue); font-size:11.5px; margin-left:8px; font-weight:600; }
+  .org-children { margin-left:6px; border-left:2px solid var(--border); padding-left:6px; }
+  .org-member-list { margin:2px 0 4px 34px; padding:6px 10px; background:var(--gray-l); border-radius:8px; }
+  .org-member { display:flex; align-items:center; gap:8px; padding:2px 0; font-size:12.5px; }
+  .org-member.leader { font-weight:700; color:var(--navy); }
+  .org-member-icon { color:var(--amber); width:12px; text-align:center; font-size:11px; }
+  .org-member.leader .org-member-icon { }
+  .org-member-name { min-width:64px; }
+  .org-member-pos { color:var(--gray); font-size:11.5px; }
+  .org-member.pt { opacity:.85; }
+  .org-member.pending { opacity:.7; font-style:italic; }
+  .hq-hiring-input { width:44px; margin-left:8px; padding:2px 4px; border:1px solid var(--border); border-radius:6px; font:inherit; font-size:11.5px; }
+
+
+  .finalize-bar {
+    display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;
+    background:var(--blue-l); border:1px solid #cfe0fb; border-radius:12px; padding:12px 16px; margin-bottom:20px;
+  }
+
+  footer.note { color:var(--gray); font-size:11.5px; line-height:1.7; padding-top:6px; }
+  code { background:var(--gray-l); padding:1px 5px; border-radius:5px; font-size:12px; }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <h1>
+        <span class="brand-lockup" title="㈜필름 · 공명(Gong Myoung)">
+          <span class="brand-film">필름</span>
+          <svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="10" cy="10" r="7" fill="none" stroke="#f5d130" stroke-width="4"/>
+          </svg>
+          <span class="brand-gm-block">
+            <span class="brand-gm-word">Gong Myoung</span>
+            <span class="brand-gm-tag">HAVE A GOOD TIME WITH</span>
+          </span>
+        </span>
+        필름/공명 인원현황&amp;주간업무
+      </h1>
+      <p class="sub">㈜필름 본사 + 카페공명 전 매장 · 2026-09-01 기준 보고용 스냅샷</p>
+    </div>
+    <div class="status-row"><span class="badge muted">📄 보고용 스냅샷 · 읽기 전용</span></div>
+  </header>
+
+  <div class="banner warn show">이 문서는 2026-09-01에 마감되어 저장된 읽기 전용 스냅샷입니다. 라이브 대시보드처럼 실시간으로 갱신되지 않으니, 최신 수치는 라이브 대시보드에서 확인해 주세요.</div>
+
+  <div class="kpi-grid">
+      <div class="kpi ">
+        <div class="label">전체 재직 (정규+계약)</div>
+        <div class="value">53<small>명</small></div>
+      </div>
+      <div class="kpi ">
+        <div class="label">카페 파트타이머(유효계약)</div>
+        <div class="value">25<small>명</small></div>
+      </div>
+      <div class="kpi hire">
+        <div class="label">이번 주 입사</div>
+        <div class="value">7<small>명</small></div>
+      </div>
+      <div class="kpi resign">
+        <div class="label">이번 주 퇴사</div>
+        <div class="value">3<small>명</small></div>
+      </div>
+      <div class="kpi ">
+        <div class="label">입사·퇴사 예정</div>
+        <div class="value">7 / 0<small>명</small></div>
+      </div>
+      <div class="kpi probation">
+        <div class="label">수습기간 중</div>
+        <div class="value">16<small>명</small></div>
+      </div></div>
+
+  <section class="card">
+    <h2>인원 구성</h2>
+    <p class="desc">현재 재직 중인 정규직 기준 (㈜필름 본사 vs 카페공명), 매장/파트별 TO 충원율</p>
+    <div class="two-col">
+      <div class="chart-box"><canvas id="deptChart"></canvas></div>
+      <div class="chart-box"><canvas id="toChart"></canvas></div>
+    </div>
+    <div id="toSummary" class="to-summary"><div class="to-summary-row"><span class="to-summary-name">연남점</span><span class="to-summary-nums">정직 3/4명 · 파트 5/6명</span></div><div class="to-summary-row"><span class="to-summary-name">홍대점</span><span class="to-summary-nums">정직 3/3명 · 파트 6/6명</span></div><div class="to-summary-row"><span class="to-summary-name">망원점</span><span class="to-summary-nums">정직 3/3명 · 파트 4/4명</span></div><div class="to-summary-row"><span class="to-summary-name">마곡점</span><span class="to-summary-nums">정직 5/5명 · 파트 7/9명</span></div><div class="to-summary-row"><span class="to-summary-name">DMC점 (오픈예정)</span><span class="to-summary-nums">정직 0/3명 · 파트 0/4명</span></div><div class="to-summary-row"><span class="to-summary-name">베이커리파트</span><span class="to-summary-nums">정직 9/10명 · 파트 0/2명</span></div><div class="to-summary-row"><span class="to-summary-name">로스팅파트</span><span class="to-summary-nums">정직 1/1명</span></div><div class="to-summary-row"><span class="to-summary-name">신사가로수길점 (위탁운영)</span><span class="to-summary-nums">정직 4명 · 파트 3명</span></div></div>
+  </section>
+
+  <section class="card">
+    <h2>㈜필름 조직도 현황</h2>
+    <div class="org-tree"><details class="org-node" open style="margin-left:0px;">
+      <summary>
+      <span class="org-caret">▾</span>
+      <span class="org-node-name" style="font-weight:800;">㈜필름</span>
+      <span class="pill green" style="margin-left:8px;">25명</span>
+      
+    </summary>
+      <div class="org-member-list"><div class="org-member">
+      <span class="org-member-icon">·</span>
+      <span class="org-member-name">김상현</span>
+      <span class="org-member-pos">대표이사</span>
+    </div></div><div class="org-children"><details class="org-node" open style="margin-left:16px;">
+      <summary>
+      <span class="org-caret">▾</span>
+      <span class="org-node-name" style="font-weight:800;">콘텐츠사업본부</span>
+      <span class="pill green" style="margin-left:8px;">16명</span>
+      <span class="org-leader-label">담당 엄재욱 본부장(마케팅팀장 겸임)</span>
+    </summary>
+      <div class="org-member-list"><div class="org-member leader">
+      <span class="org-member-icon">★</span>
+      <span class="org-member-name">엄재욱</span>
+      <span class="org-member-pos">본부장</span> <span class="pill amber" style="padding:0 6px;">마케팅팀장 겸임</span>
+    </div></div><div class="org-children"><details class="org-node"  style="margin-left:16px;">
+      <summary>
+      <span class="org-caret">▾</span>
+      <span class="org-node-name" style="font-weight:600;">디자인파트</span>
+      <span class="pill green" style="margin-left:8px;">2명</span>
+      <span class="org-leader-label">담당 황규성 파트장</span>
+    </summary>
+      <div class="org-member-list"><div class="org-member leader">
+      <span class="org-member-icon">★</span>
+      <span class="org-member-name">황규성</span>
+      <span class="org-member-pos">파트장</span>
+    </div><div class="org-member">
+      <span class="org-member-icon">·</span>
+      <span class="org-member-name">박선경</span>
+      <span class="org-member-pos">매니저</span>
+    </div></div>
+    </details><details class="org-node"  style="margin-left:16px;">
+      <summary>
+      <span class="org-caret">▾</span>
+      <span class="org-node-name" style="font-weight:600;">출판1팀</span>
+      <span class="pill green" style="margin-left:8px;">4명</span>
+      <span class="pill amber" style="margin-left:6px;">+3명 채용중</span><span class="pill amber" style="margin-left:6px;">입사예정 1명</span>
+    </summary>
+      <div class="org-member-list"><div class="org-member pending">
+      <span class="org-member-icon">·</span>
+      <span class="org-member-name">강지은</span>
+      <span class="org-member-pos">팀장 · <span class="pill amber" style="padding:0 5px;">2026-09-14 입사예정</span></span>
+    </div></div><div class="org-children"><details class="org-node"  style="margin-left:16px;">
+      <summary>
+      <span class="org-caret">▾</span>
+      <span class="org-node-name" style="font-weight:600;">기획1파트</span>
+      <span class="pill green" style="margin-left:8px;">2명</span>
+      <span class="org-leader-label">담당 심재헌 파트장</span>
+    </summary>
+      <div class="org-member-list"><div class="org-member leader">
+      <span class="org-member-icon">★</span>
+      <span class="org-member-name">심재헌</span>
+      <span class="org-member-pos">파트장</span>
+    </div><div class="org-member">
+      <span class="org-member-icon">·</span>
+      <span class="org-member-name">조정빈</span>
+      <span class="org-member-pos">매니저</span>
+    </div></div>
+    </details><details class="org-node"  style="margin-left:16px;">
+      <summary>
+      <span class="org-caret">▾</span>
+      <span class="org-node-name" style="font-weight:600;">기획2파트</span>
+      <span class="pill green" style="margin-left:8px;">2명</span>
+      
+    </summary>
+      <div class="org-member-list"><div class="org-member">
+      <span class="org-member-icon">·</span>
+      <span class="org-member-name">윤정기</span>
+      <span class="org-member-pos">선임매니저</span>
+    </div><div class="org-member">
+      <span class="org-member-icon">·</span>
+      <span class="org-member-name">신나라</span>
+      <span class="org-member-pos">매니저</span>
+    </div></div>
+    </details></div>
+    </details><details class="org-node"  style="margin-left:16px;">
+      <summary>
+      <span class="org-caret">▾</span>
+      <span class="org-node-name" style="font-weight:600;">출판2팀</span>
+      <span class="pill green" style="margin-left:8px;">1명</span>
+      <span class="org-leader-label">담당 김현미 팀장</span>
+    </summary>
+      <div class="org-member-list"><div class="org-member leader">
+      <span class="org-member-icon">★</span>
+      <span class="org-member-name">김현미</span>
+      <span class="org-member-pos">팀장</span>
+    </div></div>
+    </details><details class="org-node"  style="margin-left:16px;">
+      <summary>
+      <span class="org-caret">▾</span>
+      <span class="org-node-name" style="font-weight:600;">마케팅팀</span>
+      <span class="pill green" style="margin-left:8px;">8명</span>
+      <span class="pill amber" style="margin-left:6px;">+1명 채용중</span>
+    </summary>
+      <div class="org-children"><details class="org-node"  style="margin-left:16px;">
+      <summary>
+      <span class="org-caret">▾</span>
+      <span class="org-node-name" style="font-weight:600;">IMC파트</span>
+      <span class="pill green" style="margin-left:8px;">4명</span>
+      <span class="org-leader-label">담당 강보현 파트장</span><span class="pill amber" style="margin-left:6px;">+3명 채용중</span><span class="pill amber" style="margin-left:6px;">입사예정 1명</span>
+    </summary>
+      <div class="org-member-list"><div class="org-member leader">
+      <span class="org-member-icon">★</span>
+      <span class="org-member-name">강보현</span>
+      <span class="org-member-pos">파트장</span>
+    </div><div class="org-member">
+      <span class="org-member-icon">·</span>
+      <span class="org-member-name">이다혜</span>
+      <span class="org-member-pos">매니저</span>
+    </div><div class="org-member">
+      <span class="org-member-icon">·</span>
+      <span class="org-member-name">박미소</span>
+      <span class="org-member-pos">매니저</span>
+    </div><div class="org-member">
+      <span class="org-member-icon">·</span>
+      <span class="org-member-name">은혜지</span>
+      <span class="org-member-pos">매니저</span>
+    </div><div class="org-member pending">
+      <span class="org-member-icon">·</span>
+      <span class="org-member-name">민재영</span>
+      <span class="org-member-pos">매니저 · <span class="pill amber" style="padding:0 5px;">2026-09-14 입사예정</span></span>
+    </div></div>
+    </details><details class="org-node"  style="margin-left:16px;">
+      <summary>
+      <span class="org-caret">▾</span>
+      <span class="org-node-name" style="font-weight:600;">그로스파트</span>
+      <span class="pill green" style="margin-left:8px;">4명</span>
+      <span class="org-leader-label">담당 이영섭 파트장</span>
+    </summary>
+      <div class="org-member-list"><div class="org-member leader">
+      <span class="org-member-icon">★</span>
+      <span class="org-member-name">이영섭</span>
+      <span class="org-member-pos">파트장</span>
+    </div><div class="org-member">
+      <span class="org-member-icon">·</span>
+      <span class="org-member-name">윤자영</span>
+      <span class="org-member-pos">매니저</span>
+    </div><div class="org-member">
+      <span class="org-member-icon">·</span>
+      <span class="org-member-name">박정애</span>
+      <span class="org-member-pos">매니저</span>
+    </div><div class="org-member">
+      <span class="org-member-icon">·</span>
+      <span class="org-member-name">정영원</span>
+      <span class="org-member-pos">매니저</span>
+    </div></div>
+    </details></div>
+    </details></div>
+    </details><details class="org-node" open style="margin-left:16px;">
+      <summary>
+      <span class="org-caret">▾</span>
+      <span class="org-node-name" style="font-weight:800;">외식사업본부</span>
+      <span class="pill green" style="margin-left:8px;">3명</span>
+      
+    </summary>
+      <div class="org-children"><details class="org-node"  style="margin-left:16px;">
+      <summary>
+      <span class="org-caret">▾</span>
+      <span class="org-node-name" style="font-weight:600;">카페사업팀</span>
+      <span class="pill green" style="margin-left:8px;">3명</span>
+      <span class="org-leader-label">담당 김준호 팀장</span>
+    </summary>
+      <div class="org-member-list"><div class="org-member leader">
+      <span class="org-member-icon">★</span>
+      <span class="org-member-name">김준호</span>
+      <span class="org-member-pos">팀장</span>
+    </div></div><div class="org-children"><details class="org-node"  style="margin-left:16px;">
+      <summary>
+      <span class="org-caret">▾</span>
+      <span class="org-node-name" style="font-weight:600;">운영관리파트</span>
+      <span class="pill green" style="margin-left:8px;">2명</span>
+      
+    </summary>
+      <div class="org-member-list"><div class="org-member">
+      <span class="org-member-icon">·</span>
+      <span class="org-member-name">최소이</span>
+      <span class="org-member-pos">매니저</span>
+    </div><div class="org-member">
+      <span class="org-member-icon">·</span>
+      <span class="org-member-name">심재원</span>
+      <span class="org-member-pos">매니저</span>
+    </div></div>
+    </details><details class="org-node"  style="margin-left:16px;">
+      <summary>
+      <span class="org-caret">▾</span>
+      <span class="org-node-name" style="font-weight:600;">베이커리파트 (공명 소속·참고)</span>
+      <span class="pill green" style="margin-left:8px;">9명</span>
+      <span class="org-leader-label">담당 황영은 파트장</span><span class="pill gray" style="margin-left:6px;">참고용·필름 총원 미포함</span><span class="pill amber" style="margin-left:6px;">+1명 채용중</span>
+    </summary>
+      <div class="org-member-list"><div class="org-member leader">
+      <span class="org-member-icon">★</span>
+      <span class="org-member-name">황영은</span>
+      <span class="org-member-pos">파트장</span>
+    </div><div class="org-member">
+      <span class="org-member-icon">·</span>
+      <span class="org-member-name">문형식</span>
+      <span class="org-member-pos">매니저</span>
+    </div><div class="org-member">
+      <span class="org-member-icon">·</span>
+      <span class="org-member-name">장혜원</span>
+      <span class="org-member-pos">매니저</span>
+    </div><div class="org-member">
+      <span class="org-member-icon">·</span>
+      <span class="org-member-name">박찬희</span>
+      <span class="org-member-pos">선임매니저</span>
+    </div><div class="org-member">
+      <span class="org-member-icon">·</span>
+      <span class="org-member-name">오유진</span>
+      <span class="org-member-pos">매니저</span>
+    </div><div class="org-member">
+      <span class="org-member-icon">·</span>
+      <span class="org-member-name">박강현</span>
+      <span class="org-member-pos">선임매니저</span>
+    </div><div class="org-member">
+      <span class="org-member-icon">·</span>
+      <span class="org-member-name">김현지</span>
+      <span class="org-member-pos">매니저</span>
+    </div><div class="org-member">
+      <span class="org-member-icon">·</span>
+      <span class="org-member-name">김희주</span>
+      <span class="org-member-pos">매니저</span>
+    </div><div class="org-member">
+      <span class="org-member-icon">·</span>
+      <span class="org-member-name">이다인</span>
+      <span class="org-member-pos">매니저</span>
+    </div></div>
+    </details><details class="org-node"  style="margin-left:16px;">
+      <summary>
+      <span class="org-caret">▾</span>
+      <span class="org-node-name" style="font-weight:600;">로스팅파트 (공명 소속·참고)</span>
+      <span class="pill green" style="margin-left:8px;">1명</span>
+      <span class="org-leader-label">담당 곽동헌 파트장</span><span class="pill gray" style="margin-left:6px;">참고용·필름 총원 미포함</span>
+    </summary>
+      <div class="org-member-list"><div class="org-member leader">
+      <span class="org-member-icon">★</span>
+      <span class="org-member-name">곽동헌</span>
+      <span class="org-member-pos">파트장</span>
+    </div></div>
+    </details></div>
+    </details></div>
+    </details><details class="org-node" open style="margin-left:16px;">
+      <summary>
+      <span class="org-caret">▾</span>
+      <span class="org-node-name" style="font-weight:800;">경영팀</span>
+      <span class="pill green" style="margin-left:8px;">5명</span>
+      <span class="org-leader-label">담당 이관행 팀장(육아휴직)</span>
+    </summary>
+      <div class="org-member-list"><div class="org-member leader">
+      <span class="org-member-icon">★</span>
+      <span class="org-member-name">이관행</span>
+      <span class="org-member-pos">팀장</span> <span class="pill amber" style="padding:0 6px;">육아휴직</span>
+    </div></div><div class="org-children"><details class="org-node"  style="margin-left:16px;">
+      <summary>
+      <span class="org-caret">▾</span>
+      <span class="org-node-name" style="font-weight:600;">재무회계파트</span>
+      <span class="pill green" style="margin-left:8px;">2명</span>
+      <span class="org-leader-label">담당 김준하 파트장</span>
+    </summary>
+      <div class="org-member-list"><div class="org-member leader">
+      <span class="org-member-icon">★</span>
+      <span class="org-member-name">김준하</span>
+      <span class="org-member-pos">파트장</span>
+    </div><div class="org-member">
+      <span class="org-member-icon">·</span>
+      <span class="org-member-name">서한희</span>
+      <span class="org-member-pos">매니저</span>
+    </div></div>
+    </details><details class="org-node"  style="margin-left:16px;">
+      <summary>
+      <span class="org-caret">▾</span>
+      <span class="org-node-name" style="font-weight:600;">인사총무파트</span>
+      <span class="pill green" style="margin-left:8px;">2명</span>
+      <span class="org-leader-label">담당 박찬국 파트장</span>
+    </summary>
+      <div class="org-member-list"><div class="org-member leader">
+      <span class="org-member-icon">★</span>
+      <span class="org-member-name">박찬국</span>
+      <span class="org-member-pos">파트장</span>
+    </div><div class="org-member">
+      <span class="org-member-icon">·</span>
+      <span class="org-member-name">김재현</span>
+      <span class="org-member-pos">매니저</span>
+    </div></div>
+    </details></div>
+    </details></div>
+    </details></div>
+  </section>
+
+  <section class="card">
+    <h2>공명(카페 브랜드) 조직도 현황</h2>
+    <div class="org-tree"><details class="org-node" open style="margin-left:0px;">
+      <summary>
+      <span class="org-caret">▾</span>
+      <span class="org-node-name" style="font-weight:800;">공명 (카페 브랜드)</span>
+      <span class="pill green" style="margin-left:8px;">28명</span>
+      
+    </summary>
+      <div class="org-children"><details class="org-node" open style="margin-left:16px;">
+      <summary>
+      <span class="org-caret">▾</span>
+      <span class="org-node-name" style="font-weight:800;">연남점</span>
+      <span class="pill green" style="margin-left:8px;">3명</span>
+      <span class="org-leader-label">담당 정진영 부점장</span><span style="margin-left:8px; display:inline-flex; align-items:center; gap:4px;"><span style="color:var(--gray); font-size:11.5px;">정직</span><div>3 / 4 <span class="pill amber">75%</span>
+      <div class="bar-track"><div class="bar-fill " style="width:75%"></div></div></div></span><span style="margin-left:8px; display:inline-flex; align-items:center; gap:4px;"><span style="color:var(--gray); font-size:11.5px;">파트</span><div>5 / 6 <span class="pill amber">83%</span>
+      <div class="bar-track"><div class="bar-fill " style="width:83%"></div></div></div></span><span class="pill amber" style="margin-left:6px;">+1명 정직 채용중</span><span class="pill amber" style="margin-left:6px;">입사예정 1명</span>
+    </summary>
+      <div class="org-member-list"><div class="org-member leader">
+      <span class="org-member-icon">★</span>
+      <span class="org-member-name">정진영</span>
+      <span class="org-member-pos">부점장</span>
+    </div><div class="org-member">
+      <span class="org-member-icon">·</span>
+      <span class="org-member-name">박소영</span>
+      <span class="org-member-pos">매니저</span>
+    </div><div class="org-member">
+      <span class="org-member-icon">·</span>
+      <span class="org-member-name">김도후</span>
+      <span class="org-member-pos">매니저</span>
+    </div><div class="org-member pt">
+      <span class="org-member-icon">·</span>
+      <span class="org-member-name">이여름</span>
+      <span class="org-member-pos">바리스타 · <span class="pill gray" style="padding:0 5px;">파트</span></span>
+    </div><div class="org-member pt">
+      <span class="org-member-icon">·</span>
+      <span class="org-member-name">김사랑</span>
+      <span class="org-member-pos">바리스타 · <span class="pill gray" style="padding:0 5px;">파트</span></span>
+    </div><div class="org-member pt">
+      <span class="org-member-icon">·</span>
+      <span class="org-member-name">김민지</span>
+      <span class="org-member-pos">바리스타 · <span class="pill gray" style="padding:0 5px;">파트</span></span>
+    </div><div class="org-member pt">
+      <span class="org-member-icon">·</span>
+      <span class="org-member-name">신현재</span>
+      <span class="org-member-pos">바리스타 · <span class="pill gray" style="padding:0 5px;">파트</span></span>
+    </div><div class="org-member pt">
+      <span class="org-member-icon">·</span>
+      <span class="org-member-name">이진솔</span>
+      <span class="org-member-pos">바리스타 · <span class="pill gray" style="padding:0 5px;">파트</span></span>
+    </div><div class="org-member pt pending">
+      <span class="org-member-icon">·</span>
+      <span class="org-member-name">이서영</span>
+      <span class="org-member-pos">바리스타 · <span class="pill gray" style="padding:0 5px;">파트</span> · <span class="pill amber" style="padding:0 5px;">2026-09-03 입사예정</span></span>
+    </div></div>
+    </details><details class="org-node" open style="margin-left:16px;">
+      <summary>
+      <span class="org-caret">▾</span>
+      <span class="org-node-name" style="font-weight:800;">홍대점</span>
+      <span class="pill green" style="margin-left:8px;">3명</span>
+      <span class="org-leader-label">담당 김다은 점장</span><span style="margin-left:8px; display:inline-flex; align-items:center; gap:4px;"><span style="color:var(--gray); font-size:11.5px;">정직</span><div>3 / 3 <span class="pill green">100%</span>
+      <div class="bar-track"><div class="bar-fill " style="width:100%"></div></div></div></span><span style="margin-left:8px; display:inline-flex; align-items:center; gap:4px;"><span style="color:var(--gray); font-size:11.5px;">파트</span><div>6 / 6 <span class="pill green">100%</span>
+      <div class="bar-track"><div class="bar-fill " style="width:100%"></div></div></div></span><span class="pill amber" style="margin-left:6px;">+1명 정직 채용중</span>
+    </summary>
+      <div class="org-member-list"><div class="org-member leader">
+      <span class="org-member-icon">★</span>
+      <span class="org-member-name">김다은</span>
+      <span class="org-member-pos">점장</span>
+    </div><div class="org-member">
+      <span class="org-member-icon">·</span>
+      <span class="org-member-name">김동환</span>
+      <span class="org-member-pos">매니저</span>
+    </div><div class="org-member">
+      <span class="org-member-icon">·</span>
+      <span class="org-member-name">서연진</span>
+      <span class="org-member-pos">매니저</span>
+    </div><div class="org-member pt">
+      <span class="org-member-icon">·</span>
+      <span class="org-member-name">송은지</span>
+      <span class="org-member-pos">바리스타 · <span class="pill gray" style="padding:0 5px;">파트</span></span>
+    </div><div class="org-member pt">
+      <span class="org-member-icon">·</span>
+      <span class="org-member-name">김민수</span>
+      <span class="org-member-pos">바리스타 · <span class="pill gray" style="padding:0 5px;">파트</span></span>
+    </div><div class="org-member pt">
+      <span class="org-member-icon">·</span>
+      <span class="org-member-name">김의정</span>
+      <span class="org-member-pos">바리스타 · <span class="pill gray" style="padding:0 5px;">파트</span></span>
+    </div><div class="org-member pt">
+      <span class="org-member-icon">·</span>
+      <span class="org-member-name">김태호</span>
+      <span class="org-member-pos">바리스타 · <span class="pill gray" style="padding:0 5px;">파트</span></span>
+    </div><div class="org-member pt">
+      <span class="org-member-icon">·</span>
+      <span class="org-member-name">조영서</span>
+      <span class="org-member-pos">바리스타 · <span class="pill gray" style="padding:0 5px;">파트</span></span>
+    </div><div class="org-member pt">
+      <span class="org-member-icon">·</span>
+      <span class="org-member-name">정수안</span>
+      <span class="org-member-pos">바리스타 · <span class="pill gray" style="padding:0 5px;">파트</span></span>
+    </div></div>
+    </details><details class="org-node" open style="margin-left:16px;">
+      <summary>
+      <span class="org-caret">▾</span>
+      <span class="org-node-name" style="font-weight:800;">망원점</span>
+      <span class="pill green" style="margin-left:8px;">3명</span>
+      <span class="org-leader-label">담당 김동영 부점장</span><span style="margin-left:8px; display:inline-flex; align-items:center; gap:4px;"><span style="color:var(--gray); font-size:11.5px;">정직</span><div>3 / 3 <span class="pill green">100%</span>
+      <div class="bar-track"><div class="bar-fill " style="width:100%"></div></div></div></span><span style="margin-left:8px; display:inline-flex; align-items:center; gap:4px;"><span style="color:var(--gray); font-size:11.5px;">파트</span><div>4 / 4 <span class="pill green">100%</span>
+      <div class="bar-track"><div class="bar-fill " style="width:100%"></div></div></div></span>
+    </summary>
+      <div class="org-member-list"><div class="org-member leader">
+      <span class="org-member-icon">★</span>
+      <span class="org-member-name">김동영</span>
+      <span class="org-member-pos">부점장</span>
+    </div><div class="org-member">
+      <span class="org-member-icon">·</span>
+      <span class="org-member-name">이나영</span>
+      <span class="org-member-pos">매니저</span>
+    </div><div class="org-member">
+      <span class="org-member-icon">·</span>
+      <span class="org-member-name">박유은</span>
+      <span class="org-member-pos">매니저</span>
+    </div><div class="org-member pt">
+      <span class="org-member-icon">·</span>
+      <span class="org-member-name">우아림</span>
+      <span class="org-member-pos">바리스타 · <span class="pill gray" style="padding:0 5px;">파트</span></span>
+    </div><div class="org-member pt">
+      <span class="org-member-icon">·</span>
+      <span class="org-member-name">한휴일</span>
+      <span class="org-member-pos">바리스타 · <span class="pill gray" style="padding:0 5px;">파트</span></span>
+    </div><div class="org-member pt">
+      <span class="org-member-icon">·</span>
+      <span class="org-member-name">김은지</span>
+      <span class="org-member-pos">바리스타 · <span class="pill gray" style="padding:0 5px;">파트</span></span>
+    </div><div class="org-member pt">
+      <span class="org-member-icon">·</span>
+      <span class="org-member-name">한민주</span>
+      <span class="org-member-pos">바리스타 · <span class="pill gray" style="padding:0 5px;">파트</span></span>
+    </div></div>
+    </details><details class="org-node" open style="margin-left:16px;">
+      <summary>
+      <span class="org-caret">▾</span>
+      <span class="org-node-name" style="font-weight:800;">마곡점</span>
+      <span class="pill green" style="margin-left:8px;">5명</span>
+      <span class="org-leader-label">담당 최지희 부점장</span><span style="margin-left:8px; display:inline-flex; align-items:center; gap:4px;"><span style="color:var(--gray); font-size:11.5px;">정직</span><div>5 / 5 <span class="pill green">100%</span>
+      <div class="bar-track"><div class="bar-fill " style="width:100%"></div></div></div></span><span style="margin-left:8px; display:inline-flex; align-items:center; gap:4px;"><span style="color:var(--gray); font-size:11.5px;">파트</span><div>7 / 9 <span class="pill amber">78%</span>
+      <div class="bar-track"><div class="bar-fill " style="width:78%"></div></div></div></span><span class="pill amber" style="margin-left:6px;">+2명 파트 채용중</span>
+    </summary>
+      <div class="org-member-list"><div class="org-member leader">
+      <span class="org-member-icon">★</span>
+      <span class="org-member-name">최지희</span>
+      <span class="org-member-pos">부점장</span>
+    </div><div class="org-member">
+      <span class="org-member-icon">·</span>
+      <span class="org-member-name">최호렬</span>
+      <span class="org-member-pos">매니저</span>
+    </div><div class="org-member">
+      <span class="org-member-icon">·</span>
+      <span class="org-member-name">최정원</span>
+      <span class="org-member-pos">매니저</span>
+    </div><div class="org-member">
+      <span class="org-member-icon">·</span>
+      <span class="org-member-name">최승민</span>
+      <span class="org-member-pos">매니저</span>
+    </div><div class="org-member">
+      <span class="org-member-icon">·</span>
+      <span class="org-member-name">박라정</span>
+      <span class="org-member-pos">매니저</span>
+    </div><div class="org-member pt">
+      <span class="org-member-icon">·</span>
+      <span class="org-member-name">김수경</span>
+      <span class="org-member-pos">바리스타 · <span class="pill gray" style="padding:0 5px;">파트</span></span>
+    </div><div class="org-member pt">
+      <span class="org-member-icon">·</span>
+      <span class="org-member-name">이관우</span>
+      <span class="org-member-pos">바리스타 · <span class="pill gray" style="padding:0 5px;">파트</span></span>
+    </div><div class="org-member pt">
+      <span class="org-member-icon">·</span>
+      <span class="org-member-name">김소희</span>
+      <span class="org-member-pos">바리스타 · <span class="pill gray" style="padding:0 5px;">파트</span></span>
+    </div><div class="org-member pt">
+      <span class="org-member-icon">·</span>
+      <span class="org-member-name">김보옥</span>
+      <span class="org-member-pos">바리스타 · <span class="pill gray" style="padding:0 5px;">파트</span></span>
+    </div><div class="org-member pt">
+      <span class="org-member-icon">·</span>
+      <span class="org-member-name">박혜주</span>
+      <span class="org-member-pos">바리스타 · <span class="pill gray" style="padding:0 5px;">파트</span></span>
+    </div><div class="org-member pt">
+      <span class="org-member-icon">·</span>
+      <span class="org-member-name">김성은</span>
+      <span class="org-member-pos">바리스타 · <span class="pill gray" style="padding:0 5px;">파트</span></span>
+    </div><div class="org-member pt">
+      <span class="org-member-icon">·</span>
+      <span class="org-member-name">강인오</span>
+      <span class="org-member-pos">바리스타 · <span class="pill gray" style="padding:0 5px;">파트</span></span>
+    </div></div>
+    </details><details class="org-node" open style="margin-left:16px;">
+      <summary>
+      <span class="org-caret">▾</span>
+      <span class="org-node-name" style="font-weight:800;">DMC점 (오픈예정)</span>
+      <span class="pill gray" style="margin-left:8px;">0명</span>
+      <span style="margin-left:8px; display:inline-flex; align-items:center; gap:4px;"><span style="color:var(--gray); font-size:11.5px;">정직</span><div>0 / 3 <span class="pill red">0%</span>
+      <div class="bar-track"><div class="bar-fill zero" style="width:0%"></div></div></div></span><span style="margin-left:8px; display:inline-flex; align-items:center; gap:4px;"><span style="color:var(--gray); font-size:11.5px;">파트</span><div>0 / 4 <span class="pill red">0%</span>
+      <div class="bar-track"><div class="bar-fill zero" style="width:0%"></div></div></div></span><span class="pill amber" style="margin-left:6px;">+1명 정직 채용중</span><span class="pill amber" style="margin-left:6px;">+1명 파트 채용중</span><span class="pill amber" style="margin-left:6px;">입사예정 5명</span>
+    </summary>
+      <div class="org-member-list"><div class="org-member pending">
+      <span class="org-member-icon">·</span>
+      <span class="org-member-name">김선영</span>
+      <span class="org-member-pos">매니저 · <span class="pill amber" style="padding:0 5px;">2026-09-08 입사예정</span></span>
+    </div><div class="org-member pending">
+      <span class="org-member-icon">·</span>
+      <span class="org-member-name">이다인</span>
+      <span class="org-member-pos">매니저 · <span class="pill amber" style="padding:0 5px;">2026-09-08 입사예정</span></span>
+    </div><div class="org-member pt pending">
+      <span class="org-member-icon">·</span>
+      <span class="org-member-name">황진선</span>
+      <span class="org-member-pos">바리스타 · <span class="pill gray" style="padding:0 5px;">파트</span> · <span class="pill amber" style="padding:0 5px;">2026-09-10 입사예정</span></span>
+    </div><div class="org-member pt pending">
+      <span class="org-member-icon">·</span>
+      <span class="org-member-name">유현주</span>
+      <span class="org-member-pos">바리스타 · <span class="pill gray" style="padding:0 5px;">파트</span> · <span class="pill amber" style="padding:0 5px;">2026-09-12 입사예정</span></span>
+    </div><div class="org-member pt pending">
+      <span class="org-member-icon">·</span>
+      <span class="org-member-name">조민지</span>
+      <span class="org-member-pos">바리스타 · <span class="pill gray" style="padding:0 5px;">파트</span> · <span class="pill amber" style="padding:0 5px;">2026-09-12 입사예정</span></span>
+    </div></div>
+    </details><details class="org-node" open style="margin-left:16px;">
+      <summary>
+      <span class="org-caret">▾</span>
+      <span class="org-node-name" style="font-weight:800;">베이커리파트</span>
+      <span class="pill green" style="margin-left:8px;">9명</span>
+      <span class="org-leader-label">담당 황영은 파트장</span><span style="margin-left:8px; display:inline-flex; align-items:center; gap:4px;"><span style="color:var(--gray); font-size:11.5px;">정직</span><div>9 / 10 <span class="pill amber">90%</span>
+      <div class="bar-track"><div class="bar-fill " style="width:90%"></div></div></div></span><span style="margin-left:8px; display:inline-flex; align-items:center; gap:4px;"><span style="color:var(--gray); font-size:11.5px;">파트</span><div>0 / 2 <span class="pill red">0%</span>
+      <div class="bar-track"><div class="bar-fill zero" style="width:0%"></div></div></div></span><span class="pill amber" style="margin-left:6px;">+2명 정직 채용중</span><span class="pill amber" style="margin-left:6px;">+1명 파트 채용중</span><span class="pill amber" style="margin-left:6px;">입사예정 1명</span>
+    </summary>
+      <div class="org-member-list"><div class="org-member leader">
+      <span class="org-member-icon">★</span>
+      <span class="org-member-name">황영은</span>
+      <span class="org-member-pos">파트장</span>
+    </div><div class="org-member">
+      <span class="org-member-icon">·</span>
+      <span class="org-member-name">문형식</span>
+      <span class="org-member-pos">매니저</span>
+    </div><div class="org-member">
+      <span class="org-member-icon">·</span>
+      <span class="org-member-name">장혜원</span>
+      <span class="org-member-pos">매니저</span>
+    </div><div class="org-member">
+      <span class="org-member-icon">·</span>
+      <span class="org-member-name">박찬희</span>
+      <span class="org-member-pos">선임매니저</span>
+    </div><div class="org-member">
+      <span class="org-member-icon">·</span>
+      <span class="org-member-name">오유진</span>
+      <span class="org-member-pos">매니저</span>
+    </div><div class="org-member">
+      <span class="org-member-icon">·</span>
+      <span class="org-member-name">박강현</span>
+      <span class="org-member-pos">선임매니저</span>
+    </div><div class="org-member">
+      <span class="org-member-icon">·</span>
+      <span class="org-member-name">김현지</span>
+      <span class="org-member-pos">매니저</span>
+    </div><div class="org-member">
+      <span class="org-member-icon">·</span>
+      <span class="org-member-name">김희주</span>
+      <span class="org-member-pos">매니저</span>
+    </div><div class="org-member">
+      <span class="org-member-icon">·</span>
+      <span class="org-member-name">이다인</span>
+      <span class="org-member-pos">매니저</span>
+    </div><div class="org-member pt pending">
+      <span class="org-member-icon">·</span>
+      <span class="org-member-name">권도희</span>
+      <span class="org-member-pos">파티쉐 · <span class="pill gray" style="padding:0 5px;">파트</span> · <span class="pill amber" style="padding:0 5px;">2026-09-05 입사예정</span></span>
+    </div></div>
+    </details><details class="org-node" open style="margin-left:16px;">
+      <summary>
+      <span class="org-caret">▾</span>
+      <span class="org-node-name" style="font-weight:800;">로스팅파트</span>
+      <span class="pill green" style="margin-left:8px;">1명</span>
+      <span class="org-leader-label">담당 곽동헌 파트장</span><span style="margin-left:8px; display:inline-flex; align-items:center; gap:4px;"><span style="color:var(--gray); font-size:11.5px;">정직</span><div>1 / 1 <span class="pill green">100%</span>
+      <div class="bar-track"><div class="bar-fill " style="width:100%"></div></div></div></span>
+    </summary>
+      <div class="org-member-list"><div class="org-member leader">
+      <span class="org-member-icon">★</span>
+      <span class="org-member-name">곽동헌</span>
+      <span class="org-member-pos">파트장</span>
+    </div></div>
+    </details><details class="org-node" open style="margin-left:16px;">
+      <summary>
+      <span class="org-caret">▾</span>
+      <span class="org-node-name" style="font-weight:800;">신사가로수길점 (위탁운영)</span>
+      <span class="pill green" style="margin-left:8px;">4명</span>
+      <span class="org-leader-label">담당 최창용 점장</span><span style="color:var(--gray); font-size:11.5px; margin-left:8px;">파트 3명</span><span class="pill gray" style="margin-left:6px;">위탁운영</span><span class="pill amber" style="margin-left:6px;">+1명 파트 채용중</span>
+    </summary>
+      <div class="org-member-list"><div class="org-member leader">
+      <span class="org-member-icon">★</span>
+      <span class="org-member-name">최창용</span>
+      <span class="org-member-pos">점장</span>
+    </div><div class="org-member">
+      <span class="org-member-icon">·</span>
+      <span class="org-member-name">문채원</span>
+      <span class="org-member-pos">매니저</span>
+    </div><div class="org-member">
+      <span class="org-member-icon">·</span>
+      <span class="org-member-name">김시현</span>
+      <span class="org-member-pos">매니저</span>
+    </div><div class="org-member">
+      <span class="org-member-icon">·</span>
+      <span class="org-member-name">김지윤</span>
+      <span class="org-member-pos">매니저</span>
+    </div><div class="org-member pt">
+      <span class="org-member-icon">·</span>
+      <span class="org-member-name">심우도</span>
+      <span class="org-member-pos">바리스타 · <span class="pill gray" style="padding:0 5px;">파트</span></span>
+    </div><div class="org-member pt">
+      <span class="org-member-icon">·</span>
+      <span class="org-member-name">김민주</span>
+      <span class="org-member-pos">바리스타 · <span class="pill gray" style="padding:0 5px;">파트</span></span>
+    </div><div class="org-member pt">
+      <span class="org-member-icon">·</span>
+      <span class="org-member-name">박민수</span>
+      <span class="org-member-pos">바리스타 · <span class="pill gray" style="padding:0 5px;">파트</span></span>
+    </div></div>
+    </details></div>
+    </details></div>
+  </section>
+
+  <section class="card">
+    <h2>입사자 · 퇴사자 현황 (정규직/계약직)</h2>
+    <p class="desc">기준일: 2026-08-31 ~ 2026-09-06 (이번 주 월요일 ~ 일요일 기준, 화요일 마감 시에도 이번 주 전체를 봅니다)</p>
+    <h3 style="font-size:13px; color:var(--navy); margin:14px 0 6px;">이번 주 입사</h3>
+    <table><thead><tr><th>성명</th><th>근무지/소속</th><th>부서</th><th>직책</th><th>입사일</th></tr></thead><tbody><tr>
+      <td>박정애</td>
+      <td>㈜필름</td>
+      <td>그로스파트</td>
+      <td>매니저</td>
+      <td>2026-09-01</td>
+    </tr><tr>
+      <td>박유은</td>
+      <td>공명 망원 책빵</td>
+      <td>바리스타파트</td>
+      <td>매니저</td>
+      <td>2026-09-01</td>
+    </tr><tr>
+      <td>은혜지</td>
+      <td>㈜필름</td>
+      <td>IMC파트</td>
+      <td>매니저</td>
+      <td>2026-09-01</td>
+    </tr><tr>
+      <td>김지윤</td>
+      <td>공명 신사가로수길점</td>
+      <td>-</td>
+      <td>매니저</td>
+      <td>2026-09-01</td>
+    </tr><tr>
+      <td>정수안</td>
+      <td>공명 홍대점</td>
+      <td>-</td>
+      <td>바리스타</td>
+      <td>2026-09-01</td>
+    </tr><tr>
+      <td>이서영</td>
+      <td>공명 연남점</td>
+      <td>-</td>
+      <td>바리스타</td>
+      <td>2026-09-03</td>
+    </tr><tr>
+      <td>권도희</td>
+      <td>공명 연남점</td>
+      <td>-</td>
+      <td>파티쉐</td>
+      <td>2026-09-05</td>
+    </tr></tbody></table>
+    <h3 style="font-size:13px; color:var(--navy); margin:14px 0 6px;">이번 주 퇴사</h3>
+    <table><thead><tr><th>성명</th><th>근무지/소속</th><th>부서</th><th>직책</th><th>퇴사일</th></tr></thead><tbody><tr>
+      <td>전현우</td>
+      <td>공명 망원 책빵</td>
+      <td>바리스타파트</td>
+      <td>매니저</td>
+      <td>2026-08-31</td>
+    </tr><tr>
+      <td>지서원</td>
+      <td>공명 연남점</td>
+      <td>바리스타파트</td>
+      <td>매니저</td>
+      <td>2026-08-31</td>
+    </tr><tr>
+      <td>서연진</td>
+      <td>공명 홍대점</td>
+      <td>바리스타파트</td>
+      <td>매니저</td>
+      <td>2026-09-06</td>
+    </tr></tbody></table>
+    <h3 style="font-size:13px; color:var(--navy); margin:14px 0 6px;">입사 예정</h3>
+    <table><thead><tr><th>성명</th><th>근무지/소속</th><th>부서</th><th>직책</th><th>입사(예정)일</th></tr></thead><tbody><tr>
+      <td>김선영</td>
+      <td>공명 DMC 파크뷰자이</td>
+      <td>바리스타파트</td>
+      <td>매니저</td>
+      <td>2026-09-08</td>
+    </tr><tr>
+      <td>이다인</td>
+      <td>공명 DMC 파크뷰자이</td>
+      <td>바리스타파트</td>
+      <td>매니저</td>
+      <td>2026-09-08</td>
+    </tr><tr>
+      <td>황진선</td>
+      <td>공명 DMC파크뷰자이점</td>
+      <td>-</td>
+      <td>바리스타</td>
+      <td>2026-09-10</td>
+    </tr><tr>
+      <td>유현주</td>
+      <td>공명 DMC파크뷰자이점</td>
+      <td>-</td>
+      <td>바리스타</td>
+      <td>2026-09-12</td>
+    </tr><tr>
+      <td>조민지</td>
+      <td>공명 DMC파크뷰자이점</td>
+      <td>-</td>
+      <td>바리스타</td>
+      <td>2026-09-12</td>
+    </tr><tr>
+      <td>강지은</td>
+      <td>㈜필름</td>
+      <td>출판팀</td>
+      <td>팀장</td>
+      <td>2026-09-14</td>
+    </tr><tr>
+      <td>민재영</td>
+      <td>㈜필름</td>
+      <td>IMC파트</td>
+      <td>매니저</td>
+      <td>2026-09-14</td>
+    </tr></tbody></table>
+    <h3 style="font-size:13px; color:var(--navy); margin:14px 0 6px;">퇴사 예정</h3>
+    <div class="empty-note">해당 인원이 없습니다.</div>
+  </section>
+
+  <div class="two-col">
+    <section class="card">
+      <h2>수습기간 현황</h2>
+      <table><thead><tr><th>성명</th><th>근무지</th><th>직책</th><th>수습종료</th><th>잔여</th></tr></thead><tbody><tr>
+        <td>박미소</td>
+        <td>㈜필름</td>
+        <td>매니저</td>
+        <td>2026-09-05</td>
+        <td><span class="pill amber">D-4</span></td>
+      </tr><tr>
+        <td>윤자영</td>
+        <td>㈜필름</td>
+        <td>매니저</td>
+        <td>2026-09-05</td>
+        <td><span class="pill amber">D-4</span></td>
+      </tr><tr>
+        <td>김동환</td>
+        <td>공명 홍대점</td>
+        <td>매니저</td>
+        <td>2026-09-17</td>
+        <td><span class="pill gray">D-16</span></td>
+      </tr><tr>
+        <td>박찬국</td>
+        <td>㈜필름</td>
+        <td>파트장</td>
+        <td>2026-09-19</td>
+        <td><span class="pill gray">D-18</span></td>
+      </tr><tr>
+        <td>김재현</td>
+        <td>㈜필름</td>
+        <td>매니저</td>
+        <td>2026-09-19</td>
+        <td><span class="pill gray">D-18</span></td>
+      </tr><tr>
+        <td>김현지</td>
+        <td>공명 연남점</td>
+        <td>매니저</td>
+        <td>2026-10-05</td>
+        <td><span class="pill gray">D-34</span></td>
+      </tr><tr>
+        <td>서연진</td>
+        <td>공명 홍대점</td>
+        <td>매니저</td>
+        <td>2026-10-06</td>
+        <td><span class="pill gray">D-35</span></td>
+      </tr><tr>
+        <td>김희주</td>
+        <td>공명 연남점</td>
+        <td>매니저</td>
+        <td>2026-10-12</td>
+        <td><span class="pill gray">D-41</span></td>
+      </tr><tr>
+        <td>김시현</td>
+        <td>공명 신사가로수길점</td>
+        <td>매니저</td>
+        <td>2026-10-21</td>
+        <td><span class="pill gray">D-50</span></td>
+      </tr><tr>
+        <td>이나영</td>
+        <td>공명 망원 책빵</td>
+        <td>매니저</td>
+        <td>2026-10-22</td>
+        <td><span class="pill gray">D-51</span></td>
+      </tr><tr>
+        <td>박정애</td>
+        <td>㈜필름</td>
+        <td>매니저</td>
+        <td>2026-10-31</td>
+        <td><span class="pill gray">D-60</span></td>
+      </tr><tr>
+        <td>은혜지</td>
+        <td>㈜필름</td>
+        <td>매니저</td>
+        <td>2026-10-31</td>
+        <td><span class="pill gray">D-60</span></td>
+      </tr><tr>
+        <td>이다인</td>
+        <td>공명 연남점</td>
+        <td>매니저</td>
+        <td>2026-11-02</td>
+        <td><span class="pill gray">D-62</span></td>
+      </tr><tr>
+        <td>박라정</td>
+        <td>공명 마곡 책빵</td>
+        <td>매니저</td>
+        <td>2026-11-26</td>
+        <td><span class="pill gray">D-86</span></td>
+      </tr><tr>
+        <td>박유은</td>
+        <td>공명 망원 책빵</td>
+        <td>매니저</td>
+        <td>2026-11-30</td>
+        <td><span class="pill gray">D-90</span></td>
+      </tr><tr>
+        <td>김지윤</td>
+        <td>공명 신사가로수길점</td>
+        <td>매니저</td>
+        <td>2026-11-30</td>
+        <td><span class="pill gray">D-90</span></td>
+      </tr></tbody></table>
+    </section>
+    <section class="card">
+      <h2>카페 파트타이머 현황</h2>
+      <table><thead><tr><th>매장</th><th>유효 계약 인원</th></tr></thead><tbody><tr><td>마곡점</td><td class="num">7명</td></tr><tr><td>홍대점</td><td class="num">6명</td></tr><tr><td>연남점</td><td class="num">5명</td></tr><tr><td>망원점</td><td class="num">4명</td></tr><tr><td>신사가로수길점 (위탁운영)</td><td class="num">3명</td></tr></tbody>
+         <tfoot><tr><td style="font-weight:700;">합계</td><td class="num" style="font-weight:700;">25명</td></tr></tfoot></table>
+      <div style="margin-top:14px;"><div style="font-weight:700; margin-bottom:6px; color:var(--amber);">⚠ 2주 이내 계약 만료 예정</div>
+      <table><thead><tr><th>성명</th><th>매장</th><th>계약종료일</th></tr></thead><tbody><tr><td>이여름</td><td>공명 연남점</td><td>2026-09-01</td></tr><tr><td>김태호</td><td>공명 홍대점</td><td>2026-09-01</td></tr><tr><td>송은지</td><td>공명 홍대점</td><td>2026-09-05</td></tr><tr><td>김성은</td><td>공명 마곡 책빵</td><td>2026-09-05</td></tr><tr><td>우아림</td><td>공명 망원 책빵</td><td>2026-09-08</td></tr><tr><td>김은지</td><td>공명 망원 책빵</td><td>2026-09-08</td></tr><tr><td>신현재</td><td>공명 연남점</td><td>2026-09-08</td></tr><tr><td>강인오</td><td>공명 마곡 책빵</td><td>2026-09-12</td></tr><tr><td>이진솔</td><td>공명 연남점</td><td>2026-09-12</td></tr><tr><td>박혜주</td><td>공명 마곡 책빵</td><td>2026-09-14</td></tr><tr><td>이관우</td><td>공명 마곡 책빵</td><td>2026-09-15</td></tr></tbody></table></div>
+    </section>
+  </div>
+
+  <section class="card">
+    <h2>이번 주 업무 노트</h2>
+    <div style="white-space:pre-wrap; line-height:1.6;">■신규입사자 OJT<br>- 9/1(화) : 박정애(그로스파트), 은혜지(IMC파트)<br><br>■면접현황 (카페 공명)<br>- 9/1(화) 15시 30분 : 연남점 이예슬<br>- 9/1(화) 16시 00분 : DMC점 이선민<br>- 9/1(화) 16시 30분 : 연남점 염주원<br><br>■주차마감<br>- 8월 5주차 지점별 인건비 마감 <br><br>■합작법인 설립 대응 <br>- 주주간계약서 수정 건 법무사 문의 (회신 대기 중)<br>- 법인 명 중복여부 확인 및 내부 공유 완료 <br><br>■추석 선물세트 검토 <br>- 설날 기준과 동일하게 위펀에서 진행 (선물 &amp; 상품권)<br>- 선물지급 저자 리스트 확인 후 보고 예정 (엄재욱 본부장 회신)<br><br>■출판팀 조직개편 발령 <br>- 웍스 인사발령 (완료)<br>- 인원별 자리 이동 (완료)<br><br>■26년 인사평가 준비<br> </div>
+  </section>
+
+  <footer class="note">이 보고서는 2026. 9. 1. 11시 6분 40초에 마감·저장되었습니다.</footer>
+</div>
+<script>
+  var __CD__ = {"labels":["연남점","홍대점","망원점","마곡점","DMC점 (오픈예정)","베이커리파트","로스팅파트"],"ftCur":[3,3,3,5,0,9,1],"ftTo":[4,3,3,5,3,10,1],"ptCur":[5,6,4,7,0,0,0],"ptTo":[6,6,4,9,4,2,0],"ftPct":[75,100,100,100,0,90,100],"ptPct":[83,100,100,78,0,0,0],"outsourcedRows":[{"name":"신사가로수길점 (위탁운영)","own":4,"ptCount":3}]};
+  var __DEPT_STATS__ = {"hqActiveCount":25,"cafeActiveCount":28};
+  function deptChartConfig(stats){
+    return {
+      type:"doughnut",
+      data:{
+        labels:["㈜필름 본사","카페공명 정규직"],
+        datasets:[{ data:[stats.hqActiveCount, stats.cafeActiveCount], backgroundColor:["#2f6fed","#1a9e6b"], borderWidth:0 }]
+      },
+      options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{ position:"bottom", labels:{ boxWidth:10, font:{size:11} } } } }
+    };
+  }
+  function toChartConfig(cd){
+    return {
+      type:"bar",
+      data:{ labels: cd.labels, datasets:[
+        { label:"정직 충원율%", data:cd.ftPct, backgroundColor:"#2f6fed" },
+        { label:"파트 충원율%", data:cd.ptPct, backgroundColor:"#8fb8ff" },
+      ]},
+      plugins:[makeToCountLabelPlugin(cd)],
+      options:{ responsive:true, maintainAspectRatio:false,
+        layout:{ padding:{ top:16 } },
+        scales:{ y:{ beginAtZero:true, suggestedMax:110, ticks:{ callback:v=>v+"%" } }, x:{ ticks:{ font:{size:10} } } },
+        plugins:{
+          legend:{ position:"bottom", labels:{ boxWidth:10, font:{size:11} } },
+          tooltip:{ callbacks:{
+            label(ctx){
+              const i = ctx.dataIndex;
+              const isFt = ctx.datasetIndex === 0;
+              const cur = isFt ? cd.ftCur[i] : cd.ptCur[i];
+              const to = isFt ? cd.ftTo[i] : cd.ptTo[i];
+              const label = isFt ? "정직" : "파트";
+              return `${label}: 현원 ${cur}명 / TO ${to}명 (${ctx.parsed.y}%)`;
+            }
+          }}
+        }
+      }
+    };
+  }
+  function makeToCountLabelPlugin(cd){
+    return {
+      id: "toCountLabelPlugin",
+      afterDatasetsDraw(chart){
+        const { ctx } = chart;
+        ctx.save();
+        ctx.font = "600 10px -apple-system, sans-serif";
+        ctx.textAlign = "center";
+        ctx.textBaseline = "bottom";
+        chart.data.datasets.forEach((ds, dsIndex) => {
+          const meta = chart.getDatasetMeta(dsIndex);
+          const curArr = dsIndex === 0 ? cd.ftCur : cd.ptCur;
+          const toArr = dsIndex === 0 ? cd.ftTo : cd.ptTo;
+          ctx.fillStyle = dsIndex === 0 ? "#1f3a8f" : "#5b7fc7";
+          meta.data.forEach((bar, i) => {
+            // TO 자체가 0인 항목(예: 로스팅파트 파트타이머 TO 0)은 "0명" 표시가 의미가 없고
+            // 막대가 안 보이는 자리에 라벨만 붕 떠 보이는 문제가 있어 이 경우엔 라벨을 생략합니다.
+            if (!toArr[i] && !curArr[i]) return;
+            const label = toArr[i] ? `${curArr[i]}/${toArr[i]}명` : `${curArr[i]}명`;
+            ctx.fillText(label, bar.x, bar.y - 4);
+          });
+        });
+        ctx.restore();
+      }
+    };
+  }
+  new Chart(document.getElementById("deptChart"), deptChartConfig(__DEPT_STATS__));
+  new Chart(document.getElementById("toChart"), toChartConfig(__CD__));
+</script>
+</body>
+</html>
