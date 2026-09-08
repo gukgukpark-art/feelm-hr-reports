@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko"><head><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>카페 지점별 주간 인건비 현황 - 요약 (8월 6주차 → 9월 1주차)</title>
+<title>카페 지점별 주간 인건비 현황 - 요약 (8월 6주차 → 9월 1주차) [비교기준 정정판]</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
 <style>
 :root { color-scheme: light; --navy:#1c2b4a; --navy2:#2a4270; --blue:#2f6fed; --amber:#b8790a; --green:#1f8a5f; --red:#d9483f;
@@ -21,6 +21,11 @@ a.back-link:hover { color:var(--blue); }
   font-weight:600; font-size:12.5px; padding:13px 16px; border-radius:11px; margin:0 0 24px; line-height:1.6; }
 .notice-banner .dot { width:6px; height:6px; border-radius:50%; background:var(--amber); flex-shrink:0; margin-top:6px; }
 .notice-banner b { font-weight:800; }
+
+.correction-banner { display:flex; align-items:flex-start; gap:9px; background:#fdeceb; border:1px solid #f3b8b3; color:#8a2c23;
+  font-weight:600; font-size:12.5px; padding:13px 16px; border-radius:11px; margin:0 0 16px; line-height:1.65; }
+.correction-banner .dot { width:6px; height:6px; border-radius:50%; background:var(--red); flex-shrink:0; margin-top:6px; }
+.correction-banner b { font-weight:800; }
 
 .kpi-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-bottom:26px; }
 @media (max-width:800px) { .kpi-grid{grid-template-columns:repeat(2,1fr);} .chart-grid{grid-template-columns:1fr !important;} }
@@ -71,6 +76,7 @@ footer.note b { color:var(--navy); }
 .insight-list { margin:0 0 22px; padding:0 0 0 4px; list-style:none; }
 .insight-list li { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:12px 16px; margin-bottom:10px; font-size:13px; line-height:1.6; box-shadow:0 1px 2px rgba(20,30,60,.04); }
 .insight-list li b { color:var(--navy); }
+.insight-list li.red { border-color:#f3b8b3; background:#fdf7f6; }
 details.card summary { cursor:pointer; }
 </style></head>
 <body><div class="wrap">
@@ -78,15 +84,20 @@ details.card summary { cursor:pointer; }
 
 <div class="hero">
   <div>
-    <h1>카페 지점별 주간 인건비 현황</h1>
+    <h1>카페 지점별 주간 인건비 현황 <span style="color:var(--red); font-size:16px;">[비교기준 정정판]</span></h1>
     <p class="sub">8월 6주차(8/31, 1일) → 9월 1주차(9/1~9/6, 6일) 비교 · 마곡점·망원점·연남점·홍대점 4개 지점 · 정규직+파트타이머 합계 기준</p>
   </div>
-  <div class="badge">9월부터 지점별 정상 업로드 재개</div>
+  <div class="badge">9월부터 지점별 정상 업로드 재개 · 정정판</div>
+</div>
+
+<div class="correction-banner">
+  <span class="dot"></span>
+  <span><b>정정 안내</b> — 비교 기준인 "8월 6주차(8/31)" 정규직 수치가 정정되었습니다. 이전에는 8월 통합 급여대장을 1/31로 일할계산한 추정치(2,025,443원)를 사용했으나, 원본 지점별 시트의 실지급액("지급액계") 기준 <b>3,911,382원</b>이 맞는 값입니다. 다만 이 중 1,989,888원은 연남점 최다연·망원점 전현우의 연차수당 정산(일회성)이라, 이 페이지의 모든 비교는 이를 제외한 <b>정상화 금액(1,921,494원)</b>을 기준으로 다시 계산했습니다. 9월 1주차 자체 수치는 변경사항이 없습니다. 정정 상세는 <a href="2026-09-08_지점별주간인건비.html" style="color:#8a2c23; text-decoration:underline;">8월 6주차 정정판 리포트</a>를 참고하세요.</span>
 </div>
 
 <div class="notice-banner">
   <span class="dot"></span>
-  <span><b>한눈에 보기</b> — 9월부터 정규직·파트타이머 모두 지점별 정상 양식으로 업로드가 재개되었습니다. 비교 대상인 8월 6주차는 8/31 하루치, 9월 1주차는 9/1~9/6 엿새치라 기간이 달라 <b>일평균</b> 기준으로 비교합니다. 9월 1주차 전사 일평균 인건비는 2,741,491원으로 8월 6주차(2,611,103원) 대비 <b>+130,388원(+5.0%)</b> 늘었습니다. 파트타이머 인건비가 일평균 +35.8% 크게 증가했는데, 연남점 이서영(9/3 입사)·홍대점 정수안(9/1 입사) 등 신규 파트타이머 합류가 주된 이유입니다. 반대로 정규직 일평균은 -3.9% 소폭 감소했는데, 망원점·연남점에서 일부 인원 변동(퇴사)이 있었습니다.</span>
+  <span><b>한눈에 보기</b> — 9월부터 정규직·파트타이머 모두 지점별 정상 양식으로 업로드가 재개되었습니다. 8월 6주차는 8/31 하루치, 9월 1주차는 9/1~9/6 엿새치라 기간이 달라 <b>일평균</b> 기준으로 비교하며, 8월 6주차는 연차수당 정산을 제외한 <b>정상화 금액</b>을 기준으로 삼았습니다. 9월 1주차 전사 일평균 인건비는 2,741,491원으로 8월 6주차 정상화 기준(2,507,154원) 대비 <b>+234,337원(+9.3%)</b> 늘었습니다. 파트타이머 인건비가 일평균 +35.8% 크게 증가했는데, 연남점 이서영(9/3 입사)·홍대점 정수안(9/1 입사) 등 신규 파트타이머 합류가 주된 이유입니다. 정규직은 정상화 기준으로 +1.3% 수준의 소폭 증가입니다.</span>
 </div>
 
 <div class="section-title"><span class="dot"></span>① 핵심 지표</div>
@@ -94,17 +105,17 @@ details.card summary { cursor:pointer; }
   <div class="kpi kpi-navy">
     <div class="label">전체 인건비 (9/1~9/6, 6일 합계)</div>
     <div class="value">16,448,948<small>원</small></div>
-    <div class="sub">8월 6주차(1일) 2,611,103원 <span class="pct">(기간이 달라 참고용)</span></div>
+    <div class="sub">8월 6주 정상화(1일) 2,507,154원 <span class="pct">(기간이 달라 참고용)</span></div>
   </div>
   <div class="kpi kpi-blue">
     <div class="label">일평균 인건비 (기간 보정)</div>
     <div class="value">2,741,491<small>원/일</small></div>
-    <div class="sub">8월 6주차 2,611,103원/일 <span class="arrow">→</span> <span class="delta up">▲ +5.0%</span></div>
+    <div class="sub">8월 6주 정상화 2,507,154원/일 <span class="arrow">→</span> <span class="delta up">▲ +9.3%</span></div>
   </div>
   <div class="kpi kpi-navy">
     <div class="label">정규직 인건비 (일평균)</div>
     <div class="value">1,945,991<small>원/일</small></div>
-    <div class="sub">8월 6주차 2,025,443원/일 <span class="arrow">→</span> <span class="delta down">▼ -3.9%</span></div>
+    <div class="sub">8월 6주 정상화 1,921,494원/일 <span class="arrow">→</span> <span class="delta up">▲ +1.3%</span></div>
   </div>
   <div class="kpi kpi-amber">
     <div class="label">파트타임 인건비 (일평균)</div>
@@ -115,41 +126,41 @@ details.card summary { cursor:pointer; }
 
 <div class="chart-grid">
   <div class="chart-box wide">
-    <h3>지점별 인건비 — 8월 6주차(8/31,1일) vs 9월 1주차 일평균(9/1~9/6)</h3>
-    <p class="hint">기간이 달라 "일평균" 기준으로 비교합니다 · 막대 안 색상: 진한 남색 = 정규직 / 주황색 = 파트타이머</p>
+    <h3>지점별 인건비 — 8월 6주차(정상화) vs 9월 1주차 일평균(9/1~9/6)</h3>
+    <p class="hint">8월 6주차는 연차수당 정산을 제외한 정상화 금액입니다 · 막대 안 색상: 진한 남색 = 정규직 / 주황색 = 파트타이머</p>
     <canvas id="chartCombined"></canvas>
   </div>
 </div>
 
 <div class="section-title" style="margin-top:6px;"><span class="dot amber"></span>② 지점별 요약</div>
-<p class="section-desc">8월 6주차는 8/31 하루 실제값, 9월 1주차는 일평균(6일 합계÷6)입니다. 맨 오른쪽은 참고용 9월 1주차 6일 합계입니다.</p>
+<p class="section-desc">8월 6주차는 정상화 금액(연차수당 정산 제외) 기준, 9월 1주차는 일평균(6일 합계÷6)입니다. 맨 오른쪽은 참고용 원자료(연차수당 정산 포함) 및 9월 1주차 6일 합계입니다.</p>
 <div class="tablewrap">
 <table>
-<thead><tr><th>지점</th><th class="num">8월6주(8/31,1일)</th><th class="num">9월1주 일평균</th><th class="num">증감액</th><th class="num">증감률</th><th class="num">9월1주 6일 합계(참고)</th></tr></thead>
+<thead><tr><th>지점</th><th class="num">8월6주 정상화(8/31)</th><th class="num">9월1주 일평균</th><th class="num">증감액</th><th class="num">증감률</th><th class="num" style="color:var(--gray);">참고: 8월6주 원자료</th><th class="num" style="color:var(--gray);">참고: 9월1주 6일합계</th></tr></thead>
 <tbody>
-<tr><td class="store-name">마곡점</td><td class="num">628,279</td><td class="num">682,724</td><td class="num delta up">+54,446</td><td class="num delta up">+8.7%</td><td class="num" style="color:var(--gray);">4,096,347</td></tr><tr><td class="store-name">망원점</td><td class="num">400,887</td><td class="num">371,149</td><td class="num delta down">-29,738</td><td class="num delta down">-7.4%</td><td class="num" style="color:var(--gray);">2,226,896</td></tr><tr><td class="store-name">연남점</td><td class="num">1,244,323</td><td class="num">1,264,905</td><td class="num delta up">+20,582</td><td class="num delta up">+1.7%</td><td class="num" style="color:var(--gray);">7,589,432</td></tr><tr><td class="store-name">홍대점</td><td class="num">337,614</td><td class="num">422,712</td><td class="num delta up">+85,098</td><td class="num delta up">+25.2%</td><td class="num" style="color:var(--gray);">2,536,273</td></tr><tr class="total-row"><td>전사 합계</td><td class="num">2,611,103</td><td class="num">2,741,491</td><td class="num">+130,388</td><td class="num">+5.0%</td><td class="num">16,448,948</td></tr>
+<tr><td class="store-name">마곡점</td><td class="num">633,615</td><td class="num">682,724</td><td class="num delta up">+49,109</td><td class="num delta up">+7.8%</td><td class="num" style="color:var(--gray);">633,615</td><td class="num" style="color:var(--gray);">4,096,347</td></tr><tr><td class="store-name">망원점</td><td class="num">333,958</td><td class="num">371,149</td><td class="num delta up">+37,191</td><td class="num delta up">+11.1%</td><td class="num" style="color:var(--gray);">720,094</td><td class="num" style="color:var(--gray);">2,226,896</td></tr><tr><td class="store-name">연남점</td><td class="num">1,199,274</td><td class="num">1,264,905</td><td class="num delta up">+65,631</td><td class="num delta up">+5.5%</td><td class="num" style="color:var(--gray);">2,803,026</td><td class="num" style="color:var(--gray);">7,589,432</td></tr><tr><td class="store-name">홍대점</td><td class="num">340,307</td><td class="num">422,712</td><td class="num delta up">+82,405</td><td class="num delta up">+24.2%</td><td class="num" style="color:var(--gray);">340,307</td><td class="num" style="color:var(--gray);">2,536,273</td></tr><tr class="total-row"><td>전사 합계</td><td class="num">2,507,154</td><td class="num">2,741,491</td><td class="num">+234,337</td><td class="num">+9.3%</td><td class="num" style="color:var(--gray); font-weight:700;">4,497,042</td><td class="num" style="font-weight:700;">16,448,948</td></tr>
 </tbody>
 </table>
 </div>
 
 <div class="section-title" style="margin-top:6px;"><span class="dot"></span>③ 특이사항</div>
 <ul class="insight-list">
-  <li><b>9월부터 지점별 정상 업로드로 복귀</b> — 8월 6주차(8/31)는 정규직 통합 급여대장 임시 반영이었지만, 9월 1주차부터는 정규직·파트타이머 모두 지점별 정상 양식으로 돌아왔습니다. 기간 길이가 다르므로(1일 vs 6일) 모든 비교는 일평균 기준입니다.</li>
-  <li><b>파트타이머 인건비 일평균 +35.8% — 신규 인력 합류가 주요인</b> — 연남점 이서영(9/3 입사, 6일간 214,140원)과 홍대점 정수안(9/1 입사, 6일간 131,580원)이 새로 근무를 시작했습니다. 아울러 연남점엔 성명 미확정 "파티쉐" 파트타이머 1명이 41,280원 미확인 상태로 남아있어(스프레드시트상 미확정 표시) 이번 집계에서는 제외했습니다 — 확인 후 반영이 필요합니다.</li>
-  <li><b>정규직 인원 변동 — 연남점·망원점 축소</b> — 연남점 정규직은 8월 14명→9월 12명(최다연·지서원 퇴사 반영), 망원점은 4명→3명(전현우·이유림 퇴사, 박유은 신규 입사)으로 줄었습니다. 다만 연남점은 황영은의 연장·휴일근무(215,312원)가 여전히 발생해 일평균 총액은 오히려 소폭 증가(+1.7%)했습니다.</li>
-  <li><b>홍대점 일평균 +25.2% — 정수안 합류 + 신규 정규직 이예슬</b> — 홍대점은 정규직 이예슬이 새로 등록되었으나 이번 주 급여 항목이 전부 0원으로 표시되어(근무 스케줄 없음), 실제 반영은 다음 회차부터로 예상됩니다. 다만 정규직 서연진 행에서 연장수당 셀(16,149원)과 실제 지급 총액 사이에 5,383원의 정산 차이가 있어 원본 파일 확인이 필요합니다.</li>
+  <li class="red"><b>[정정] 비교 기준(8월 6주차) 수정 — 정규직 실지급액 반영</b> — 8월 6주차 정규직 수치가 1/31 일할계산 추정치에서 지점별 원본 파일의 실지급액("지급액계") 기준으로 정정되었습니다. 원자료(3,911,382원)에는 연남점 최다연·망원점 전현우의 연차수당 정산(합계 1,989,888원, 일회성)이 포함되어 있어, 이 페이지의 모든 비교는 이를 제외한 정상화 금액(1,921,494원)을 사용했습니다. 상세는 8월 6주차 정정판 리포트를 참고하세요.</li>
+  <li><b>파트타이머 인건비 일평균 +35.8% — 신규 인력 합류가 주요인</b> — 연남점 이서영(9/3 입사, 6일간 214,140원)과 홍대점 정수안(9/1 입사, 6일간 131,580원)이 새로 근무를 시작했습니다. 연남점 "파티쉐" 파트타이머 1명은 41,280원 항목이 최종적으로 0원/확정(TRUE) 처리된 것을 원본에서 확인했습니다 — 이번 집계에서 정상적으로 제외되었으며 더 이상 미확인 상태가 아닙니다.</li>
+  <li><b>정규직 인원 변동 — 연남점·망원점 축소, 전현우→박유은 교체</b> — 연남점 정규직은 8월 14명(연차정산 1명 포함)→9월 12명(최다연·지서원 퇴사 반영), 망원점은 4명(전현우 포함)→3명(전현우 퇴사·연차정산, 박유은 신규 입사)으로 변동되었습니다. 연남점은 황영은의 연장·휴일근무(215,312원)가 여전히 발생해 정상화 기준으로도 일평균 총액이 소폭 증가(+5.5%)했습니다.</li>
+  <li><b>홍대점 일평균 +24.2% — 정수안 합류 + 신규 정규직 이예슬</b> — 홍대점은 정규직 이예슬이 새로 등록되었으나 이번 주 급여 항목이 전부 0원으로 표시되어(근무 스케줄 없음), 실제 반영은 다음 회차부터로 예상됩니다. 정규직 서연진 건은 지각 공제가 수기로 반영된 것으로 확인되어(담당자 확인 완료), 460,766원 그대로 사용했습니다 — 더 이상 확인이 필요한 항목이 아닙니다.</li>
   <li><b>DMC점, 아직 근무 실적 없음 — 준비 중</b> — 신규 지점 DMC점에 유현주·조민지(9/12 입사 예정)·황진선(9/10 입사 예정) 등이 채용되었으나 이번 주는 전원 근무 개시 전으로 실적이 0원입니다. 실제 근무가 시작되면 다음 회차부터 5번째 지점으로 리포트에 추가될 예정입니다.</li>
 </ul>
 
 <details class="card" style="margin-top:6px;">
-<summary style="font-weight:800; color:var(--navy);">▸ 상세 데이터 — 정규직 지점별·직원별 내역</summary>
+<summary style="font-weight:800; color:var(--navy);">▸ 상세 데이터 — 정규직 지점별·직원별 내역 (8월6주=정상화 기준)</summary>
 <details class="card">
 <summary style="font-weight:800; color:var(--navy); margin-bottom:4px;">마곡점 (정규직 5명)</summary>
 <div class="tablewrap" style="margin-top:12px;">
 <table>
-<thead><tr><th>항목</th><th class="num">8월6주(8/31,1일)</th><th class="num">9월1주(9/1~9/6,6일)</th><th class="num">증감액</th></tr></thead>
+<thead><tr><th>항목</th><th class="num">8월6주 정상화(8/31,1일)</th><th class="num">9월1주(9/1~9/6,6일)</th><th class="num">증감액</th></tr></thead>
 <tbody>
-<tr><td>기본급(일할)</td><td class="num">356,721</td><td class="num">2,211,668</td><td class="num delta up">+1,854,947</td></tr><tr><td>식대(일할)</td><td class="num">32,260</td><td class="num">200,000</td><td class="num delta up">+167,740</td></tr><tr><td>직책수당(일할)</td><td class="num">9,678</td><td class="num">60,000</td><td class="num delta up">+50,322</td></tr><tr><td>기타수당(일할)</td><td class="num">0</td><td class="num">0</td><td class="num delta flat">+0</td></tr><tr><td>연장수당</td><td class="num">0</td><td class="num">18,900</td><td class="num delta up">+18,900</td></tr><tr><td>야간수당</td><td class="num">0</td><td class="num">42,815</td><td class="num delta up">+42,815</td></tr><tr><td>휴일수당</td><td class="num">0</td><td class="num">0</td><td class="num delta flat">+0</td></tr><tr><td>휴일연장수당</td><td class="num">0</td><td class="num">0</td><td class="num delta flat">+0</td></tr><tr class="total-row"><td>정규직 합계 (8/31 1일 vs 9/1~9/6 6일)</td><td class="num">398,659</td><td class="num">2,533,383</td><td class="num">+2,134,724</td></tr>
+<tr><td>기본급</td><td class="num">356,723</td><td class="num">2,211,668</td><td class="num delta up">+1,854,945</td></tr><tr><td>식대</td><td class="num">32,260</td><td class="num">200,000</td><td class="num delta up">+167,740</td></tr><tr><td>직책수당</td><td class="num">9,678</td><td class="num">60,000</td><td class="num delta up">+50,322</td></tr><tr><td>기타수당</td><td class="num">0</td><td class="num">0</td><td class="num delta flat">+0</td></tr><tr><td>연장수당</td><td class="num">0</td><td class="num">18,900</td><td class="num delta up">+18,900</td></tr><tr><td>야간수당</td><td class="num">5,334</td><td class="num">42,815</td><td class="num delta up">+37,481</td></tr><tr><td>휴일수당</td><td class="num">0</td><td class="num">0</td><td class="num delta flat">+0</td></tr><tr><td>휴일연장수당</td><td class="num">0</td><td class="num">0</td><td class="num delta flat">+0</td></tr><tr class="total-row"><td>정규직 합계 (8/31 1일 vs 9/1~9/6 6일)</td><td class="num">403,995</td><td class="num">2,533,383</td><td class="num">+2,129,388</td></tr>
 </tbody>
 </table>
 </div>
@@ -167,9 +178,9 @@ details.card summary { cursor:pointer; }
 <summary style="font-weight:800; color:var(--navy); margin-bottom:4px;">망원점 (정규직 3명)</summary>
 <div class="tablewrap" style="margin-top:12px;">
 <table>
-<thead><tr><th>항목</th><th class="num">8월6주(8/31,1일)</th><th class="num">9월1주(9/1~9/6,6일)</th><th class="num">증감액</th></tr></thead>
+<thead><tr><th>항목</th><th class="num">8월6주 정상화(8/31,1일)</th><th class="num">9월1주(9/1~9/6,6일)</th><th class="num">증감액</th></tr></thead>
 <tbody>
-<tr><td>기본급(일할)</td><td class="num">258,333</td><td class="num">1,241,667</td><td class="num delta up">+983,334</td></tr><tr><td>식대(일할)</td><td class="num">25,808</td><td class="num">120,000</td><td class="num delta up">+94,192</td></tr><tr><td>직책수당(일할)</td><td class="num">3,226</td><td class="num">20,000</td><td class="num delta up">+16,774</td></tr><tr><td>기타수당(일할)</td><td class="num">0</td><td class="num">0</td><td class="num delta flat">+0</td></tr><tr><td>연장수당</td><td class="num">0</td><td class="num">0</td><td class="num delta flat">+0</td></tr><tr><td>야간수당</td><td class="num">0</td><td class="num">19,629</td><td class="num delta up">+19,629</td></tr><tr><td>휴일수당</td><td class="num">0</td><td class="num">0</td><td class="num delta flat">+0</td></tr><tr><td>휴일연장수당</td><td class="num">0</td><td class="num">0</td><td class="num delta flat">+0</td></tr><tr class="total-row"><td>정규직 합계 (8/31 1일 vs 9/1~9/6 6일)</td><td class="num">287,367</td><td class="num">1,401,296</td><td class="num">+1,113,929</td></tr>
+<tr><td>기본급</td><td class="num">195,164</td><td class="num">1,241,667</td><td class="num delta up">+1,046,503</td></tr><tr><td>식대</td><td class="num">19,356</td><td class="num">120,000</td><td class="num delta up">+100,644</td></tr><tr><td>직책수당</td><td class="num">3,226</td><td class="num">20,000</td><td class="num delta up">+16,774</td></tr><tr><td>기타수당</td><td class="num">0</td><td class="num">0</td><td class="num delta flat">+0</td></tr><tr><td>연장수당</td><td class="num">0</td><td class="num">0</td><td class="num delta flat">+0</td></tr><tr><td>야간수당</td><td class="num">2,692</td><td class="num">19,629</td><td class="num delta up">+16,937</td></tr><tr><td>휴일수당</td><td class="num">0</td><td class="num">0</td><td class="num delta flat">+0</td></tr><tr><td>휴일연장수당</td><td class="num">0</td><td class="num">0</td><td class="num delta flat">+0</td></tr><tr class="total-row"><td>정규직 합계 (8/31 1일 vs 9/1~9/6 6일)</td><td class="num">220,438</td><td class="num">1,401,296</td><td class="num">+1,180,858</td></tr><tr><td colspan="4" style="color:var(--gray); font-size:11.5px; font-style:italic;">※ 8월6주 원자료는 606,574원(전현우 연차수당 정산 386,136원 포함) — 정상화 금액 220,438원 기준으로 비교했습니다.</td></tr>
 </tbody>
 </table>
 </div>
@@ -187,9 +198,9 @@ details.card summary { cursor:pointer; }
 <summary style="font-weight:800; color:var(--navy); margin-bottom:4px;">연남점 (정규직 12명)</summary>
 <div class="tablewrap" style="margin-top:12px;">
 <table>
-<thead><tr><th>항목</th><th class="num">8월6주(8/31,1일)</th><th class="num">9월1주(9/1~9/6,6일)</th><th class="num">증감액</th></tr></thead>
+<thead><tr><th>항목</th><th class="num">8월6주 정상화(8/31,1일)</th><th class="num">9월1주(9/1~9/6,6일)</th><th class="num">증감액</th></tr></thead>
 <tbody>
-<tr><td>기본급(일할)</td><td class="num">988,871</td><td class="num">5,320,003</td><td class="num delta up">+4,331,132</td></tr><tr><td>식대(일할)</td><td class="num">90,328</td><td class="num">480,000</td><td class="num delta up">+389,672</td></tr><tr><td>직책수당(일할)</td><td class="num">12,904</td><td class="num">100,000</td><td class="num delta up">+87,096</td></tr><tr><td>기타수당(일할)</td><td class="num">0</td><td class="num">0</td><td class="num delta flat">+0</td></tr><tr><td>연장수당</td><td class="num">0</td><td class="num">127,275</td><td class="num delta up">+127,275</td></tr><tr><td>야간수당</td><td class="num">0</td><td class="num">18,892</td><td class="num delta up">+18,892</td></tr><tr><td>휴일수당</td><td class="num">0</td><td class="num">119,618</td><td class="num delta up">+119,618</td></tr><tr><td>휴일연장수당</td><td class="num">0</td><td class="num">0</td><td class="num delta flat">+0</td></tr><tr class="total-row"><td>정규직 합계 (8/31 1일 vs 9/1~9/6 6일)</td><td class="num">1,092,103</td><td class="num">6,165,788</td><td class="num">+5,073,685</td></tr>
+<tr><td>기본급</td><td class="num">924,202</td><td class="num">5,320,003</td><td class="num delta up">+4,395,801</td></tr><tr><td>식대</td><td class="num">83,876</td><td class="num">480,000</td><td class="num delta up">+396,124</td></tr><tr><td>직책수당</td><td class="num">9,678</td><td class="num">100,000</td><td class="num delta up">+90,322</td></tr><tr><td>기타수당</td><td class="num">0</td><td class="num">0</td><td class="num delta flat">+0</td></tr><tr><td>연장수당</td><td class="num">23,924</td><td class="num">127,275</td><td class="num delta up">+103,351</td></tr><tr><td>야간수당</td><td class="num">5,374</td><td class="num">18,892</td><td class="num delta up">+13,518</td></tr><tr><td>휴일수당</td><td class="num">0</td><td class="num">119,618</td><td class="num delta up">+119,618</td></tr><tr><td>휴일연장수당</td><td class="num">0</td><td class="num">0</td><td class="num delta flat">+0</td></tr><tr class="total-row"><td>정규직 합계 (8/31 1일 vs 9/1~9/6 6일)</td><td class="num">1,047,054</td><td class="num">6,165,788</td><td class="num">+5,118,734</td></tr><tr><td colspan="4" style="color:var(--gray); font-size:11.5px; font-style:italic;">※ 8월6주 원자료는 2,650,806원(최다연 연차수당 정산 1,603,752원, 0근무일 포함) — 정상화 금액 1,047,054원 기준으로 비교했습니다.</td></tr>
 </tbody>
 </table>
 </div>
@@ -207,9 +218,9 @@ details.card summary { cursor:pointer; }
 <summary style="font-weight:800; color:var(--navy); margin-bottom:4px;">홍대점 (정규직 4명)</summary>
 <div class="tablewrap" style="margin-top:12px;">
 <table>
-<thead><tr><th>항목</th><th class="num">8월6주(8/31,1일)</th><th class="num">9월1주(9/1~9/6,6일)</th><th class="num">증감액</th></tr></thead>
+<thead><tr><th>항목</th><th class="num">8월6주 정상화(8/31,1일)</th><th class="num">9월1주(9/1~9/6,6일)</th><th class="num">증감액</th></tr></thead>
 <tbody>
-<tr><td>기본급(일할)</td><td class="num">221,506</td><td class="num">1,373,334</td><td class="num delta up">+1,151,828</td></tr><tr><td>식대(일할)</td><td class="num">19,356</td><td class="num">120,000</td><td class="num delta up">+100,644</td></tr><tr><td>직책수당(일할)</td><td class="num">6,452</td><td class="num">40,000</td><td class="num delta up">+33,548</td></tr><tr><td>기타수당(일할)</td><td class="num">0</td><td class="num">0</td><td class="num delta flat">+0</td></tr><tr><td>연장수당</td><td class="num">0</td><td class="num">25,599</td><td class="num delta up">+25,599</td></tr><tr><td>야간수당</td><td class="num">0</td><td class="num">21,931</td><td class="num delta up">+21,931</td></tr><tr><td>휴일수당</td><td class="num">0</td><td class="num">0</td><td class="num delta flat">+0</td></tr><tr><td>휴일연장수당</td><td class="num">0</td><td class="num">0</td><td class="num delta flat">+0</td></tr><tr class="total-row"><td>정규직 합계 (8/31 1일 vs 9/1~9/6 6일)</td><td class="num">247,314</td><td class="num">1,575,481</td><td class="num">+1,328,167</td></tr><tr><td colspan="4" style="color:var(--gray); font-size:11.5px; font-style:italic;">※ 항목 합(1,580,864)과 실제 지급 합계(1,575,481)에 5,383원 차이 — 원본 파일의 연장수당 셀과 총액 셀 정산 차이(서연진, 확인 필요)</td></tr>
+<tr><td>기본급</td><td class="num">221,507</td><td class="num">1,373,334</td><td class="num delta up">+1,151,827</td></tr><tr><td>식대</td><td class="num">19,356</td><td class="num">120,000</td><td class="num delta up">+100,644</td></tr><tr><td>직책수당</td><td class="num">6,452</td><td class="num">40,000</td><td class="num delta up">+33,548</td></tr><tr><td>기타수당</td><td class="num">0</td><td class="num">0</td><td class="num delta flat">+0</td></tr><tr><td>연장수당</td><td class="num">0</td><td class="num">25,599</td><td class="num delta up">+25,599</td></tr><tr><td>야간수당</td><td class="num">2,692</td><td class="num">21,931</td><td class="num delta up">+19,239</td></tr><tr><td>휴일수당</td><td class="num">0</td><td class="num">0</td><td class="num delta flat">+0</td></tr><tr><td>휴일연장수당</td><td class="num">0</td><td class="num">0</td><td class="num delta flat">+0</td></tr><tr class="total-row"><td>정규직 합계 (8/31 1일 vs 9/1~9/6 6일)</td><td class="num">250,007</td><td class="num">1,575,481</td><td class="num">+1,325,474</td></tr><tr><td colspan="4" style="color:var(--gray); font-size:11.5px; font-style:italic;">※ 항목 합(1,580,864)과 실제 지급 합계(1,575,481)에 5,383원 차이 — 서연진의 지각 공제가 수기로 반영된 것으로 확인되었습니다(담당자 확인 완료, 460,766원 그대로 사용).</td></tr>
 </tbody>
 </table>
 </div>
@@ -227,7 +238,7 @@ details.card summary { cursor:pointer; }
 </details>
 
 <details class="card">
-<summary style="font-weight:800; color:var(--navy);">▸ 상세 데이터 — 파트타이머 지점별 직원별 9/1~9/6 지급액 (확정분)</summary>
+<summary style="font-weight:800; color:var(--navy);">▸ 상세 데이터 — 파트타이머 지점별 직원별 9/1~9/6 지급액 (확정분, 변동 없음)</summary>
 <details class="card">
 <summary style="font-weight:800; color:var(--navy); margin-bottom:4px;">마곡점 (파트타이머 6명, 확정분 기준)</summary>
 <div class="tablewrap" style="margin-top:12px;">
@@ -276,17 +287,18 @@ details.card summary { cursor:pointer; }
 </details>
 
 <footer class="note">
-  <b>산출 기준(정규직)</b> — 원본 데이터: 지점별 "0901-0906 주간 [지점명] 2026-09-01~2026-09-06 주간 인건비 보고서(자동계산)" 4개 파일(마곡·망원·연남·홍대, Google Drive). 각 파일의 "주간인건비총액" 열(월급여(일할)+직책수당(일할)+기타수당(일할)+연장~휴일연장수당)을 직원별로 그대로 합산했습니다. 일할계산 방식은 월 고정항목 × 이번 주 인정일수(6일) ÷ 그 달 총 역일수(30일)입니다. 홍대점 서연진 1명은 원본 파일의 항목별 셀 합과 총액 셀 사이에 5,383원 차이가 있어 총액 셀 기준으로 반영했습니다(원본 확인 권장).<br>
-  <b>산출 기준(파트타이머)</b> — 원본 데이터: 202609_공명_파트_(9월 1주).xlsx (Google Drive, 지점별 시트). 각 직원의 "최종 지급액"(9/1~9/6 확정분)을 그대로 사용했습니다. 연남점 성명 미확정 파트타이머 1명(41,280원, 원본상 미확정 FALSE 표시)은 이번 집계에서 제외했습니다.<br>
-  <b>기간 안내</b> — 8월 6주차(8/31, 1일)와 9월 1주차(9/1~9/6, 6일)는 기간 길이가 달라 절대금액 비교가 왜곡되므로, 비교는 반드시 "일평균" 기준으로 봐주세요. 정확한 확정 지급액은 항상 월마감 급여대장이 기준이며, 이 페이지는 참고·집계용입니다.<br>
-  보고서 생성: 2026-09-08
+  <b>[정정판] 산출 기준(정규직)</b> — 9월 1주차 자체 원본 데이터·산출 방식은 변경 없음: 지점별 "0901-0906 주간 [지점명] 2026-09-01~2026-09-06 주간 인건비 보고서(자동계산)" 4개 파일(마곡·망원·연남·홍대, Google Drive)의 "주간인건비총액" 열을 직원별로 합산했습니다. 비교 기준인 <b>8월 6주차(8/31) 수치가 정정</b>되었습니다 — 이전 1/31 일할계산 추정치 대신, 원본 지점별 시트의 실지급액("지급액계") 기준 정규직 총액 3,911,382원을 사용하되, 이 중 연차수당 정산(연남점 최다연 1,603,752원 + 망원점 전현우 386,136원 = 1,989,888원)은 일회성 항목이라 제외한 정상화 금액(1,921,494원)을 비교 기준으로 삼았습니다. 홍대점 서연진 1명은 지각 공제가 수기로 반영된 것으로 담당자 확인을 마쳤습니다(460,766원 그대로 사용).<br>
+  <b>산출 기준(파트타이머)</b> — 원본 데이터: 202609_공명_파트_(9월 1주).xlsx (Google Drive, 지점별 시트). 각 직원의 "최종 지급액"(9/1~9/6 확정분)을 그대로 사용했습니다. 연남점 "파티쉐" 파트타이머 1명은 원본에서 최종 확정(TRUE) 처리되며 지급액이 0원이 되어 이번 집계에서 정상적으로 제외되었습니다.<br>
+  <b>기간 안내</b> — 8월 6주차(8/31, 1일)와 9월 1주차(9/1~9/6, 6일)는 기간 길이가 달라 절대금액 비교가 왜곡되므로, 비교는 반드시 "일평균" 기준으로, 8월 6주차는 "정상화 금액" 기준으로 봐주세요. 정확한 확정 지급액은 항상 월마감 급여대장이 기준이며, 이 페이지는 참고·집계용입니다.<br>
+  정정판 생성: 2026-09-08 (최초 생성 2026-09-08 → 8월6주차 원본 재확인 후 비교기준 정정)
 </footer>
 
 </div>
 
 <script>
 const stores = ["마곡점", "망원점", "연남점", "홍대점"];
-const ftW6 = [398659, 287367, 1092103, 247314];
+// 8월6주(8/31) 정상화 기준 (연차수당 정산 제외)
+const ftW6 = [403995, 220438, 1047054, 250007];
 const ptW6 = [229620, 113520, 152220, 90300];
 const ftW7 = [422230.5, 233549.33333333334, 1027631.3333333334, 262580.1666666667];
 const ptW7 = [260494.0, 137600.0, 237274.0, 160132.0];
@@ -295,7 +307,7 @@ const navy = "#1c2b4a", amber = "#b8790a";
 
 new Chart(document.getElementById('chartCombined'), {
   type: 'bar',
-  data: { labels: stores.flatMap(s=>[s+' 8월6주(1일)', s+' 9월1주(일평균)']),
+  data: { labels: stores.flatMap(s=>[s+' 8월6주(정상화)', s+' 9월1주(일평균)']),
     datasets: [
       { label:'정규직', data: stores.flatMap((s,i)=>[ftW6[i], ftW7[i]]), backgroundColor: navy, stack:'s', borderRadius:4 },
       { label:'파트타이머', data: stores.flatMap((s,i)=>[ptW6[i], ptW7[i]]), backgroundColor: amber, stack:'s', borderRadius:4 },
