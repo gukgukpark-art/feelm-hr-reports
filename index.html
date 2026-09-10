@@ -66,6 +66,20 @@
   a.report-link .arrow { color:var(--gray); font-weight:400; font-size:13px; transition:.15s; }
   a.report-link:hover .arrow { color:var(--blue); }
 
+  .month-tile-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  @media (max-width:520px) { .month-tile-grid { grid-template-columns:1fr; } }
+  .month-tile {
+    display:flex; flex-direction:column; gap:5px; position:relative;
+    padding:22px 22px 20px; background:var(--gray-l); border:1px solid var(--border); border-radius:14px;
+    color:var(--navy); text-decoration:none; transition:.15s;
+  }
+  .month-tile:hover { background:var(--blue-l); border-color:#cfe0fb; box-shadow:0 4px 14px rgba(47,111,237,.12); }
+  .month-tile .month-tile-label { font-size:21px; font-weight:800; color:var(--navy); letter-spacing:-0.3px; }
+  .month-tile .month-tile-count { font-size:12.5px; color:var(--gray); font-weight:600; }
+  .month-tile .month-tile-latest { font-size:11.5px; color:var(--blue); font-weight:700; }
+  .month-tile .arrow { position:absolute; right:20px; bottom:18px; color:var(--gray); font-weight:400; font-size:13px; transition:.15s; }
+  .month-tile:hover .arrow { color:var(--blue); }
+
   .notice-banner {
     display:flex; align-items:center; gap:9px;
     background:var(--amber-l); border:1px solid #f3ddaa; color:#7a5308;
@@ -101,23 +115,27 @@
     <h2><span class="dot"></span>① 면접 및 채용이력</h2>
     <p class="desc">Google Drive에 보관된 면접이력·이력서·포트폴리오를 연동한 채용 현황입니다. 지원자 행을 클릭하면 이력서·포트폴리오 원문이 바로 열립니다.</p>
     <ul class="report-list">
-      <li><a class="report-link" href="recruitment/면접채용이력.html"><span><span class="date-pill recruit">2026.09</span><span class="title-text">면접 및 채용이력</span></span><span class="arrow">열기 →</span></a></li>
+      <li><a class="report-link" href="recruitment/면접채용이력.html"><span><span class="title-text">면접 및 채용이력</span></span><span class="arrow">열기 →</span></a></li>
     </ul>
   </section>
 
   <section class="card">
     <h2><span class="dot"></span>② 인원현황</h2>
     <p class="desc">주간 마감 시점의 인원 스냅샷입니다. 최신 보고서가 맨 위에 표시됩니다.</p>
-    <ul class="report-list">
-      <li><a class="report-link" href="reports/2026-09-08.html"><span><span class="date-pill">2026-09-08</span><span class="title-text">주간 인원현황 보고</span></span><span class="arrow">열기 →</span></a></li>
-      <li><a class="report-link" href="reports/2026-09-01.html"><span><span class="date-pill">2026-09-01</span><span class="title-text">주간 인원현황 보고</span></span><span class="arrow">열기 →</span></a></li>
-      <li><a class="report-link" href="reports/2026-08-26.html"><span><span class="date-pill">2026-08-26</span><span class="title-text">주간 인원현황 보고</span></span><span class="arrow">열기 →</span></a></li>
-      <li><a class="report-link" href="reports/2026-08-25.html"><span><span class="date-pill">2026-08-25</span><span class="title-text">주간 인원현황 보고</span></span><span class="arrow">열기 →</span></a></li>
-      <li><a class="report-link" href="reports/2026-08-18.html"><span><span class="date-pill">2026-08-18</span><span class="title-text">주간 인원현황 보고</span></span><span class="arrow">열기 →</span></a></li>
-      <li><a class="report-link" href="reports/2026-08-11.html"><span><span class="date-pill">2026-08-11</span><span class="title-text">주간 인원현황 보고</span></span><span class="arrow">열기 →</span></a></li>
-      <li><a class="report-link" href="reports/2026-08-07.html"><span><span class="date-pill">2026-08-07</span><span class="title-text">주간 인원현황 보고</span></span><span class="arrow">열기 →</span></a></li>
-      <li><a class="report-link" href="reports/2026-08-04.html"><span><span class="date-pill">2026-08-04</span><span class="title-text">주간 인원현황 보고</span></span><span class="arrow">열기 →</span></a></li>
-    </ul>
+    <div class="month-tile-grid">
+      <a class="month-tile" href="reports/2026-09.html">
+        <span class="month-tile-label">2026년 9월</span>
+        <span class="month-tile-count">주간 보고서 2건</span>
+        <span class="month-tile-latest">최신 · 09-08 마감</span>
+        <span class="arrow">열기 →</span>
+      </a>
+      <a class="month-tile" href="reports/2026-08.html">
+        <span class="month-tile-label">2026년 8월</span>
+        <span class="month-tile-count">주간 보고서 6건</span>
+        <span class="month-tile-latest">최신 · 08-26 마감</span>
+        <span class="arrow">열기 →</span>
+      </a>
+    </div>
   </section>
 
   <section class="card cost">
