@@ -21,6 +21,11 @@ a.back-link:hover { color:var(--blue); }
   font-weight:600; font-size:12.5px; padding:13px 16px; border-radius:11px; margin:0 0 24px; line-height:1.6; }
 .notice-banner .dot { width:6px; height:6px; border-radius:50%; background:var(--amber); flex-shrink:0; margin-top:6px; }
 .notice-banner b { font-weight:800; }
+.notice-body { flex:1; min-width:0; }
+.notice-lead { margin-bottom:9px; }
+.notice-stats { margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:6px; }
+.notice-stats li { display:flex; flex-wrap:wrap; align-items:baseline; gap:6px; }
+.notice-stats .stat-note, .notice-body .stat-note { color:#8a6a2f; font-weight:500; font-size:11.5px; }
 
 .kpi-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-bottom:26px; }
 @media (max-width:800px) { .kpi-grid{grid-template-columns:repeat(2,1fr);} .chart-grid{grid-template-columns:1fr !important;} }
@@ -83,8 +88,10 @@ footer.note b { color:var(--navy); }
 
 <div class="notice-banner">
   <span class="dot"></span>
-  <span><b>기간 길이가 달라 절대금액만 보면 오해할 수 있습니다.</b> 1주차는 8/1(토)~8/2(일) 2일치, 2주차는 8/3(월)~8/9(일) 7일치입니다(주차마감이 월요일 시작 기준으로 바뀌면서 생긴 첫 주 잔여일).
-  월급여·기본급·식대·직책수당은 근무일수에 비례해 일할계산되므로 2주차 금액이 약 3.5배 커지는 게 정상입니다. 그래서 이 페이지는 절대금액과 함께 <b>일평균 인건비</b>(총액 ÷ 해당 기간 일수)를 나란히 보여줘 지점 간·주차 간 공정하게 비교할 수 있게 했습니다.</span>
+  <div class="notice-body">
+    <div class="notice-lead"><b>기간 길이가 달라 절대금액만 보면 오해할 수 있습니다.</b> 1주차 8/1~8/2(2일) · 2주차 8/3~8/9(7일) — 주차마감 기준 변경으로 생긴 첫 주 잔여일입니다.</div>
+    <div class="stat-note">월급여·기본급·식대·직책수당은 근무일수 비례 일할계산이라 2주차 금액이 약 3.5배 커지는 게 정상입니다. 절대금액과 함께 <b>일평균 인건비</b>(총액÷일수)를 나란히 표시해 공정하게 비교합니다.</div>
+  </div>
 </div>
 
 <div class="section-title"><span class="dot"></span>① 전사 요약 — 정규직 (마곡·망원·연남·홍대 4개 지점 합산)</div>
@@ -247,7 +254,10 @@ footer.note b { color:var(--navy); }
 
 <div class="notice-banner">
   <span class="dot"></span>
-  <span><b>파트타이머는 근무 스케줄이 요일마다 달라 정규직의 "일할계산"과 방식이 다릅니다.</b> 이 섹션의 금액은 원본 파일의 <b>일자별 "수당포함 지급액"</b>(일급 + 그날 발생한 주휴수당 등 포함, 실제 지급 기준)을 직원별로 8/1~8/2, 8/3~8/9 구간별로 그대로 합산한 값입니다. 신규 입사·중도 퇴사자가 있어 지점별 근무 인원이 주차마다 달라질 수 있으므로, 절대금액과 함께 일평균 지표를 같이 확인하세요.</span>
+  <div class="notice-body">
+    <div class="notice-lead"><b>파트타이머는 정규직과 계산 방식이 다릅니다.</b> 근무 스케줄이 요일마다 달라 "일할계산"을 적용하지 않습니다.</div>
+    <div class="stat-note">원본의 일자별 "수당포함 지급액"(일급+주휴수당 등, 실제 지급 기준)을 직원별로 8/1~8/2·8/3~8/9 구간별 합산했습니다. 신규 입사·중도 퇴사로 지점별 인원이 주차마다 달라질 수 있어 절대금액과 함께 일평균 지표도 같이 확인하세요.</div>
+  </div>
 </div>
 
 <div class="kpi-grid">

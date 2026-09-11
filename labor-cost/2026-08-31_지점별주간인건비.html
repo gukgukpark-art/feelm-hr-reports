@@ -21,6 +21,11 @@ a.back-link:hover { color:var(--blue); }
   font-weight:600; font-size:12.5px; padding:13px 16px; border-radius:11px; margin:0 0 24px; line-height:1.6; }
 .notice-banner .dot { width:6px; height:6px; border-radius:50%; background:var(--amber); flex-shrink:0; margin-top:6px; }
 .notice-banner b { font-weight:800; }
+.notice-body { flex:1; min-width:0; }
+.notice-lead { margin-bottom:9px; }
+.notice-stats { margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:6px; }
+.notice-stats li { display:flex; flex-wrap:wrap; align-items:baseline; gap:6px; }
+.notice-stats .stat-note { color:#8a6a2f; font-weight:500; font-size:11.5px; }
 
 .kpi-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-bottom:26px; }
 @media (max-width:800px) { .kpi-grid{grid-template-columns:repeat(2,1fr);} .chart-grid{grid-template-columns:1fr !important;} }
@@ -71,6 +76,8 @@ footer.note b { color:var(--navy); }
 .insight-list { margin:0 0 22px; padding:0 0 0 4px; list-style:none; }
 .insight-list li { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:12px 16px; margin-bottom:10px; font-size:13px; line-height:1.6; box-shadow:0 1px 2px rgba(20,30,60,.04); }
 .insight-list li b { color:var(--navy); }
+.insight-list li .ins-head { margin-bottom:5px; }
+.insight-list li .ins-detail { color:var(--gray); font-weight:500; font-size:12.3px; line-height:1.6; }
 details.card summary { cursor:pointer; }
 </style></head>
 <body><div class="wrap">
@@ -86,7 +93,14 @@ details.card summary { cursor:pointer; }
 
 <div class="notice-banner">
   <span class="dot"></span>
-  <span><b>한눈에 보기</b> — 5주차 전체 인건비는 18,115,130원으로 4주차 대비 <b>-2,536,226원(-12.3%)</b> 감소했습니다. 두 주 모두 7일치라 절대금액을 그대로 비교해도 됩니다. 가장 큰 이유는 4주차엔 8/17(월) 광복절 대체공휴일로 정규직 휴일수당이 2,069,928원 발생했는데, 5주차엔 공휴일이 전혀 없어 휴일수당이 <b>0원</b>이 된 것입니다(감소분의 약 82%를 차지). 정규직(-9.6%)·파트타이머(-18.8%) 모두 감소했고, 4개 지점 모두 줄었습니다(망원 -20.1%로 가장 크게 감소). 한편 마곡점에는 신규 정규직 박라정이, 홍대점에는 신규 파트타이머 조영서가 이번 주부터 합류했습니다.</span>
+  <div class="notice-body">
+    <div class="notice-lead"><b>한눈에 보기</b> — 5주차·4주차 모두 7일치라 절대금액을 그대로 비교했습니다. 감소의 핵심 원인은 대체공휴일(8/17) 소멸로 인한 휴일수당 <b>0원</b> 전환입니다.</div>
+    <ul class="notice-stats">
+      <li><b>전체 인건비</b> 18,115,130원 <span class="delta down">▼ -2,536,226원(-12.3%)</span><span class="stat-note">휴일수당 소멸이 감소분의 약 82%</span></li>
+      <li><b>정규직</b> <span class="delta down">▼ -9.6%</span> · <b>파트타이머</b> <span class="delta down">▼ -18.8%</span><span class="stat-note">4개 지점 모두 감소(망원 -20.1% 최대)</span></li>
+      <li><b>신규 합류</b><span class="stat-note">마곡점 박라정(정규직) · 홍대점 조영서(파트타이머)</span></li>
+    </ul>
+  </div>
 </div>
 
 <div class="section-title"><span class="dot"></span>① 핵심 지표</div>
@@ -134,11 +148,11 @@ details.card summary { cursor:pointer; }
 
 <div class="section-title" style="margin-top:6px;"><span class="dot"></span>③ 특이사항</div>
 <ul class="insight-list">
-  <li><b>대체공휴일 소멸로 휴일수당 급감</b> — 4주차엔 8/17(월) 광복절 대체공휴일이 있어 전 지점에 휴일수당(합계 2,069,928원)이 발생했지만, 5주차(8/24~8/30)엔 공휴일이 하나도 없어 4개 지점 모두 휴일수당이 <b>0원</b>이 되었습니다. 이번 주 전체 감소분(-2,536,226원)의 약 82%가 이 요인입니다. 반대로 연남점은 파티쉐 다수의 연장근무가 늘며 연장수당이 35,885원→252,791원(+216,906원)으로 크게 증가해 휴일수당 감소분 일부를 상쇄했습니다.</li>
-  <li><b>마곡점 신규 정규직 박라정 합류</b> — 이번 주부터 근무를 시작해 주 4일 근무, 기본급 313,979원이 반영되며 마곡점 정규직이 4명→5명이 되었습니다. 다만 최승민의 연장·야간·휴일수당이 지난주 대비 정상화(780,475원→604,075원)되며 마곡점 정규직 총액은 오히려 소폭 감소(2,675,097원→2,578,844원)했습니다.</li>
-  <li><b>홍대점 신규 파트타이머 조영서 합류</b> — 이번 주부터 근무 기록이 확인되며 247,680원이 지급되어, 홍대점 파트타이머가 6명→7명으로 늘었습니다.</li>
-  <li><b>마곡점 파트타이머 전은혜 근무기록 소멸 — 확인 필요</b> — 지난주 59,340원 지급되던 전은혜가 이번 주 근무 기록이 전혀 없어 0원이 되었습니다. 기존에 계속 0원이던 김수경(퇴사 여부 미확인)과 함께 마곡점 파트타이머 8명 중 2명이 무근무 상태입니다.</li>
-  <li><b>망원점 파트타이머 김은지 4일 연속 결근</b> — 8/24~8/27 나흘 연속 결근으로 이번 주 56,760원만 지급되어(지난주 425,700원), 담당자 확인이 필요합니다.</li>
+  <li><div class="ins-head"><b>대체공휴일 소멸로 휴일수당 급감</b></div><div class="ins-detail">4주차 8/17(월) 대체공휴일로 전 지점 휴일수당 합계 2,069,928원 발생했으나, 5주차(8/24~8/30)엔 공휴일이 없어 4개 지점 모두 0원(전체 감소분의 약 82%). 연남점은 파티쉐 연장근무 증가로 연장수당이 35,885원→252,791원(+216,906원)으로 늘어 감소분 일부를 상쇄했습니다.</div></li>
+  <li><div class="ins-head"><b>마곡점 신규 정규직 박라정 합류</b></div><div class="ins-detail">주 4일 근무, 기본급 313,979원 반영 — 마곡점 정규직 4명→5명. 최승민 연장·야간·휴일수당 정상화(780,475원→604,075원)로 마곡점 정규직 총액은 오히려 소폭 감소(2,675,097원→2,578,844원).</div></li>
+  <li><div class="ins-head"><b>홍대점 신규 파트타이머 조영서 합류</b></div><div class="ins-detail">이번 주부터 근무 확인, 247,680원 지급 — 홍대점 파트타이머 6명→7명.</div></li>
+  <li><div class="ins-head"><b>마곡점 파트타이머 전은혜 근무기록 소멸 — 확인 필요</b></div><div class="ins-detail">지난주 59,340원 지급되던 전은혜, 이번 주 근무 기록 없이 0원. 기존 0원이던 김수경(퇴사 여부 미확인)과 함께 마곡점 파트타이머 8명 중 2명 무근무.</div></li>
+  <li><div class="ins-head"><b>망원점 파트타이머 김은지 4일 연속 결근</b></div><div class="ins-detail">8/24~8/27 나흘 결근으로 이번 주 56,760원만 지급(지난주 425,700원) — 담당자 확인 필요.</div></li>
 </ul>
 
 <details class="card" style="margin-top:6px;">

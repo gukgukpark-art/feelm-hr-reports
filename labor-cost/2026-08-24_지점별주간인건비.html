@@ -21,6 +21,11 @@ a.back-link:hover { color:var(--blue); }
   font-weight:600; font-size:12.5px; padding:13px 16px; border-radius:11px; margin:0 0 24px; line-height:1.6; }
 .notice-banner .dot { width:6px; height:6px; border-radius:50%; background:var(--amber); flex-shrink:0; margin-top:6px; }
 .notice-banner b { font-weight:800; }
+.notice-body { flex:1; min-width:0; }
+.notice-lead { margin-bottom:9px; }
+.notice-stats { margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:6px; }
+.notice-stats li { display:flex; flex-wrap:wrap; align-items:baseline; gap:6px; }
+.notice-stats .stat-note { color:#8a6a2f; font-weight:500; font-size:11.5px; }
 
 .kpi-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-bottom:26px; }
 @media (max-width:800px) { .kpi-grid{grid-template-columns:repeat(2,1fr);} .chart-grid{grid-template-columns:1fr !important;} }
@@ -71,6 +76,8 @@ footer.note b { color:var(--navy); }
 .insight-list { margin:0 0 22px; padding:0 0 0 4px; list-style:none; }
 .insight-list li { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:12px 16px; margin-bottom:10px; font-size:13px; line-height:1.6; box-shadow:0 1px 2px rgba(20,30,60,.04); }
 .insight-list li b { color:var(--navy); }
+.insight-list li .ins-head { margin-bottom:5px; }
+.insight-list li .ins-detail { color:var(--gray); font-weight:500; font-size:12.3px; line-height:1.6; }
 details.card summary { cursor:pointer; }
 </style></head>
 <body><div class="wrap">
@@ -86,7 +93,14 @@ details.card summary { cursor:pointer; }
 
 <div class="notice-banner">
   <span class="dot"></span>
-  <span><b>한눈에 보기</b> — 4주차 전체 인건비는 20,651,356원으로 3주차 대비 <b>-1,043,042원(-4.8%)</b> 감소했습니다. 두 주 모두 7일치라 절대금액을 그대로 비교해도 됩니다. 3주차엔 8/15(토) 광복절, 4주차엔 그 대체공휴일인 8/17(월)이 껴 있어 두 주 모두 휴일수당이 발생했지만, 4주차 휴일수당은 2,615,412원→2,069,928원으로 오히려 <b>-20.9%</b> 줄었습니다(대체공휴일엔 상대적으로 적은 인원만 근무 배치). 정규직(-3.7%)·파트타이머(-7.5%) 모두 감소했고, 마곡·망원·홍대점은 줄고 연남점만 소폭(+0.3%) 늘었습니다.</span>
+  <div class="notice-body">
+    <div class="notice-lead"><b>한눈에 보기</b> — 4주차·3주차 모두 7일치라 절대금액을 그대로 비교했습니다. 3주차 8/15(토) 광복절, 4주차 그 대체공휴일 8/17(월) — 두 주 모두 휴일수당이 발생했습니다.</div>
+    <ul class="notice-stats">
+      <li><b>전체 인건비</b> 20,651,356원 <span class="delta down">▼ -1,043,042원(-4.8%)</span></li>
+      <li><b>휴일수당</b> 2,615,412원 → 2,069,928원 <span class="delta down">▼ -20.9%</span><span class="stat-note">대체공휴일엔 상대적으로 적은 인원 근무 배치</span></li>
+      <li><b>정규직</b> <span class="delta down">▼ -3.7%</span> · <b>파트타이머</b> <span class="delta down">▼ -7.5%</span><span class="stat-note">마곡·망원·홍대 감소, 연남만 소폭 <span class="delta up">▲ +0.3%</span></span></li>
+    </ul>
+  </div>
 </div>
 
 <div class="section-title"><span class="dot"></span>① 핵심 지표</div>
@@ -134,9 +148,9 @@ details.card summary { cursor:pointer; }
 
 <div class="section-title" style="margin-top:6px;"><span class="dot"></span>③ 특이사항</div>
 <ul class="insight-list">
-  <li><b>8/17(월) 광복절 대체공휴일</b> — 8/15(토)가 광복절이라 다음 평일인 8/17(월)이 법정 대체공휴일로 지정되어 이번 주도 휴일수당이 발생했습니다. 다만 전사 정규직 휴일수당은 2,615,412원→2,069,928원으로 -20.9% 줄었는데, 특히 홍대(-296,664원)·망원(-129,192원)·연남(-111,492원)이 크게 줄고 마곡만 소폭(-8,136원) 감소해, 대체공휴일에는 지점별로 근무 배치 인원을 3주차보다 줄인 것으로 보입니다. 반대로 연장수당은 전 지점에서 큰 폭으로 줄어(연남 -291,311원 등) 초과근무가 평시 수준으로 정상화된 모습입니다.</li>
-  <li><b>마곡점 파트타이머 김수경 근무중단 확인 필요</b> — 8/14 근무를 마지막으로 8/15 이후 근무 기록이 전혀 없어 4주차 지급액이 402,480원→0원이 되었습니다. 다른 퇴사자(강동우·이예준)와 달리 사유가 확인되지 않아 담당자 확인이 필요합니다.</li>
-  <li><b>연남점 정규직 박찬희 부분 복귀</b> — 그간 무급휴가로 3주 연속 0원이었던 박찬희가 이번 주 4일 근무(기타휴가 3일)로 복귀하며 연남점 기본급이 313,979원 늘었고, 이 영향으로 연남점만 유일하게 합계가 소폭(+0.3%) 증가했습니다.</li>
+  <li><div class="ins-head"><b>8/17(월) 광복절 대체공휴일 — 휴일수당 -20.9%</b></div><div class="ins-detail">전사 정규직 휴일수당 2,615,412원→2,069,928원. 홍대(-296,664원)·망원(-129,192원)·연남(-111,492원) 크게 감소, 마곡만 소폭(-8,136원) — 지점별로 대체공휴일 근무 배치를 줄인 것으로 추정. 연장수당도 전 지점 큰 폭 감소(연남 -291,311원 등)로 초과근무가 평시 수준 정상화.</div></li>
+  <li><div class="ins-head"><b>마곡점 파트타이머 김수경 근무중단 — 확인 필요</b></div><div class="ins-detail">8/14 근무를 마지막으로 8/15 이후 근무 기록 없음, 지급액 402,480원→0원. 사유 미확인(다른 퇴사자와 달리) — 담당자 확인 필요.</div></li>
+  <li><div class="ins-head"><b>연남점 정규직 박찬희 부분 복귀</b></div><div class="ins-detail">3주 연속 무급휴가(0원)였던 박찬희, 이번 주 4일 근무(기타휴가 3일)로 복귀 — 기본급 313,979원 반영. 연남점만 유일하게 합계 소폭 증가(+0.3%).</div></li>
 </ul>
 
 <details class="card" style="margin-top:6px;">
