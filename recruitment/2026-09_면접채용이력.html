@@ -185,12 +185,12 @@ footer.note b { color:var(--navy); }
 </div>
 
 <div class="section-title"><span class="dot"></span>① 채용 현황 요약</div>
-<p class="section-desc">2026년 9월 진행 중인 면접 1건 기준입니다(황샛별 2차 면접 9/8 진행, 결과 확정 대기 중).</p>
+<p class="section-desc">2026년 9월 진행된 면접 2건 기준입니다(황샛별 입사포기, 김상민 불합격).</p>
 <div class="kpi-grid">
   <div class="kpi kpi-navy">
     <div class="label">총 면접 인원</div>
-    <div class="value">1<small>명</small></div>
-    <div class="sub">2026.09.07 ~ 진행 중</div>
+    <div class="value">2<small>명</small></div>
+    <div class="sub">2026.09.07 ~ 09.11</div>
   </div>
   <div class="kpi kpi-green">
     <div class="label">합격</div>
@@ -199,18 +199,18 @@ footer.note b { color:var(--navy); }
   </div>
   <div class="kpi kpi-red">
     <div class="label">불합격</div>
-    <div class="value">0<small>명</small></div>
-    <div class="sub">현재 없음</div>
+    <div class="value">1<small>명</small></div>
+    <div class="sub">김상민(1차 면접 후 드랍)</div>
   </div>
   <div class="kpi kpi-purple">
     <div class="label">입사포기</div>
-    <div class="value">0<small>명</small></div>
-    <div class="sub">현재 없음</div>
+    <div class="value">1<small>명</small></div>
+    <div class="sub">황샛별(장기근속자, 인수인계 사유)</div>
   </div>
   <div class="kpi kpi-amber">
     <div class="label">면접예정</div>
-    <div class="value">1<small>명</small></div>
-    <div class="sub">황샛별(2차면접 9/8 진행, 결과 대기)</div>
+    <div class="value">0<small>명</small></div>
+    <div class="sub">현재 없음</div>
   </div>
 </div>
 
@@ -235,11 +235,11 @@ footer.note b { color:var(--navy); }
     <div class="cal-cell"><div class="cal-daynum">4</div></div>
     <div class="cal-cell"><div class="cal-daynum">5</div></div>
     <div class="cal-cell"><div class="cal-daynum">6</div></div>
-    <div class="cal-cell has-event"><div class="cal-daynum">7</div><button class="cal-chip status-pending" data-idx="9">황샛별(1차)</button></div>
-    <div class="cal-cell has-event"><div class="cal-daynum">8</div><button class="cal-chip status-pending" data-idx="9">황샛별(2차)</button></div>
+    <div class="cal-cell has-event"><div class="cal-daynum">7</div><button class="cal-chip status-withdraw" data-idx="9">황샛별(1차)</button></div>
+    <div class="cal-cell has-event"><div class="cal-daynum">8</div><button class="cal-chip status-withdraw" data-idx="9">황샛별(2차)</button></div>
     <div class="cal-cell"><div class="cal-daynum">9</div></div>
     <div class="cal-cell"><div class="cal-daynum">10</div></div>
-    <div class="cal-cell"><div class="cal-daynum">11</div></div>
+    <div class="cal-cell has-event"><div class="cal-daynum">11</div><button class="cal-chip status-fail" data-idx="10">김상민(1차)</button></div>
     <div class="cal-cell"><div class="cal-daynum">12</div></div>
     <div class="cal-cell"><div class="cal-daynum">13</div></div>
     <div class="cal-cell"><div class="cal-daynum">14</div></div>
@@ -271,21 +271,21 @@ footer.note b { color:var(--navy); }
     <p class="section-desc" style="margin-bottom:0;">카드를 클릭하면 상세 정보와 이력서·포트폴리오가 펼쳐집니다.</p>
   </div>
   <div class="filter-tabs">
-    <button class="filter-tab active" data-filter="all">전체 1</button>
+    <button class="filter-tab active" data-filter="all">전체 2</button>
     <button class="filter-tab" data-filter="pass">합격 0</button>
-    <button class="filter-tab" data-filter="fail">불합격 0</button>
-    <button class="filter-tab" data-filter="withdraw">입사포기 0</button>
-    <button class="filter-tab" data-filter="pending">면접예정 1</button>
+    <button class="filter-tab" data-filter="fail">불합격 1</button>
+    <button class="filter-tab" data-filter="withdraw">입사포기 1</button>
+    <button class="filter-tab" data-filter="pending">면접예정 0</button>
   </div>
 </div>
 
 <div class="cand-list" id="candList">
 
-<div class="cand-card" data-status="pending" data-month="9">
+<div class="cand-card" data-status="withdraw" data-month="9">
   <div class="cand-head" data-idx="9">
     <div class="cand-avatar">황</div>
     <div class="cand-main">
-      <div class="cand-name-row"><span class="cand-name">황샛별</span><span class="status-pill status-pending">2차면접 예정</span></div>
+      <div class="cand-name-row"><span class="cand-name">황샛별</span><span class="status-pill status-withdraw">입사포기</span></div>
       <div class="cand-meta">콘텐츠사업본부 · 마케팅팀 · 경력 약 11년</div>
     </div>
     <div class="cand-date">1차 2026.09.07 · 2차 2026.09.08</div>
@@ -299,7 +299,7 @@ footer.note b { color:var(--navy); }
       <div class="fact"><span class="fl">최종입사연봉</span><span class="fv">-</span></div>
       <div class="fact"><span class="fl">최종입사일</span><span class="fv">-</span></div>
     </div>
-    <div class="cand-note-row"><b>비고</b> · 2차 면접이 2026.09.08(오늘) 예정되어 있으며, 아직 결과가 확정되지 않았습니다.</div>
+    <div class="cand-note-row"><b>비고</b> · 첫 회사에서 약 11년간 장기근속하여, 퇴사 시 업무·프로젝트 인수인계를 감안하면 10월 중 입사가 어렵다고 판단해 본인 의사로 입사를 포기했습니다.</div>
     <div class="preview-panel" id="panel-9">
       <a class="open-btn mobile-only" id="mobileopen-9" href="#" target="_blank" rel="noopener">Drive에서 크게 보기 →</a>
       <div class="preview-tabs">
@@ -311,6 +311,39 @@ footer.note b { color:var(--navy); }
       <div class="preview-linkrow">
         <span class="preview-hint">화면이 비어 보이면 공유받은 구글 계정으로 로그인되어 있는지 확인하세요.</span>
         <a id="newtab-9" href="#" target="_blank" rel="noopener">Drive 새 창에서 열기 →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="cand-card" data-status="fail" data-month="9">
+  <div class="cand-head" data-idx="10">
+    <div class="cand-avatar">김</div>
+    <div class="cand-main">
+      <div class="cand-name-row"><span class="cand-name">김상민</span><span class="status-pill status-fail">불합격</span></div>
+      <div class="cand-meta">콘텐츠사업본부 · 출판팀 · 경력 15년 10개월</div>
+    </div>
+    <div class="cand-date">면접 2026.09.11</div>
+    <button class="file-btn" data-idx="10"><span>자료보기</span><span class="chev">▾</span></button>
+  </div>
+  <div class="cand-body" id="body-10">
+    <div class="cand-facts">
+      <div class="fact"><span class="fl">입사가능시기</span><span class="fv">2026.11.01</span></div>
+      <div class="fact"><span class="fl">직전연봉</span><span class="fv">6,500만원</span></div>
+      <div class="fact"><span class="fl">희망연봉</span><span class="fv">협의가능</span></div>
+      <div class="fact"><span class="fl">최종입사연봉</span><span class="fv">-</span></div>
+      <div class="fact"><span class="fl">최종입사일</span><span class="fv">-</span></div>
+    </div>
+    <div class="cand-note-row"><b>비고</b> · 1차 엄재욱 본부장 면접 후 드랍</div>
+    <div class="preview-panel" id="panel-10">
+      <a class="open-btn mobile-only" id="mobileopen-10" href="#" target="_blank" rel="noopener">Drive에서 크게 보기 →</a>
+      <div class="preview-tabs">
+        <button class="preview-tab active" data-idx="10" data-file="1pR0JY8dP9xCcWCOd_Hev44dDMrmH1PD6">입사지원서</button>
+      </div>
+      <div class="preview-frame-wrap"><iframe id="iframe-10" loading="lazy" src=""></iframe></div>
+      <div class="preview-linkrow">
+        <span class="preview-hint">화면이 비어 보이면 공유받은 구글 계정으로 로그인되어 있는지 확인하세요.</span>
+        <a id="newtab-10" href="#" target="_blank" rel="noopener">Drive 새 창에서 열기 →</a>
       </div>
     </div>
   </div>
@@ -341,6 +374,8 @@ footer.note b { color:var(--navy); }
   <b>개인정보 취급 주의</b> — 이 표에는 지원자 실명·연봉·평가 코멘트 등 민감한 개인정보가 포함되어 있습니다. 채용 목적 외 공유·전달을 금지하며, 열람 권한은 인사총무 담당자·대표 및 관련 결재라인으로 한정해 주세요.<br>
   보고서 생성: 2026-09-08<br>
   <b>2026-09-08 등록</b> — 콘텐츠사업본부 마케팅팀에 신규 지원자 황샛별님이 9번째 후보로 등록되어 1차 면접(9/7)에 이어 2차 면접(9/8)을 진행했으며, 결과 확정 대기 중입니다.<br>
+  <b>2026-09-11 수정 반영</b> — 황샛별님이 장기근속에 따른 인수인계 부담으로 입사를 포기해 상태가 2차면접예정 → 입사포기로 변경되었습니다.<br>
+  <b>2026-09-11 등록</b> — 콘텐츠사업본부 출판팀에 신규 지원자 김상민님이 10번째 후보로 등록되어 1차 면접(9/11, 엄재욱 본부장)을 진행했으며, 불합격으로 확정되었습니다.<br>
   <b>8월 이전 면접·채용이력 안내</b> — 8월에 진행된 면접·채용이력은 <a href="2026-08-13_면접채용이력.html">2026년 8월 면접 및 채용이력</a> 보고서에서 확인하실 수 있습니다.
 </footer>
 
@@ -447,7 +482,7 @@ new Chart(document.getElementById('funnelChart'), {
   data: {
     labels: ['지원자', '1차면접 진행', '결과 확정', '최종 합격'],
     datasets: [{
-      data: [1, 1, 0, 0],
+      data: [2, 2, 2, 0],
       backgroundColor: ['#1c2b4a', '#2f6fed', '#b8790a', '#1f8a5f'],
       borderRadius: 6,
       barPercentage: 0.65,
