@@ -65,6 +65,11 @@ details.card summary::before { content:"▶"; font-size:11px; color:var(--gray);
 details.card[open] summary::before { content:"▶"; transform:rotate(90deg); }
 .hc-badge { font-weight:600; font-size:11.5px; color:var(--gray); background:var(--gray-l); border-radius:20px; padding:2px 10px; }
 
+.view-toggle { display:inline-flex; gap:6px; background:var(--gray-l); border:1px solid var(--border); border-radius:10px; padding:4px; margin-bottom:14px; }
+.view-toggle button { border:none; background:transparent; color:var(--gray); font-weight:700; font-size:12px; padding:7px 14px; border-radius:7px; cursor:pointer; transition:.15s; font-family:inherit; }
+.view-toggle button:hover { color:var(--navy); }
+.view-toggle button.active { background:var(--navy); color:#fff; box-shadow:0 1px 2px rgba(20,30,60,.15); }
+
 table { width:100%; border-collapse:collapse; font-size:13px; }
 th, td { text-align:left; padding:10px 10px; border-bottom:1px solid var(--border); vertical-align:top; }
 th { color:var(--gray); font-weight:700; font-size:11.5px; text-transform:uppercase; letter-spacing:.3px; background:var(--gray-l); }
@@ -231,39 +236,14 @@ footer.note b { color:var(--navy); }
 
 <section class="card">
   <h2 class="section-title"><span class="dot" style="background:#b8790a;"></span>② 매장별 요약 (정규직·일용직 구분)</h2>
-  <p class="section-desc">정규직+일용직을 합산한 지급총액 · 공제총액 · 차인지급액 기준 7월 → 8월 비교입니다. 항목별 정규직/일용직 구분 내역은 아래 매장을 펼쳐서 확인하세요.</p>
+  <p class="section-desc">아래 버튼으로 <b>합산 / 정규직만 / 일용직만</b> 보기를 전환할 수 있습니다. 지급총액 · 공제총액 · 차인지급액 기준 7월 → 8월 비교입니다. 항목별(기본급/식대 등) 세부 내역은 아래 매장을 펼쳐서 확인하세요.</p>
+  <div class="view-toggle" id="storeViewToggle">
+    <button type="button" data-view="combined" class="active">합산 (정규+일용)</button>
+    <button type="button" data-view="regular">정규직만</button>
+    <button type="button" data-view="daily">일용직만</button>
+  </div>
   <table><thead><tr><th>매장</th><th>인원</th><th>지급총액</th><th>공제총액</th><th>차인지급액</th></tr></thead>
-  <tbody><tr>
-      <td class="unit-name">연남점</td>
-      <td>18명 → 21명 (+3)<br><span style="color:var(--gray);font-size:11px;font-weight:600;">정규직 14명 · 일용직 7명</span></td>
-      <td class="num">37,734,055 → <b>41,464,708</b><br><span class='delta up'>▲ +3,730,653원</span> <span class='pct'>(+9.9%)</span></td>
-      <td class="num">3,842,690 → <b>4,107,440</b><br><span class='delta up'>▲ +264,750원</span> <span class='pct'>(+6.9%)</span></td>
-      <td class="num">33,891,365 → <b>37,357,268</b><br><span class='delta up'>▲ +3,465,903원</span> <span class='pct'>(+10.2%)</span></td>
-    </tr><tr>
-      <td class="unit-name">홍대점</td>
-      <td>10명 → 10명<br><span style="color:var(--gray);font-size:11px;font-weight:600;">정규직 3명 · 일용직 7명</span></td>
-      <td class="num">14,944,791 → <b>13,722,060</b><br><span class='delta down'>▼ -1,222,731원</span> <span class='pct'>(-8.2%)</span></td>
-      <td class="num">1,186,840 → <b>1,330,050</b><br><span class='delta up'>▲ +143,210원</span> <span class='pct'>(+12.1%)</span></td>
-      <td class="num">13,757,951 → <b>12,392,010</b><br><span class='delta down'>▼ -1,365,941원</span> <span class='pct'>(-9.9%)</span></td>
-    </tr><tr>
-      <td class="unit-name">망원점</td>
-      <td>8명 → 7명 (-1)<br><span style="color:var(--gray);font-size:11px;font-weight:600;">정규직 3명 · 일용직 4명</span></td>
-      <td class="num">11,403,656 → <b>12,460,752</b><br><span class='delta up'>▲ +1,057,096원</span> <span class='pct'>(+9.3%)</span></td>
-      <td class="num">883,220 → <b>1,019,360</b><br><span class='delta up'>▲ +136,140원</span> <span class='pct'>(+15.4%)</span></td>
-      <td class="num">10,520,436 → <b>11,441,392</b><br><span class='delta up'>▲ +920,956원</span> <span class='pct'>(+8.8%)</span></td>
-    </tr><tr>
-      <td class="unit-name">마곡점</td>
-      <td>14명 → 13명 (-1)<br><span style="color:var(--gray);font-size:11px;font-weight:600;">정규직 5명 · 일용직 8명</span></td>
-      <td class="num">20,320,739 → <b>20,048,484</b><br><span class='delta down'>▼ -272,255원</span> <span class='pct'>(-1.3%)</span></td>
-      <td class="num">1,923,640 → <b>1,809,670</b><br><span class='delta down'>▼ -113,970원</span> <span class='pct'>(-5.9%)</span></td>
-      <td class="num">18,397,099 → <b>18,238,814</b><br><span class='delta down'>▼ -158,285원</span> <span class='pct'>(-0.9%)</span></td>
-    </tr><tr class="total-row">
-  <td>합계 (4개 매장)</td>
-  <td>50명 → 51명 (+1)<br><span style="font-weight:600;font-size:11px;">정규직 25명 · 일용직 26명</span></td>
-  <td class="num">84,403,241 → <b>87,696,004</b><br><span class='delta up'>▲ +3,292,763원</span> <span class='pct'>(+3.9%)</span></td>
-  <td class="num">7,836,390 → <b>8,266,520</b><br><span class='delta up'>▲ +430,130원</span> <span class='pct'>(+5.5%)</span></td>
-  <td class="num">76,566,851 → <b>79,429,484</b><br><span class='delta up'>▲ +2,862,633원</span> <span class='pct'>(+3.7%)</span></td>
-</tr></tbody></table>
+  <tbody id="storeTableBody"></tbody></table>
 </section>
 
 <details class="card unit-detail">
@@ -310,6 +290,88 @@ footer.note b { color:var(--navy); }
 <script>
 const D2 = {"labels": ["연남점", "홍대점", "망원점", "마곡점"], "ft7": [35545672, 8728212, 7883832, 11242944], "pt7": [5919036, 4993848, 4576920, 8805540], "donut": [63400660, 24295344], "pay6": [37734055, 14944791, 11403656, 20320739], "pay7": [41464708, 13722060, 12460752, 20048484]};
 const D = {"labels": ["필름", "연남점", "홍대점", "망원점", "마곡점"], "ft7": [92606001, 35545672, 8728212, 7883832, 11242944], "pt7": [0, 5919036, 4993848, 4576920, 8805540], "donut": [156006661, 24295344], "pay6": [93046878, 37734055, 14944791, 11403656, 20320739], "pay7": [92606001, 41464708, 13722060, 12460752, 20048484]};
+const storeSummary = [
+  { name: "연남점",
+    combined: { hc7:18, hc8:21, pay7:37734055, pay8:41464708, gj7:3842690, gj8:4107440, cha7:33891365, cha8:37357268 },
+    regular:  { hc7:13, hc8:14, pay7:32147323, pay8:35545672, gj7:3218080, gj8:3551920, cha7:28929243, cha8:31993752 },
+    daily:    { hc7:5,  hc8:7,  pay7:5586732,  pay8:5919036,  gj7:624610,  gj8:555520,  cha7:4962122,  cha8:5363516 } },
+  { name: "홍대점",
+    combined: { hc7:10, hc8:10, pay7:14944791, pay8:13722060, gj7:1186840, gj8:1330050, cha7:13757951, cha8:12392010 },
+    regular:  { hc7:4,  hc8:3,  pay7:10061883, pay8:8728212,  gj7:906080,  gj8:896900,  cha7:9155803,  cha8:7831312 },
+    daily:    { hc7:6,  hc8:7,  pay7:4882908,  pay8:4993848,  gj7:280760,  gj8:433150,  cha7:4602148,  cha8:4560698 } },
+  { name: "망원점",
+    combined: { hc7:8,  hc8:7,  pay7:11403656, pay8:12460752, gj7:883220,  gj8:1019360, cha7:10520436, cha8:11441392 },
+    regular:  { hc7:4,  hc8:3,  pay7:7177616,  pay8:7883832,  gj7:536760,  gj8:620820,  cha7:6640856,  cha8:7263012 },
+    daily:    { hc7:4,  hc8:4,  pay7:4226040,  pay8:4576920,  gj7:346460,  gj8:398540,  cha7:3879580,  cha8:4178380 } },
+  { name: "마곡점",
+    combined: { hc7:14, hc8:13, pay7:20320739, pay8:20048484, gj7:1923640, gj8:1809670, cha7:18397099, cha8:18238814 },
+    regular:  { hc7:4,  hc8:5,  pay7:10064207, pay8:11242944, gj7:993030,  gj8:1041970, cha7:9071177,  cha8:10200974 },
+    daily:    { hc7:10, hc8:8,  pay7:10256532, pay8:8805540,  gj7:930610,  gj8:767700,  cha7:9325922,  cha8:8037840 } },
+];
+const storeTotal = {
+  combined: { hc7:50, hc8:51, pay7:84403241, pay8:87696004, gj7:7836390, gj8:8266520, cha7:76566851, cha8:79429484 },
+  regular:  { hc7:25, hc8:25, pay7:59451029, pay8:63400660, gj7:5653950, gj8:6111610, cha7:53797079, cha8:57289050 },
+  daily:    { hc7:25, hc8:26, pay7:24952212, pay8:24295344, gj7:2182440, gj8:2154910, cha7:22769772, cha8:22140434 },
+};
+const viewLabel = { combined: "합산 (정규+일용)", regular: "정규직", daily: "일용직" };
+
+function fmtKRW(n) { return n.toLocaleString('ko-KR'); }
+function hcCellHtml(hc7, hc8) {
+  const diff = hc8 - hc7;
+  if (diff === 0) return `${hc7}명 → ${hc8}명`;
+  const sign = diff > 0 ? '+' : '';
+  return `${hc7}명 → ${hc8}명 (${sign}${diff})`;
+}
+function moneyCellHtml(v7, v8) {
+  const diff = v8 - v7;
+  if (diff === 0) return `${fmtKRW(v7)} → <b>${fmtKRW(v8)}</b><br><span class='delta flat'>변동없음</span>`;
+  const cls = diff > 0 ? 'up' : 'down';
+  const arrow = diff > 0 ? '▲' : '▼';
+  const sign = diff > 0 ? '+' : '';
+  const pct = v7 !== 0 ? ((diff / Math.abs(v7)) * 100).toFixed(1) : '-';
+  return `${fmtKRW(v7)} → <b>${fmtKRW(v8)}</b><br><span class='delta ${cls}'>${arrow} ${sign}${fmtKRW(diff)}원</span> <span class='pct'>(${sign}${pct}%)</span>`;
+}
+function renderStoreTable(view) {
+  const tbody = document.getElementById('storeTableBody');
+  let rows = '';
+  storeSummary.forEach(s => {
+    const d = s[view];
+    let hcCell = hcCellHtml(d.hc7, d.hc8);
+    if (view === 'combined') {
+      const r = s.regular, p = s.daily;
+      hcCell += `<br><span style="color:var(--gray);font-size:11px;font-weight:600;">정규직 ${r.hc8}명 · 일용직 ${p.hc8}명</span>`;
+    }
+    rows += `<tr>
+      <td class="unit-name">${s.name}</td>
+      <td>${hcCell}</td>
+      <td class="num">${moneyCellHtml(d.pay7, d.pay8)}</td>
+      <td class="num">${moneyCellHtml(d.gj7, d.gj8)}</td>
+      <td class="num">${moneyCellHtml(d.cha7, d.cha8)}</td>
+    </tr>`;
+  });
+  const t = storeTotal[view];
+  let totalHc = hcCellHtml(t.hc7, t.hc8);
+  if (view === 'combined') {
+    totalHc += `<br><span style="font-weight:600;font-size:11px;">정규직 ${storeTotal.regular.hc8}명 · 일용직 ${storeTotal.daily.hc8}명</span>`;
+  }
+  rows += `<tr class="total-row">
+      <td>합계 (4개 매장, ${viewLabel[view]})</td>
+      <td>${totalHc}</td>
+      <td class="num">${moneyCellHtml(t.pay7, t.pay8)}</td>
+      <td class="num">${moneyCellHtml(t.gj7, t.gj8)}</td>
+      <td class="num">${moneyCellHtml(t.cha7, t.cha8)}</td>
+    </tr>`;
+  tbody.innerHTML = rows;
+}
+document.getElementById('storeViewToggle').addEventListener('click', (e) => {
+  const btn = e.target.closest('button[data-view]');
+  if (!btn) return;
+  document.querySelectorAll('#storeViewToggle button').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderStoreTable(btn.dataset.view);
+});
+renderStoreTable('combined');
+
 const navy = "#1c2b4a";
 Chart.defaults.font.family = "-apple-system,BlinkMacSystemFont,'Segoe UI','Malgun Gothic',Roboto,Arial,sans-serif";
 Chart.defaults.font.size = 11.5;
